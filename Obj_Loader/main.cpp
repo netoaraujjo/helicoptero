@@ -15,18 +15,24 @@ GLfloat look[3]={0.0,3.0,0.0};
 GLfloat axisxz=0;
 GLfloat radiusxz=30;
 
+/* Controle do helicóptero */
 GameObject helicoptero;
-GameObject helice;
+GLfloat helicopteroRotateY = 0.0;
+GLfloat helicopteroRotateZ = 0.0;
+GLfloat helicopteroY = 0.0;
+GLfloat helicopteroX = 0.0;
+GLfloat helicopteroZ = 0.0;
+
+/* Controle dos torpedoss */
 GameObject torpedo1;
 GameObject torpedo2;
 GameObject torpedo3;
 GameObject torpedo4;
 
-GLfloat helicopteroRotate = 0.0;
-GLfloat helicopteroY = 0.0;
-GLfloat helicopteroX = 0.0;
-GLfloat helicopteroZ = 0.0;
+/* Controle da helice */
+GameObject helice;
 GLfloat heliceRotate = 0.0;
+GLfloat heliceRotateIncrement = 0.0;
 
 
 void display(void);
@@ -120,7 +126,8 @@ void display(void)
 
     glPushMatrix(); // Contem o helicoptero inteiro
 
-        glRotatef(helicopteroRotate, 0, 1, 0);
+        glRotatef(helicopteroRotateY, 0, 1, 0);
+        glRotatef(helicopteroRotateZ, 0, 0, 1);
         glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
 
         glPushMatrix(); // Contem o corpo do helicoptero
@@ -171,7 +178,10 @@ void reshape(int width, int height)
 }
 
 void rotacionaHelice() {
-    heliceRotate += 2.0;
+    heliceRotate += heliceRotateIncrement;
+    if (heliceRotateIncrement < 30.0) {
+        heliceRotateIncrement += 0.05;
+    }
     glutPostRedisplay();
 }
 
@@ -182,17 +192,28 @@ void keyboard(unsigned char key, int x, int y)
         case 27:
             exit(0);
             break;
-        case 'r':
-            helicopteroRotate += 2.5;
+        case 'd':
+            helicopteroRotateY += 2.5;
             break;
-        case 'e':
-            helicopteroRotate -= 2.5;
+        case 'a':
+            helicopteroRotateY -= 2.5;
+            break;
+        case 'w':
+            helicopteroRotateZ += 2.5;
+            break;
+        case 's':
+            helicopteroRotateZ -= 2.5;
             break;
         case 'i':
             glutIdleFunc(rotacionaHelice);
             break;
         case 'I':
+            heliceRotateIncrement = 0.0;
             glutIdleFunc(NULL);
+            break;
+        case 't': // dispara torpedo da esq
+            break;
+        case 'T': // dispara torpedo da dir
             break;
 	}
 	glutPostRedisplay();
