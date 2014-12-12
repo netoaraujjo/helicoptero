@@ -77,9 +77,8 @@ int main(int argc, char **argv)
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
 //
-    cubo.load("cubo.obj", "amarelo.tga", 0);
-    cone.load("cone.obj", "laranja.tga", 0);
-    helicoptero.load("helicoptero.obj", "helicoptero_tga.tga", 0);
+
+    helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
     //helicoptero.load("test.obj", "amarelo.tga", 0);
 
 
@@ -101,9 +100,8 @@ void display(void)
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
     glPushMatrix();
-        glTranslatef(20, 0,0);
-        glRotatef(0,0,1,0);
-        //cone.render();
+        glTranslatef(0, 0,0);
+        //glRotatef(270,0,1,0);
         helicoptero.render();
     glPopMatrix();
 
@@ -125,8 +123,8 @@ void keyboard(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
-	case 27:
-		exit(0);
-		break;
+        case 27:
+            exit(0);
+            break;
 	}
 }
