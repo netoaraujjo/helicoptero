@@ -11,6 +11,11 @@
 
 using namespace std;
 
+typedef struct {
+    GameObject torpedo1;
+    int disparado;
+} Torpedo;
+
 GLint WIDTH = 800;
 GLint HEIGHT = 600;
 
@@ -138,21 +143,23 @@ void display(void)
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
-    //glRotatef(180, 0, 1, 0);
-    //glRotatef(-10, 1, 0, 0);
+    // Solo
+    glPushMatrix();
+        glTranslatef(0, -5.2, 0);
+        glScalef(2.0, 1.0, 5.5);
+        glRotatef(-19, 1, 0, 0);
+        solo.render();
+    glPopMatrix();
 
     glPushMatrix(); // Contem o helicoptero inteiro
 
         glTranslatef(-10, 0, 0);
-
-        //glRotatef(helicopteroRotateY, 0, 1, 0);
-        //glRotatef(helicopteroRotateZ, 0, 0, 1);
         glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
         glRotatef(helicopteroRotateY, 0, 1, 0);
         glRotatef(helicopteroRotateZ, 0, 0, 1);
 
         glPushMatrix(); // Contem o corpo do helicoptero
-            glTranslatef(0, 0,0);
+            glTranslatef(0, 0, 0);
             helicoptero.render();
         glPopMatrix();
 
@@ -187,14 +194,6 @@ void display(void)
         glPopMatrix();
 
     glPopMatrix(); // contem o helicoptero inteiro
-
-    // Solo
-    glPushMatrix();
-        glTranslatef(0, -5.2, 0);
-        glScalef(1.5, 1.5, 1.5);
-        glRotatef(-19, 1, 0, 0);
-        solo.render();
-    glPopMatrix();
 
     glutSwapBuffers();
 }
@@ -254,13 +253,14 @@ void keyboard(unsigned char key, int x, int y)
             helicopteroRotateZ -= 2.5;
             break;
         case 'i':
-            //glutIdleFunc(rotacionaHelice);
             heliceState = ON;
             break;
         case 'I':
-            heliceRotateIncrement = 0.0;
-            heliceState = OFF;
-            //glutIdleFunc(NULL);
+            if (helicopteroY == 0) {
+                heliceRotate = 0.0;
+                heliceRotateIncrement = 0.0;
+                heliceState = OFF;
+            }
             break;
         case 't': // dispara torpedo da esq (1, 2)
             if (numTorpedoEsquerda < 2) {
@@ -280,11 +280,15 @@ void special_keyboard(int key, int x, int y) {
     switch (key)
     {
         case GLUT_KEY_UP:
-            helicopteroY += 0.3;
+            if (heliceState == ON) {
+                helicopteroY += 0.3;
+            }
             break;
         case GLUT_KEY_DOWN:
-            if (helicopteroY > 0) {
+            if (helicopteroY > 0.0) {
                 helicopteroY -= 0.3;
+            } else {
+                helicopteroY = 0.0;
             }
             break;
         case GLUT_KEY_LEFT:
