@@ -15,8 +15,9 @@ GLfloat look[3]={0.0,3.0,0.0};
 GLfloat axisxz=0;
 GLfloat radiusxz=30;
 
+GameObject cubo;
+GameObject cone;
 GameObject helicoptero;
-//GameObject cone;
 
 void display(void);
 void reshape(int width, int height);
@@ -32,7 +33,7 @@ int main(int argc, char **argv)
 
     glutInitWindowSize(WIDTH, HEIGHT);
     glutInitWindowPosition(20, 20);
-    glutCreateWindow("Helicoptero");
+    glutCreateWindow("Cubo");
     glewExperimental = GL_TRUE;
     GLenum err = glewInit();
     if (GLEW_OK != err)	{
@@ -76,8 +77,11 @@ int main(int argc, char **argv)
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
 //
-    helicoptero.load("helicoptero.obj", "amarelo.tga", 0);
-    //cone.load("cone.obj", "laranja.tga", 0);
+    cubo.load("cubo.obj", "amarelo.tga", 0);
+    cone.load("cone.obj", "laranja.tga", 0);
+    helicoptero.load("helicoptero.obj", "helicoptero_tga.tga", 0);
+    //helicoptero.load("test.obj", "amarelo.tga", 0);
+
 
     srand(time(NULL));
 
@@ -97,14 +101,11 @@ void display(void)
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
     glPushMatrix();
-        glTranslatef(20, 0, 0);
+        glTranslatef(20, 0,0);
+        glRotatef(0,0,1,0);
+        //cone.render();
         helicoptero.render();
     glPopMatrix();
-
-    /*glPushMatrix();
-        glTranslatef(20, 0, 5);
-        cone.render();
-    glPopMatrix();*/
 
     glutSwapBuffers();
 }
