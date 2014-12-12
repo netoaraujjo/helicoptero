@@ -42,6 +42,8 @@ GameObject helice;
 GLfloat heliceRotate = 0.0;
 GLfloat heliceRotateIncrement = 0.0;
 
+GameObject solo;
+
 
 void display(void);
 void reshape(int width, int height);
@@ -111,6 +113,7 @@ int main(int argc, char **argv)
     torpedo2.load("torpedo.obj", "torpedo.tga", 0);
     torpedo3.load("torpedo.obj", "torpedo.tga", 0);
     torpedo4.load("torpedo.obj", "torpedo.tga", 0);
+    solo.load("piso.obj", "piso.tga", 0);
 
     srand(time(NULL));
 
@@ -136,9 +139,11 @@ void display(void)
 
         glTranslatef(-10, 0, 0);
 
+        //glRotatef(helicopteroRotateY, 0, 1, 0);
+        //glRotatef(helicopteroRotateZ, 0, 0, 1);
+        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
         glRotatef(helicopteroRotateY, 0, 1, 0);
         glRotatef(helicopteroRotateZ, 0, 0, 1);
-        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
 
         glPushMatrix(); // Contem o corpo do helicoptero
             glTranslatef(0, 0,0);
@@ -176,6 +181,14 @@ void display(void)
         glPopMatrix();
 
     glPopMatrix(); // contem o helicoptero inteiro
+
+    // Solo
+    glPushMatrix();
+        glTranslatef(0, -5.2, 0);
+        glScalef(1.5, 1.5, 1.5);
+        glRotatef(-19, 1, 0, 0);
+        solo.render();
+    glPopMatrix();
 
     glutSwapBuffers();
 }
@@ -264,7 +277,9 @@ void special_keyboard(int key, int x, int y) {
             helicopteroY += 0.3;
             break;
         case GLUT_KEY_DOWN:
-            helicopteroY -= 0.3;
+            if (helicopteroY > 0) {
+                helicopteroY -= 0.3;
+            }
             break;
         case GLUT_KEY_LEFT:
             helicopteroZ += 0.3;
