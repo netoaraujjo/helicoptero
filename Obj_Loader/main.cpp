@@ -6,6 +6,9 @@
 #include <GL/freeglut.h>
 #define PI 3.1415
 
+#define ON 1
+#define OFF 0
+
 using namespace std;
 
 GLint WIDTH = 800;
@@ -41,15 +44,16 @@ GLint ladoDisparado = 0; //1 - esquerda, 2 - direita
 GameObject helice;
 GLfloat heliceRotate = 0.0;
 GLfloat heliceRotateIncrement = 0.0;
+GLint heliceState = OFF;
 
 GameObject solo;
-
 
 void display(void);
 void reshape(int width, int height);
 void keyboard(unsigned char key, int x, int y);
 void special_keyboard(int key, int x, int y);
-void rotacionaHelice(void);
+void controlaAnimacoes(void);
+
 
 int main(int argc, char **argv)
 {
@@ -84,6 +88,8 @@ int main(int argc, char **argv)
     glutKeyboardFunc(keyboard);
     glutSpecialFunc(special_keyboard);
     glutDisplayFunc(display);
+
+    glutIdleFunc(controlaAnimacoes);
 
     glClearColor(1.0, 1.0, 1.0, 1.0);
 
@@ -204,15 +210,14 @@ void reshape(int width, int height)
     glLoadIdentity();
 }
 
-void rotacionaHelice() {
-    heliceRotate += heliceRotateIncrement;
-    if (heliceRotateIncrement < 30.0) {
-        heliceRotateIncrement += 0.05;
+void controlaAnimacoes() {
+    if (heliceState == ON) {
+        heliceRotate += heliceRotateIncrement;
+        if (heliceRotateIncrement < 30.0) {
+            heliceRotateIncrement += 0.05;
+        }
     }
-    glutPostRedisplay();
-}
 
-void disparaTorpedo() {
     if (numTorpedoEsquerda > 0) {
         translateTorpedo2 += 0.1;
     }
@@ -225,6 +230,7 @@ void disparaTorpedo() {
     if (numTorpedoDireita > 1) {
         translateTorpedo3 += 0.1;
     }
+
     glutPostRedisplay();
 }
 
@@ -248,22 +254,22 @@ void keyboard(unsigned char key, int x, int y)
             helicopteroRotateZ -= 2.5;
             break;
         case 'i':
-            glutIdleFunc(rotacionaHelice);
+            //glutIdleFunc(rotacionaHelice);
+            heliceState = ON;
             break;
         case 'I':
             heliceRotateIncrement = 0.0;
-            glutIdleFunc(NULL);
+            heliceState = OFF;
+            //glutIdleFunc(NULL);
             break;
         case 't': // dispara torpedo da esq (1, 2)
             if (numTorpedoEsquerda < 2) {
                 numTorpedoEsquerda++;
-                glutIdleFunc(disparaTorpedo);
             }
             break;
         case 'T': // dispara torpedo da dir (3, 4)
             if (numTorpedoDireita < 2) {
                 numTorpedoDireita++;
-                glutIdleFunc(disparaTorpedo);
             }
             break;
 	}
