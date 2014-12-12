@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include <GL/freeglut.h>
 #define PI 3.1415
+
 using namespace std;
 
 GLint WIDTH = 800;
@@ -28,6 +29,13 @@ GameObject torpedo1;
 GameObject torpedo2;
 GameObject torpedo3;
 GameObject torpedo4;
+GLfloat translateTorpedo1 = 3.0;
+GLfloat translateTorpedo2 = 3.0;
+GLfloat translateTorpedo3 = 3.0;
+GLfloat translateTorpedo4 = 3.0;
+GLint numTorpedoEsquerda = 0;
+GLint numTorpedoDireita = 0;
+GLint ladoDisparado = 0; //1 - esquerda, 2 - direita
 
 /* Controle da helice */
 GameObject helice;
@@ -126,6 +134,8 @@ void display(void)
 
     glPushMatrix(); // Contem o helicoptero inteiro
 
+        glTranslatef(-10, 0, 0);
+
         glRotatef(helicopteroRotateY, 0, 1, 0);
         glRotatef(helicopteroRotateZ, 0, 0, 1);
         glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
@@ -141,23 +151,27 @@ void display(void)
             helice.render();
         glPopMatrix();
 
+        // torpedo 1
         glPushMatrix();
-            glTranslatef(4, -3, 3);
+            glTranslatef(4, -3, translateTorpedo1);
             torpedo1.render();
         glPopMatrix();
 
+        // torpedo 2
         glPushMatrix();
-            glTranslatef(5.7, -3.1, 3);
+            glTranslatef(5.7, -3.1, translateTorpedo2);
             torpedo2.render();
         glPopMatrix();
 
+        // torpedo 3
         glPushMatrix();
-            glTranslatef(-4.4, -3.1, 3);
+            glTranslatef(-4.4, -3.1, translateTorpedo3);
             torpedo3.render();
         glPopMatrix();
 
+        // torpedo 4
         glPushMatrix();
-            glTranslatef(-6.3, -3.1, 3);
+            glTranslatef(-6.3, -3.1, translateTorpedo4);
             torpedo4.render();
         glPopMatrix();
 
@@ -181,6 +195,22 @@ void rotacionaHelice() {
     heliceRotate += heliceRotateIncrement;
     if (heliceRotateIncrement < 30.0) {
         heliceRotateIncrement += 0.05;
+    }
+    glutPostRedisplay();
+}
+
+void disparaTorpedo() {
+    if (numTorpedoEsquerda > 0) {
+        translateTorpedo2 += 0.1;
+    }
+    if (numTorpedoEsquerda > 1) {
+        translateTorpedo1 += 0.1;
+    }
+    if (numTorpedoDireita > 0) {
+        translateTorpedo4 += 0.1;
+    }
+    if (numTorpedoDireita > 1) {
+        translateTorpedo3 += 0.1;
     }
     glutPostRedisplay();
 }
@@ -211,9 +241,17 @@ void keyboard(unsigned char key, int x, int y)
             heliceRotateIncrement = 0.0;
             glutIdleFunc(NULL);
             break;
-        case 't': // dispara torpedo da esq
+        case 't': // dispara torpedo da esq (1, 2)
+            if (numTorpedoEsquerda < 2) {
+                numTorpedoEsquerda++;
+                glutIdleFunc(disparaTorpedo);
+            }
             break;
-        case 'T': // dispara torpedo da dir
+        case 'T': // dispara torpedo da dir (3, 4)
+            if (numTorpedoDireita < 2) {
+                numTorpedoDireita++;
+                glutIdleFunc(disparaTorpedo);
+            }
             break;
 	}
 	glutPostRedisplay();
