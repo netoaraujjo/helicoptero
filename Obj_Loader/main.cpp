@@ -15,13 +15,25 @@ GLfloat look[3]={0.0,3.0,0.0};
 GLfloat axisxz=0;
 GLfloat radiusxz=30;
 
-GameObject cubo;
-GameObject cone;
 GameObject helicoptero;
+GameObject helice;
+GameObject torpedo1;
+GameObject torpedo2;
+GameObject torpedo3;
+GameObject torpedo4;
+
+GLfloat helicopteroRotate = 0.0;
+GLfloat helicopteroY = 0.0;
+GLfloat helicopteroX = 0.0;
+GLfloat helicopteroZ = 0.0;
+GLfloat heliceRotate = 0.0;
+
 
 void display(void);
 void reshape(int width, int height);
 void keyboard(unsigned char key, int x, int y);
+void special_keyboard(int key, int x, int y);
+void rotacionaHelice(void);
 
 int main(int argc, char **argv)
 {
@@ -33,7 +45,7 @@ int main(int argc, char **argv)
 
     glutInitWindowSize(WIDTH, HEIGHT);
     glutInitWindowPosition(20, 20);
-    glutCreateWindow("Cubo");
+    glutCreateWindow("Helicoptero");
     glewExperimental = GL_TRUE;
     GLenum err = glewInit();
     if (GLEW_OK != err)	{
@@ -54,6 +66,7 @@ int main(int argc, char **argv)
 
     glutReshapeFunc(reshape);
     glutKeyboardFunc(keyboard);
+    glutSpecialFunc(special_keyboard);
     glutDisplayFunc(display);
 
     glClearColor(1.0, 1.0, 1.0, 1.0);
@@ -79,8 +92,11 @@ int main(int argc, char **argv)
 //
 
     helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
-    //helicoptero.load("test.obj", "amarelo.tga", 0);
-
+    helice.load("helice.obj", "helice.tga", 0);
+    torpedo1.load("torpedo.obj", "torpedo.tga", 0);
+    torpedo2.load("torpedo.obj", "torpedo.tga", 0);
+    torpedo3.load("torpedo.obj", "torpedo.tga", 0);
+    torpedo4.load("torpedo.obj", "torpedo.tga", 0);
 
     srand(time(NULL));
 
@@ -99,11 +115,46 @@ void display(void)
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
-    glPushMatrix();
-        glTranslatef(0, 0,0);
-        //glRotatef(270,0,1,0);
-        helicoptero.render();
-    glPopMatrix();
+    //glRotatef(180, 0, 1, 0);
+    //glRotatef(-10, 1, 0, 0);
+
+    glPushMatrix(); // Contem o helicoptero inteiro
+
+        glRotatef(helicopteroRotate, 0, 1, 0);
+        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
+
+        glPushMatrix(); // Contem o corpo do helicoptero
+            glTranslatef(0, 0,0);
+            helicoptero.render();
+        glPopMatrix();
+
+        glPushMatrix(); // Contem a helice
+            glTranslatef(0, 4, 3);
+            glRotatef(heliceRotate, 0, 1, 0);
+            helice.render();
+        glPopMatrix();
+
+        glPushMatrix();
+            glTranslatef(4, -3, 3);
+            torpedo1.render();
+        glPopMatrix();
+
+        glPushMatrix();
+            glTranslatef(5.7, -3.1, 3);
+            torpedo2.render();
+        glPopMatrix();
+
+        glPushMatrix();
+            glTranslatef(-4.4, -3.1, 3);
+            torpedo3.render();
+        glPopMatrix();
+
+        glPushMatrix();
+            glTranslatef(-6.3, -3.1, 3);
+            torpedo4.render();
+        glPopMatrix();
+
+    glPopMatrix(); // contem o helicoptero inteiro
 
     glutSwapBuffers();
 }
@@ -119,6 +170,11 @@ void reshape(int width, int height)
     glLoadIdentity();
 }
 
+void rotacionaHelice() {
+    heliceRotate += 2.0;
+    glutPostRedisplay();
+}
+
 void keyboard(unsigned char key, int x, int y)
 {
 	switch (key)
@@ -126,5 +182,36 @@ void keyboard(unsigned char key, int x, int y)
         case 27:
             exit(0);
             break;
+        case 'r':
+            helicopteroRotate += 2.5;
+            break;
+        case 'e':
+            helicopteroRotate -= 2.5;
+            break;
+        case 'i':
+            glutIdleFunc(rotacionaHelice);
+            break;
+        case 'I':
+            glutIdleFunc(NULL);
+            break;
 	}
+	glutPostRedisplay();
+}
+
+void special_keyboard(int key, int x, int y) {
+    switch (key)
+    {
+        case GLUT_KEY_UP:
+            helicopteroY += 0.3;
+            break;
+        case GLUT_KEY_DOWN:
+            helicopteroY -= 0.3;
+            break;
+        case GLUT_KEY_LEFT:
+            helicopteroZ += 0.3;
+            break;
+        case GLUT_KEY_RIGHT:
+            helicopteroZ -= 0.3;
+    }
+    glutPostRedisplay();
 }

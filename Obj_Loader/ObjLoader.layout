@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="Tga.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="127" topLine="42" />
-		</Cursor>
-	</File>
 	<File name="GameObject.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="205" topLine="113" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2849" topLine="100" />
 		</Cursor>
 	</File>
 	<File name="GameObject.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -16,15 +16,7 @@
 			<Cursor1 position="91" topLine="11" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-<<<<<<< HEAD
-=======
-		<Cursor>
-			<Cursor1 position="2442" topLine="60" />
-		</Cursor>
-	</File>
 	<File name="Tga.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
->>>>>>> 83e12e225967fd65e9622f6f8c963686ae0525fd
 		<Cursor>
 			<Cursor1 position="127" topLine="42" />
 		</Cursor>
