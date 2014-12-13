@@ -11,10 +11,11 @@
 
 using namespace std;
 
-typedef struct {
-    GameObject torpedo1;
-    int disparado;
-} Torpedo;
+struct Torpedo {
+    GameObject torpedo;
+    GLint disparado;
+    GLfloat translate;
+};
 
 GLint WIDTH = 800;
 GLint HEIGHT = 600;
@@ -33,17 +34,12 @@ GLfloat helicopteroX = 0.0;
 GLfloat helicopteroZ = 0.0;
 
 /* Controle dos torpedoss */
-GameObject torpedo1;
-GameObject torpedo2;
-GameObject torpedo3;
-GameObject torpedo4;
-GLfloat translateTorpedo1 = 3.0;
-GLfloat translateTorpedo2 = 3.0;
-GLfloat translateTorpedo3 = 3.0;
-GLfloat translateTorpedo4 = 3.0;
+struct Torpedo torpedo1;
+struct Torpedo torpedo2;
+struct Torpedo torpedo3;
+struct Torpedo torpedo4;
 GLint numTorpedoEsquerda = 0;
 GLint numTorpedoDireita = 0;
-GLint ladoDisparado = 0; //1 - esquerda, 2 - direita
 
 /* Controle da helice */
 GameObject helice;
@@ -58,7 +54,6 @@ void reshape(int width, int height);
 void keyboard(unsigned char key, int x, int y);
 void special_keyboard(int key, int x, int y);
 void controlaAnimacoes(void);
-
 
 int main(int argc, char **argv)
 {
@@ -118,12 +113,22 @@ int main(int argc, char **argv)
     glEnable(GL_LIGHTING);
 //
 
+    torpedo1.translate = 3.0;
+    torpedo2.translate = 3.0;
+    torpedo3.translate = 3.0;
+    torpedo4.translate = 3.0;
+
+    torpedo1.disparado = OFF;
+    torpedo2.disparado = OFF;
+    torpedo3.disparado = OFF;
+    torpedo4.disparado = OFF;
+
     helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
     helice.load("helice.obj", "helice.tga", 0);
-    torpedo1.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo2.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo3.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo4.load("torpedo.obj", "torpedo.tga", 0);
+    torpedo1.torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedo2.torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedo3.torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedo4.torpedo.load("torpedo.obj", "torpedo.tga", 0);
     solo.load("piso.obj", "piso.tga", 0);
 
     srand(time(NULL));
@@ -171,26 +176,26 @@ void display(void)
 
         // torpedo 1
         glPushMatrix();
-            glTranslatef(4, -3, translateTorpedo1);
-            torpedo1.render();
+            glTranslatef(4, -3, torpedo1.translate);
+            torpedo1.torpedo.render();
         glPopMatrix();
 
         // torpedo 2
         glPushMatrix();
-            glTranslatef(5.7, -3.1, translateTorpedo2);
-            torpedo2.render();
+            glTranslatef(5.7, -3.1, torpedo2.translate);
+            torpedo2.torpedo.render();
         glPopMatrix();
 
         // torpedo 3
         glPushMatrix();
-            glTranslatef(-4.4, -3.1, translateTorpedo3);
-            torpedo3.render();
+            glTranslatef(-4.4, -3.1, torpedo3.translate);
+            torpedo3.torpedo.render();
         glPopMatrix();
 
         // torpedo 4
         glPushMatrix();
-            glTranslatef(-6.3, -3.1, translateTorpedo4);
-            torpedo4.render();
+            glTranslatef(-6.3, -3.1, torpedo4.translate);
+            torpedo4.torpedo.render();
         glPopMatrix();
 
     glPopMatrix(); // contem o helicoptero inteiro
@@ -218,16 +223,16 @@ void controlaAnimacoes() {
     }
 
     if (numTorpedoEsquerda > 0) {
-        translateTorpedo2 += 0.1;
+        torpedo1.translate += 0.1;
     }
     if (numTorpedoEsquerda > 1) {
-        translateTorpedo1 += 0.1;
+        torpedo2.translate += 0.1;
     }
     if (numTorpedoDireita > 0) {
-        translateTorpedo4 += 0.1;
+        torpedo3.translate += 0.1;
     }
     if (numTorpedoDireita > 1) {
-        translateTorpedo3 += 0.1;
+        torpedo4.translate += 0.1;
     }
 
     glutPostRedisplay();
@@ -262,12 +267,12 @@ void keyboard(unsigned char key, int x, int y)
                 heliceState = OFF;
             }
             break;
-        case 't': // dispara torpedo da esq (1, 2)
+        case 't':
             if (numTorpedoEsquerda < 2) {
                 numTorpedoEsquerda++;
             }
             break;
-        case 'T': // dispara torpedo da dir (3, 4)
+        case 'T':
             if (numTorpedoDireita < 2) {
                 numTorpedoDireita++;
             }
