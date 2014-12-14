@@ -92,6 +92,8 @@ GLint heliceState = OFF;
 
 
 GameObject solo;
+GameObject para_brisa;
+GameObject rotor_cauda;
 
 void display(void);
 void reshape(int width, int height);
@@ -99,6 +101,7 @@ void keyboard(unsigned char key, int x, int y);
 void special_keyboard(int key, int x, int y);
 void controlaAnimacoes(void);
 void initVariables(void);
+
 
 int main(int argc, char **argv)
 {
@@ -167,6 +170,8 @@ int main(int argc, char **argv)
     torpedo3.torpedo.load("torpedo.obj", "torpedo.tga", 0);
     torpedo4.torpedo.load("torpedo.obj", "torpedo.tga", 0);
     solo.load("piso.obj", "piso.tga", 0);
+    rotor_cauda.load("helice.obj", "helice.tga", 0);
+    para_brisa.load("janela.obj", "amarelo.tga", 0);
 
     srand(time(NULL));
 
@@ -206,9 +211,28 @@ void display(void)
             glRotatef(heliceRotate, 0, 1, 0);
             helice.render();
         glPopMatrix();
+
+
+        glPushMatrix();
+            glTranslatef(10.0, 0.0, 0.0);
+            para_brisa.render();
+        glPopMatrix();
+
+
+
+        glPushMatrix();
+            glTranslatef(0.5, 5.0, -22.5);
+            glScalef(0.5, 0.16, 0.16);
+            glRotatef(-90, 0, 0, 1);
+            glRotatef(heliceRotate, 0, 1, 0);
+            rotor_cauda.render();
+        glPopMatrix();
+
     glPopMatrix();
 
-/*****************************************************************************/
+/**************************************************************************************************************
+    DESENHA OS PROJÉTEIS DA METRALHADORA
+/*************************************************************************************************************/
     int i;
     for (i = 0; i < projeteisDisparados; i++) {
         glPushMatrix();
@@ -222,7 +246,7 @@ void display(void)
             glColor3f(1.0, 1.0, 1.0);
         glPopMatrix();
     }
-/*****************************************************************************/
+/*************************************************************************************************************/
 
     // torpedo 1
     glPushMatrix();
@@ -303,11 +327,7 @@ void controlaAnimacoes() {
         heliceRotate += heliceRotateIncrement;
         if (heliceRotateIncrement < 30.0) {
             heliceRotateIncrement += 0.01;
-            //heliceRotate += heliceRotateIncrement;
         }
-//        if (heliceRotate >= 360.0) {
-//            //heliceRotate = 0.0;
-//        }
     } else {
         if (heliceRotateIncrement > 0.0) {
             heliceRotateIncrement -= 0.05;
@@ -364,8 +384,6 @@ void keyboard(unsigned char key, int x, int y)
             break;
         case 'I':
             if (helicopteroY == 0) {
-                //heliceRotate = 0.0;
-                //heliceRotateIncrement = 0.0;
                 heliceState = OFF;
             }
             break;
