@@ -18,6 +18,7 @@ using namespace std;
 typedef struct {
     GameObject torpedo;
     GLint disparado;
+    GLfloat translateX;
     GLfloat translateZ;
     GLfloat translateY;
     GLfloat rotateY;
@@ -230,7 +231,7 @@ void display(void)
             glRotatef(helicopteroRotateY, 0, 1, 0);
             glTranslatef(4.0, -3.0, 3.0);
         } else {
-            glTranslatef(0.0, torpedo1.translateY, torpedo1.translateZ);
+            glTranslatef(torpedo1.translateX, torpedo1.translateY, torpedo1.translateZ);
             glRotatef(torpedo1.rotateY, 0, 1, 0);
             glTranslatef(4.0, -3.0, 3.0);
             glTranslatef(0.0, 0.0, torpedo1.deslocamentoZ);
@@ -245,7 +246,7 @@ void display(void)
             glRotatef(helicopteroRotateY, 0, 1, 0);
             glTranslatef(5.7, -3.0, 3.0);
         } else {
-            glTranslatef(0.0, torpedo2.translateY, torpedo2.translateZ);
+            glTranslatef(torpedo2.translateX, torpedo2.translateY, torpedo2.translateZ);
             glRotatef(torpedo2.rotateY, 0, 1, 0);
             glTranslatef(5.7, -3.0, 3.0);
             glTranslatef(0.0, 0.0, torpedo2.deslocamentoZ);
@@ -260,7 +261,7 @@ void display(void)
             glRotatef(helicopteroRotateY, 0, 1, 0);
             glTranslatef(-4.4, -3.0, 3.0);
         } else {
-            glTranslatef(0.0, torpedo3.translateY, torpedo3.translateZ);
+            glTranslatef(torpedo3.translateX, torpedo3.translateY, torpedo3.translateZ);
             glRotatef(torpedo3.rotateY, 0, 1, 0);
             glTranslatef(-4.4, -3.0, 3.0);
             glTranslatef(0.0, 0.0, torpedo3.deslocamentoZ);
@@ -275,7 +276,7 @@ void display(void)
             glRotatef(helicopteroRotateY, 0, 1, 0);
             glTranslatef(-6.3, -3.0, 3.0);
         } else {
-            glTranslatef(0.0, torpedo4.translateY, torpedo4.translateZ);
+            glTranslatef(torpedo4.translateX, torpedo4.translateY, torpedo4.translateZ);
             glRotatef(torpedo4.rotateY, 0, 1, 0);
             glTranslatef(-6.3, -3.0, 3.0);
             glTranslatef(0.0, 0.0, torpedo4.deslocamentoZ);
@@ -343,10 +344,20 @@ void keyboard(unsigned char key, int x, int y)
             exit(0);
             break;
         case 'd':
+        case 'D':
             if (heliceState == ON) helicopteroRotateY += 2.5;
             break;
         case 'a':
+        case 'A':
             if (heliceState == ON) helicopteroRotateY -= 2.5;
+            break;
+        case 'q':
+        case 'Q':
+            if (heliceState == ON) helicopteroX += 0.3;
+            break;
+        case 'e':
+        case 'E':
+            if (heliceState == ON) helicopteroX -= 0.3;
             break;
         case 'i':
             heliceState = ON;
@@ -363,11 +374,13 @@ void keyboard(unsigned char key, int x, int y)
                 numTorpedoEsquerda++;
                 if (numTorpedoEsquerda == 1) {
                     torpedo2.rotateY = helicopteroRotateY;
+                    torpedo2.translateX = helicopteroX;
                     torpedo2.translateY = helicopteroY;
                     torpedo2.translateZ = helicopteroZ;
                     torpedo2.disparado = ON;
                 } else {
                     torpedo1.rotateY = helicopteroRotateY;
+                    torpedo1.translateX = helicopteroX;
                     torpedo1.translateY = helicopteroY;
                     torpedo1.translateZ = helicopteroZ;
                     torpedo1.disparado = ON;
@@ -379,11 +392,13 @@ void keyboard(unsigned char key, int x, int y)
                 numTorpedoDireita++;
                 if (numTorpedoDireita == 1) {
                     torpedo4.rotateY = helicopteroRotateY;
+                    torpedo4.translateX = helicopteroX;
                     torpedo4.translateY = helicopteroY;
                     torpedo4.translateZ = helicopteroZ;
                     torpedo4.disparado = ON;
                 } else {
                     torpedo3.rotateY = helicopteroRotateY;
+                    torpedo3.translateX = helicopteroX;
                     torpedo3.translateY = helicopteroY;
                     torpedo3.translateZ = helicopteroZ;
                     torpedo3.disparado = ON;
