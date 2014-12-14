@@ -92,8 +92,8 @@ GLint heliceState = OFF;
 
 
 GameObject solo;
-GameObject para_brisa;
 GameObject rotor_cauda;
+GameObject janela;
 
 void display(void);
 void reshape(int width, int height);
@@ -161,7 +161,8 @@ int main(int argc, char **argv)
     glEnable(GL_LIGHTING);
 //
 
-    initVariables(); // inicializa variaveis que controlam os movimentos
+    // inicializa variaveis que controlam os movimentos
+    initVariables();
 
     helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
     helice.load("helice.obj", "helice.tga", 0);
@@ -171,7 +172,7 @@ int main(int argc, char **argv)
     torpedo4.torpedo.load("torpedo.obj", "torpedo.tga", 0);
     solo.load("piso.obj", "piso.tga", 0);
     rotor_cauda.load("helice.obj", "helice.tga", 0);
-    para_brisa.load("janela.obj", "amarelo.tga", 0);
+    janela.load("janela.obj", "parabrisa.tga", 0);
 
     srand(time(NULL));
 
@@ -212,13 +213,10 @@ void display(void)
             helice.render();
         glPopMatrix();
 
-
         glPushMatrix();
-            glTranslatef(10.0, 0.0, 0.0);
-            para_brisa.render();
+            glTranslatef(0.0, 0.0, 0.01);
+            janela.render();
         glPopMatrix();
-
-
 
         glPushMatrix();
             glTranslatef(0.5, 5.0, -22.5);
@@ -232,7 +230,7 @@ void display(void)
 
 /**************************************************************************************************************
     DESENHA OS PROJÉTEIS DA METRALHADORA
-/*************************************************************************************************************/
+**************************************************************************************************************/
     int i;
     for (i = 0; i < projeteisDisparados; i++) {
         glPushMatrix();
