@@ -8,17 +8,43 @@
 
 #define ON 1
 #define OFF 0
+#define NUM_PROJETEIS 100
 
 using namespace std;
 
-struct Torpedo {
+/**********************************************
+    ESTRUTURA DOS TORPEDOS
+**********************************************/
+typedef struct {
     GameObject torpedo;
     GLint disparado;
     GLfloat translateZ;
     GLfloat translateY;
     GLfloat rotateY;
     GLfloat deslocamentoZ;
-};
+} Torpedo;
+/*******************************************/
+
+
+/**********************************************
+    ESTRUTURA DOS PROJÉTEIS
+**********************************************/
+typedef struct {
+    GLfloat translateX;
+    GLfloat translateY;
+    GLfloat translateZ;
+
+    GLfloat eixoX;
+    GLfloat eixoY;
+    GLfloat eixoZ;
+
+    GLfloat rotateY;
+    GLint disparado;
+} Projetil;
+/*******************************************/
+
+GLint projeteisDisparados = 0;
+Projetil projeteis[NUM_PROJETEIS];
 
 GLint WIDTH = 800;
 GLint HEIGHT = 600;
@@ -28,26 +54,38 @@ GLfloat look[3]={0.0,3.0,0.0};
 GLfloat axisxz=0;
 GLfloat radiusxz=30;
 
-/* Controle do helicóptero */
+/**********************************************
+    CONTROLES DO HELICÓPTERO
+**********************************************/
 GameObject helicoptero;
 GLfloat helicopteroRotateY = 0.0;
 GLfloat helicopteroY = 0.0;
-GLfloat helicopteroX = 0.0;
+GLfloat helicopteroX = 15.0; ///modificado aki deve ser zero
 GLfloat helicopteroZ = 0.0;
+/*******************************************/
 
-/* Controle dos torpedoss */
-struct Torpedo torpedo1;
-struct Torpedo torpedo2;
-struct Torpedo torpedo3;
-struct Torpedo torpedo4;
+
+/*********************************************
+    CONTROLES DOS TORPEDOS
+*********************************************/
+Torpedo torpedo1;
+Torpedo torpedo2;
+Torpedo torpedo3;
+Torpedo torpedo4;
 GLint numTorpedoEsquerda = 0;
 GLint numTorpedoDireita = 0;
+/*******************************************/
 
-/* Controle da helice */
+
+/********************************************
+    CONTROLES DA HÉLICE
+********************************************/
 GameObject helice;
 GLfloat heliceRotate = 0.0;
 GLfloat heliceRotateIncrement = 0.0;
 GLint heliceState = OFF;
+/*******************************************/
+
 
 GameObject solo;
 
@@ -56,6 +94,7 @@ void reshape(int width, int height);
 void keyboard(unsigned char key, int x, int y);
 void special_keyboard(int key, int x, int y);
 void controlaAnimacoes(void);
+void initVariables(void);
 
 int main(int argc, char **argv)
 {
@@ -115,15 +154,7 @@ int main(int argc, char **argv)
     glEnable(GL_LIGHTING);
 //
 
-    torpedo1.deslocamentoZ = 0.0;
-    torpedo2.deslocamentoZ = 0.0;
-    torpedo3.deslocamentoZ = 0.0;
-    torpedo4.deslocamentoZ = 0.0;
-
-    torpedo1.disparado = OFF;
-    torpedo2.disparado = OFF;
-    torpedo3.disparado = OFF;
-    torpedo4.disparado = OFF;
+    initVariables(); // inicializa variaveis que controlam os movimentos
 
     helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
     helice.load("helice.obj", "helice.tga", 0);
@@ -159,7 +190,7 @@ void display(void)
     glPopMatrix();
 
     glPushMatrix();
-        glTranslatef(0.0, helicopteroY, helicopteroZ);
+        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
         glRotatef(helicopteroRotateY, 0, 1, 0);
 
         glPushMatrix();
@@ -173,10 +204,39 @@ void display(void)
         glPopMatrix();
     glPopMatrix();
 
+
+    glPushMatrix();
+        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
+        glRotatef(helicopteroRotateY, 0, 1, 0);
+        glColor3f(1.0, 0.0, 0.0);
+        glTranslatef(-0.04, -4.78, 11.9);
+        glutSolidSphere(0.06, 20, 20);
+        glColor3f(1.0, 1.0, 1.0);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
+        glRotatef(helicopteroRotateY, 0, 1, 0);
+        glColor3f(1.0, 0.0, 0.0);
+        glTranslatef(0.275, -4.78, 11.9);
+        glutSolidSphere(0.06, 20, 20);
+        glColor3f(1.0, 1.0, 1.0);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
+        glRotatef(helicopteroRotateY, 0, 1, 0);
+        glColor3f(1.0, 0.0, 0.0);
+        glTranslatef(0.11, -5.0, 11.9);
+        glutSolidSphere(0.06, 20, 20);
+        glColor3f(1.0, 1.0, 1.0);
+    glPopMatrix();
+
+
     // torpedo 1
     glPushMatrix();
         if (torpedo1.disparado == OFF) {
-            glTranslatef(0.0, helicopteroY, helicopteroZ);
+            glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
             glRotatef(helicopteroRotateY, 0, 1, 0);
             glTranslatef(4.0, -3.0, 3.0);
         } else {
@@ -191,7 +251,7 @@ void display(void)
     // torpedo 2
     glPushMatrix();
         if (torpedo2.disparado == OFF) {
-            glTranslatef(0.0, helicopteroY, helicopteroZ);
+            glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
             glRotatef(helicopteroRotateY, 0, 1, 0);
             glTranslatef(5.7, -3.0, 3.0);
         } else {
@@ -206,7 +266,7 @@ void display(void)
     // torpedo 3
     glPushMatrix();
         if (torpedo3.disparado == OFF) {
-            glTranslatef(0.0, helicopteroY, helicopteroZ);
+            glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
             glRotatef(helicopteroRotateY, 0, 1, 0);
             glTranslatef(-4.4, -3.0, 3.0);
         } else {
@@ -221,7 +281,7 @@ void display(void)
     // torpedo 4
     glPushMatrix();
         if (torpedo4.disparado == OFF) {
-            glTranslatef(0.0, helicopteroY, helicopteroZ);
+            glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
             glRotatef(helicopteroRotateY, 0, 1, 0);
             glTranslatef(-6.3, -3.0, 3.0);
         } else {
@@ -335,6 +395,9 @@ void keyboard(unsigned char key, int x, int y)
                 }
             }
             break;
+        case 'm':
+        case 'M':
+            break;
 	}
 	glutPostRedisplay();
 }
@@ -360,4 +423,24 @@ void special_keyboard(int key, int x, int y) {
             break;
     }
     glutPostRedisplay();
+}
+
+void initVariables() {
+    GLint i;
+
+    for (i = 0; i < NUM_PROJETEIS; i++) {
+        projeteis[i].disparado = OFF;
+    }
+
+    torpedo1.deslocamentoZ = 0.0;
+    torpedo2.deslocamentoZ = 0.0;
+    torpedo3.deslocamentoZ = 0.0;
+    torpedo4.deslocamentoZ = 0.0;
+
+    torpedo1.disparado = OFF;
+    torpedo2.disparado = OFF;
+    torpedo3.disparado = OFF;
+    torpedo4.disparado = OFF;
+
+
 }
