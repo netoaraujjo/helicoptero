@@ -8,7 +8,7 @@
 
 #define ON 1
 #define OFF 0
-#define NUM_PROJETEIS 100
+#define NUM_PROJETEIS 200
 
 using namespace std;
 
@@ -215,7 +215,7 @@ void display(void)
             if (projeteis[i].disparado == ON) {
                 glTranslatef(projeteis[i].translateX, projeteis[i].translateY, projeteis[i].translateZ);
                 glRotatef(projeteis[i].rotateY, 0, 1, 0);
-                glTranslatef(-0.04, -4.78, projeteis[i].eixoZ);
+                glTranslatef(projeteis[i].eixoX, projeteis[i].eixoY, projeteis[i].eixoZ);
                 glutSolidSphere(0.06, 20, 20);
             }
             glColor3f(1.0, 1.0, 1.0);
@@ -430,10 +430,27 @@ void special_keyboard(int key, int x, int y) {
 
 void initVariables() {
     GLint i;
+    GLint j = 0;
 
     for (i = 0; i < NUM_PROJETEIS; i++) {
         projeteis[i].disparado = OFF;
         projeteis[i].eixoZ = 11.9;
+
+        if (j == 0) {
+            projeteis[i].eixoX = -0.04;
+            projeteis[i].eixoY = -4.78;
+        } else if (j == 1) {
+            projeteis[i].eixoX = 0.275;
+            projeteis[i].eixoY = -4.78;
+        } else {
+            projeteis[i].eixoX = 0.11;
+            projeteis[i].eixoY = -5.0;
+        }
+        if (j == 2) {
+            j = 0;
+        } else {
+            j++;
+        }
     }
 
     torpedo1.deslocamentoZ = 0.0;
