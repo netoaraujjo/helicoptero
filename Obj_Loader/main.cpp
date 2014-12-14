@@ -252,9 +252,15 @@ void controlaAnimacoes() {
         heliceRotate += heliceRotateIncrement;
         if (heliceRotateIncrement < 30.0) {
             heliceRotateIncrement += 0.01;
+            //heliceRotate += heliceRotateIncrement;
         }
-        if (heliceRotate >= 360) {
-            heliceRotate = 0;
+//        if (heliceRotate >= 360.0) {
+//            //heliceRotate = 0.0;
+//        }
+    } else {
+        if (heliceRotateIncrement > 0.0) {
+            heliceRotateIncrement -= 0.05;
+            heliceRotate += heliceRotateIncrement;
         }
     }
 
@@ -282,18 +288,18 @@ void keyboard(unsigned char key, int x, int y)
             exit(0);
             break;
         case 'd':
-            helicopteroRotateY += 2.5;
+            if (heliceState == ON) helicopteroRotateY += 2.5;
             break;
         case 'a':
-            helicopteroRotateY -= 2.5;
+            if (heliceState == ON) helicopteroRotateY -= 2.5;
             break;
         case 'i':
             heliceState = ON;
             break;
         case 'I':
             if (helicopteroY == 0) {
-                heliceRotate = 0.0;
-                heliceRotateIncrement = 0.0;
+                //heliceRotate = 0.0;
+                //heliceRotateIncrement = 0.0;
                 heliceState = OFF;
             }
             break;
@@ -337,9 +343,7 @@ void special_keyboard(int key, int x, int y) {
     switch (key)
     {
         case GLUT_KEY_UP:
-            if (heliceState == ON) {
-                helicopteroY += 0.3;
-            }
+            if (heliceState == ON) helicopteroY += 0.3;
             break;
         case GLUT_KEY_DOWN:
             if (helicopteroY > 0.0) {
@@ -349,10 +353,10 @@ void special_keyboard(int key, int x, int y) {
             }
             break;
         case GLUT_KEY_LEFT:
-            helicopteroZ += 0.3;
+            if (heliceState == ON) helicopteroZ += 0.3;
             break;
         case GLUT_KEY_RIGHT:
-            helicopteroZ -= 0.3;
+            if (heliceState == ON) helicopteroZ -= 0.3;
             break;
     }
     glutPostRedisplay();
