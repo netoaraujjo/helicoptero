@@ -41,10 +41,13 @@ typedef struct {
     GLfloat rotateY;
     GLint disparado;
 } Projetil;
-/*******************************************/
 
 GLint projeteisDisparados = 0;
 Projetil projeteis[NUM_PROJETEIS];
+
+/*******************************************/
+
+
 
 GLint WIDTH = 800;
 GLint HEIGHT = 600;
@@ -60,7 +63,7 @@ GLfloat radiusxz=30;
 GameObject helicoptero;
 GLfloat helicopteroRotateY = 0.0;
 GLfloat helicopteroY = 0.0;
-GLfloat helicopteroX = 15.0; ///modificado aki deve ser zero
+GLfloat helicopteroX = 0.0;
 GLfloat helicopteroZ = 0.0;
 /*******************************************/
 
@@ -204,34 +207,21 @@ void display(void)
         glPopMatrix();
     glPopMatrix();
 
-
-    glPushMatrix();
-        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
-        glRotatef(helicopteroRotateY, 0, 1, 0);
-        glColor3f(1.0, 0.0, 0.0);
-        glTranslatef(-0.04, -4.78, 11.9);
-        glutSolidSphere(0.06, 20, 20);
-        glColor3f(1.0, 1.0, 1.0);
-    glPopMatrix();
-
-    glPushMatrix();
-        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
-        glRotatef(helicopteroRotateY, 0, 1, 0);
-        glColor3f(1.0, 0.0, 0.0);
-        glTranslatef(0.275, -4.78, 11.9);
-        glutSolidSphere(0.06, 20, 20);
-        glColor3f(1.0, 1.0, 1.0);
-    glPopMatrix();
-
-    glPushMatrix();
-        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
-        glRotatef(helicopteroRotateY, 0, 1, 0);
-        glColor3f(1.0, 0.0, 0.0);
-        glTranslatef(0.11, -5.0, 11.9);
-        glutSolidSphere(0.06, 20, 20);
-        glColor3f(1.0, 1.0, 1.0);
-    glPopMatrix();
-
+/*****************************************************************************/
+    int i;
+    for (i = 0; i < projeteisDisparados; i++) {
+        glPushMatrix();
+            glColor3f(1.0, 0.0, 0.0);
+            if (projeteis[i].disparado == ON) {
+                glTranslatef(projeteis[i].translateX, projeteis[i].translateY, projeteis[i].translateZ);
+                glRotatef(projeteis[i].rotateY, 0, 1, 0);
+                glTranslatef(-0.04, -4.78, projeteis[i].eixoZ);
+                glutSolidSphere(0.06, 20, 20);
+            }
+            glColor3f(1.0, 1.0, 1.0);
+        glPopMatrix();
+    }
+/*****************************************************************************/
 
     // torpedo 1
     glPushMatrix();
@@ -337,6 +327,11 @@ void controlaAnimacoes() {
         torpedo3.deslocamentoZ += 0.1;
     }
 
+    int i;
+    for (i = 0; i < projeteisDisparados; i++) {
+        projeteis[i].eixoZ += 0.05;
+    }
+
     glutPostRedisplay();
 }
 
@@ -397,6 +392,14 @@ void keyboard(unsigned char key, int x, int y)
             break;
         case 'm':
         case 'M':
+            if (projeteisDisparados < NUM_PROJETEIS) {
+                projeteis[projeteisDisparados].rotateY = helicopteroRotateY;
+                projeteis[projeteisDisparados].translateX = helicopteroX;
+                projeteis[projeteisDisparados].translateY = helicopteroY;
+                projeteis[projeteisDisparados].translateZ = helicopteroZ;
+                projeteis[projeteisDisparados].disparado = ON;
+                projeteisDisparados++;
+            }
             break;
 	}
 	glutPostRedisplay();
@@ -430,6 +433,7 @@ void initVariables() {
 
     for (i = 0; i < NUM_PROJETEIS; i++) {
         projeteis[i].disparado = OFF;
+        projeteis[i].eixoZ = 11.9;
     }
 
     torpedo1.deslocamentoZ = 0.0;
