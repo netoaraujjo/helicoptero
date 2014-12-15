@@ -115,6 +115,9 @@ int main(int argc, char **argv)
     glutInitWindowSize(WIDTH, HEIGHT);
     glutInitWindowPosition(20, 20);
     glutCreateWindow("Helicoptero");
+
+    glutFullScreen();
+
     glewExperimental = GL_TRUE;
     GLenum err = glewInit();
     if (GLEW_OK != err)	{
@@ -193,16 +196,14 @@ void display(void)
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
+    // plano de fundo
     glPushMatrix();
-        glScalef(1.0, 30.0, 70.0);
+        glScalef(1.0, 30.0, 90.0);
         glTranslatef(-600.0, 12.0, 0.0);
         glRotatef(90.0, 0, 1, 0);
         glRotatef(70.0, 1, 0, 0);
         glRotatef(180.0, 0, 1, 0);
         glRotatef(-30.0, 1, 0, 0);
-
-        //glScalef(2.0, 2.0, 2.0);
-        //glTranslatef(20, 0, 0);
         fundo.render();
     glPopMatrix();
 
@@ -327,7 +328,7 @@ void display(void)
 void reshape(int width, int height)
 {
     float ar = (float) width / (float) height;
-    glViewport(0, 0, WIDTH, HEIGHT);
+    glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glFrustum(-ar, ar, -1.0, 1.0, 1.0, 650.0);
@@ -413,7 +414,7 @@ void keyboard(unsigned char key, int x, int y)
                     torpedo1.rotateY = helicopteroRotateY;
                     torpedo1.translateX = helicopteroX;
                     torpedo1.translateY = helicopteroY;
-                    torpedo1.translateZ = helicopteroZ;
+                     torpedo1.translateZ = helicopteroZ;
                     torpedo1.disparado = ON;
                 }
             }
@@ -508,6 +509,4 @@ void initVariables() {
     torpedo2.disparado = OFF;
     torpedo3.disparado = OFF;
     torpedo4.disparado = OFF;
-
-
 }
