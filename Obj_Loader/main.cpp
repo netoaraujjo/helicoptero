@@ -112,7 +112,7 @@ int main(int argc, char **argv)
     glutInitContextVersion (3, 0);
     glutInitContextFlags(GLUT_CORE_PROFILE | GLUT_DEBUG);
 
-    glutInitWindowSize(WIDTH, HEIGHT);
+    //glutInitWindowSize(WIDTH, HEIGHT);
     glutInitWindowPosition(20, 20);
     glutCreateWindow("Helicoptero");
 
@@ -341,6 +341,9 @@ void controlaAnimacoes() {
         heliceRotate += heliceRotateIncrement;
         if (heliceRotateIncrement < 30.0) {
             heliceRotateIncrement += 0.01;
+        }
+        if (heliceRotate == 360.0) {
+            heliceRotate = 0.0;
         }
     } else {
         if (heliceRotateIncrement > 0.0) {
