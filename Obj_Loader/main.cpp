@@ -64,7 +64,7 @@ GLfloat radiusxz=30;
 GameObject helicoptero;
 GLfloat helicopteroRotateY = 0.0;
 GLfloat helicopteroY = 0.0;
-GLfloat helicopteroX = 0.0;
+GLfloat helicopteroX = -10.0;
 GLfloat helicopteroZ = 0.0;
 /*******************************************/
 
@@ -94,6 +94,7 @@ GLint heliceState = OFF;
 GameObject solo;
 GameObject rotor_cauda;
 GameObject janela;
+GameObject fundo;
 
 void display(void);
 void reshape(int width, int height);
@@ -173,6 +174,7 @@ int main(int argc, char **argv)
     solo.load("piso.obj", "piso.tga", 0);
     rotor_cauda.load("helice.obj", "helice.tga", 0);
     janela.load("janela.obj", "parabrisa.tga", 0);
+    fundo.load("piso.obj", "montanhas2.tga", 0);
 
     srand(time(NULL));
 
@@ -191,10 +193,23 @@ void display(void)
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
+    glPushMatrix();
+        glScalef(1.0, 30.0, 70.0);
+        glTranslatef(-600.0, 12.0, 0.0);
+        glRotatef(90.0, 0, 1, 0);
+        glRotatef(70.0, 1, 0, 0);
+        glRotatef(180.0, 0, 1, 0);
+        glRotatef(-30.0, 1, 0, 0);
+
+        //glScalef(2.0, 2.0, 2.0);
+        //glTranslatef(20, 0, 0);
+        fundo.render();
+    glPopMatrix();
+
     // Solo
     glPushMatrix();
         glTranslatef(0, -5.2, 0);
-        glScalef(2.0, 1.0, 5.5);
+        glScalef(40.0, 1.0, 50.0);
         glRotatef(-19, 1, 0, 0);
         solo.render();
     glPopMatrix();
@@ -369,12 +384,12 @@ void keyboard(unsigned char key, int x, int y)
         case 'A':
             if (heliceState == ON) helicopteroRotateY -= 2.5;
             break;
-        case 'q':
-        case 'Q':
+        case 's':
+        case 'S':
             if (heliceState == ON) helicopteroX += 0.3;
             break;
-        case 'e':
-        case 'E':
+        case 'w':
+        case 'W':
             if (heliceState == ON) helicopteroX -= 0.3;
             break;
         case 'i':
