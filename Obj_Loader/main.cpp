@@ -43,7 +43,7 @@ typedef struct {
     GLint disparado;
 } Projetil;
 
-GLint projeteisDisparados = 0;
+GLint projeteisDisparados;
 Projetil projeteis[NUM_PROJETEIS];
 
 /*******************************************/
@@ -512,4 +512,6 @@ void initVariables() {
     torpedo2.disparado = OFF;
     torpedo3.disparado = OFF;
     torpedo4.disparado = OFF;
+
+    projeteisDisparados = 0;
 }
