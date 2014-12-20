@@ -8,6 +8,7 @@
 
 #define ON 1
 #define OFF 0
+#define NUM_TORPEDOS 4
 #define NUM_PROJETEIS 200
 
 using namespace std;
@@ -20,6 +21,20 @@ void controlaAnimacoes(void);
 void inicializaVariaveis(void);
 void carregaObjetos(void);
 
+
+/**********************************************
+    ESTRUTURA DO HELICÓPTERO
+**********************************************/
+typedef struct {
+    GameObject corpo;
+    GLfloat rotateY;
+    GLfloat x;
+    GLfloat y;
+    GLfloat z;
+} Helicoptero;
+/*******************************************/
+
+
 /**********************************************
     ESTRUTURA DOS TORPEDOS
 **********************************************/
@@ -29,6 +44,9 @@ typedef struct {
     GLfloat translateX;
     GLfloat translateZ;
     GLfloat translateY;
+    GLfloat eixoX;
+    GLfloat eixoY;
+    GLfloat eixoZ;
     GLfloat rotateY;
     GLfloat deslocamentoZ;
 } Torpedo;
@@ -48,40 +66,15 @@ typedef struct {
     GLfloat rotateY;
     GLint disparado;
 } Projetil;
-
-GLint projeteisDisparados = 0;
-Projetil projeteis[NUM_PROJETEIS];
-
-/*******************************************/
-
-
-
-GLint WIDTH = 800;
-GLint HEIGHT = 600;
-
-GLfloat obs[3]={0.0,3.5,0.0};
-GLfloat look[3]={0.0,3.0,0.0};
-GLfloat axisxz=0;
-GLfloat radiusxz=30;
-
-/**********************************************
-    CONTROLES DO HELICÓPTERO
-**********************************************/
-GameObject helicoptero;
-GLfloat helicopteroRotateY = 0.0;
-GLfloat helicopteroY = 0.0;
-GLfloat helicopteroX = -10.0;
-GLfloat helicopteroZ = 0.0;
 /*******************************************/
 
 
 /*********************************************
     CONTROLES DOS TORPEDOS
 *********************************************/
-Torpedo torpedo1;
-Torpedo torpedo2;
-Torpedo torpedo3;
-Torpedo torpedo4;
+
+Torpedo torpedos[NUM_TORPEDOS];
+
 GLint numTorpedoEsquerda = 0;
 GLint numTorpedoDireita = 0;
 char *numero = "4";
@@ -96,6 +89,22 @@ GLfloat heliceRotate = 0.0;
 GLfloat heliceRotateIncrement = 0.0;
 GLint heliceState = OFF;
 /*******************************************/
+
+
+
+Helicoptero helicoptero;
+GLint projeteisDisparados;
+Projetil projeteis[NUM_PROJETEIS];
+
+GLint WIDTH = 800;
+GLint HEIGHT = 600;
+
+GLfloat obs[3]={0.0,3.5,0.0};
+GLfloat look[3]={0.0,3.0,0.0};
+GLfloat axisxz=0;
+GLfloat radiusxz=30;
+
+
 
 
 GameObject solo;
@@ -169,23 +178,10 @@ int main(int argc, char **argv)
     glEnable(GL_LIGHTING);
 
 
-<<<<<<< HEAD
-    helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
-    helice.load("helice.obj", "helice.tga", 0);
-    torpedo1.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo2.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo3.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo4.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    solo.load("piso.obj", "piso.tga", 0);
-    rotor_cauda.load("helice.obj", "helice.tga", 0);
-    janela.load("janela.obj", "parabrisa.tga", 0);
-    fundo.load("piso.obj", "montanhas2.tga", 0);
-    mira.load("Mira.obj", "vermelho.tga", 0);
-    alvo.load("Alvo.obj", "Alvo.tga", 0);
-=======
+
     inicializaVariaveis();
     carregaObjetos();
->>>>>>> 7e275c900afd60096c107e0db66892424f30e263
+
 
     srand(time(NULL));
 
@@ -222,10 +218,8 @@ void display(void)
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
-<<<<<<< HEAD
     // Define a cor para os textos: preto
 	//glColor3f(1,0,0);
-
 	// Posiciona o texto stroke usando transformações geométricas
 	glPushMatrix();
         glTranslatef(27.25,5.9,-4.6);
@@ -235,10 +229,7 @@ void display(void)
         DesenhaTextoStroke(GLUT_STROKE_ROMAN, numero);
 	glPopMatrix();
 
-    // plano de fundo
-=======
     // plano de fundo - montanhas
->>>>>>> 7e275c900afd60096c107e0db66892424f30e263
     glPushMatrix();
         glScalef(1.0, 30.0, 90.0);
         glTranslatef(-600.0, 12.0, 0.0);
@@ -257,6 +248,7 @@ void display(void)
         solo.render();
     glPopMatrix();
 
+    // alvo
     glPushMatrix();
         glTranslatef(-70.0, 10.0, 10.0);
         glRotatef(90, 0, 0, 1);
@@ -264,11 +256,11 @@ void display(void)
     glPopMatrix();
 
     glPushMatrix();
-        glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
-        glRotatef(helicopteroRotateY, 0, 1, 0);
+        glTranslatef(helicoptero.x, helicoptero.y, helicoptero.z);
+        glRotatef(helicoptero.rotateY, 0, 1, 0);
 
         glPushMatrix(); // corpo do helicoptero
-            helicoptero.render();
+            helicoptero.corpo.render();
             glTranslatef(0.0, -5.0, 50.0);
             glRotatef(90, 1, 0, 0);
             mira.render();
@@ -313,65 +305,21 @@ void display(void)
     }
 /*************************************************************************************************************/
 
-    // torpedo 1
-    glPushMatrix();
-        if (torpedo1.disparado == OFF) {
-            glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
-            glRotatef(helicopteroRotateY, 0, 1, 0);
-            glTranslatef(4.0, -3.0, 3.0);
-        } else {
-            glTranslatef(torpedo1.translateX, torpedo1.translateY, torpedo1.translateZ);
-            glRotatef(torpedo1.rotateY, 0, 1, 0);
-            glTranslatef(4.0, -3.0, 3.0);
-            glTranslatef(0.0, 0.0, torpedo1.deslocamentoZ);
-        }
-        torpedo1.torpedo.render();
-    glPopMatrix();
-
-    // torpedo 2
-    glPushMatrix();
-        if (torpedo2.disparado == OFF) {
-            glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
-            glRotatef(helicopteroRotateY, 0, 1, 0);
-            glTranslatef(5.7, -3.0, 3.0);
-        } else {
-            glTranslatef(torpedo2.translateX, torpedo2.translateY, torpedo2.translateZ);
-            glRotatef(torpedo2.rotateY, 0, 1, 0);
-            glTranslatef(5.7, -3.0, 3.0);
-            glTranslatef(0.0, 0.0, torpedo2.deslocamentoZ);
-        }
-        torpedo1.torpedo.render();
-    glPopMatrix();
-
-    // torpedo 3
-    glPushMatrix();
-        if (torpedo3.disparado == OFF) {
-            glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
-            glRotatef(helicopteroRotateY, 0, 1, 0);
-            glTranslatef(-4.4, -3.0, 3.0);
-        } else {
-            glTranslatef(torpedo3.translateX, torpedo3.translateY, torpedo3.translateZ);
-            glRotatef(torpedo3.rotateY, 0, 1, 0);
-            glTranslatef(-4.4, -3.0, 3.0);
-            glTranslatef(0.0, 0.0, torpedo3.deslocamentoZ);
-        }
-        torpedo1.torpedo.render();
-    glPopMatrix();
-
-    // torpedo 4
-    glPushMatrix();
-        if (torpedo4.disparado == OFF) {
-            glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
-            glRotatef(helicopteroRotateY, 0, 1, 0);
-            glTranslatef(-6.3, -3.0, 3.0);
-        } else {
-            glTranslatef(torpedo4.translateX, torpedo4.translateY, torpedo4.translateZ);
-            glRotatef(torpedo4.rotateY, 0, 1, 0);
-            glTranslatef(-6.3, -3.0, 3.0);
-            glTranslatef(0.0, 0.0, torpedo4.deslocamentoZ);
-        }
-        torpedo1.torpedo.render();
-    glPopMatrix();
+    for (i = 0; i < NUM_TORPEDOS; i++) {
+        glPushMatrix();
+            if (torpedos[i].disparado == OFF) {
+                glTranslatef(helicoptero.x, helicoptero.y, helicoptero.z);
+                glRotatef(helicoptero.rotateY, 0, 1, 0);
+                glTranslatef(torpedos[i].eixoX, -3.0, 3.0);
+            } else {
+                glTranslatef(torpedos[i].translateX, torpedos[i].translateY, torpedos[i].translateZ);
+                glRotatef(torpedos[i].rotateY, 0, 1, 0);
+                glTranslatef(torpedos[i].eixoX, -3.0, 3.0);
+                glTranslatef(0.0, 0.0, torpedos[i].deslocamentoZ);
+            }
+            torpedos[i].torpedo.render();
+        glPopMatrix();
+    }
 
     glutSwapBuffers();
 }
@@ -404,16 +352,16 @@ void controlaAnimacoes() {
     }
 
     if (numTorpedoEsquerda > 0) {
-        torpedo2.deslocamentoZ += 0.1;
+        torpedos[1].deslocamentoZ += 0.1;
     }
     if (numTorpedoEsquerda > 1) {
-        torpedo1.deslocamentoZ += 0.1;
+        torpedos[0].deslocamentoZ += 0.1;
     }
     if (numTorpedoDireita > 0) {
-        torpedo4.deslocamentoZ += 0.1;
+        torpedos[3].deslocamentoZ += 0.1;
     }
     if (numTorpedoDireita > 1) {
-        torpedo3.deslocamentoZ += 0.1;
+        torpedos[2].deslocamentoZ += 0.1;
     }
 
     int i;
@@ -433,25 +381,25 @@ void keyboard(unsigned char key, int x, int y)
             break;
         case 'd':
         case 'D':
-            if (heliceState == ON) helicopteroRotateY += 2.5;
+            if (heliceState == ON) helicoptero.rotateY += 2.5;
             break;
         case 'a':
         case 'A':
-            if (heliceState == ON) helicopteroRotateY -= 2.5;
+            if (heliceState == ON) helicoptero.rotateY -= 2.5;
             break;
         case 's':
         case 'S':
-            if (heliceState == ON) helicopteroX += 0.3;
+            if (heliceState == ON) helicoptero.x += 0.3;
             break;
         case 'w':
         case 'W':
-            if (heliceState == ON) helicopteroX -= 0.3;
+            if (heliceState == ON) helicoptero.x -= 0.3;
             break;
         case 'i':
             heliceState = ON;
             break;
         case 'I':
-            if (helicopteroY == 0) {
+            if (helicoptero.y == 0) {
                 heliceState = OFF;
             }
             break;
@@ -459,17 +407,17 @@ void keyboard(unsigned char key, int x, int y)
             if (numTorpedoEsquerda < 2) {
                 numTorpedoEsquerda++;
                 if (numTorpedoEsquerda == 1) {
-                    torpedo2.rotateY = helicopteroRotateY;
-                    torpedo2.translateX = helicopteroX;
-                    torpedo2.translateY = helicopteroY;
-                    torpedo2.translateZ = helicopteroZ;
-                    torpedo2.disparado = ON;
+                    torpedos[1].rotateY = helicoptero.rotateY;
+                    torpedos[1].translateX = helicoptero.x;
+                    torpedos[1].translateY = helicoptero.y;
+                    torpedos[1].translateZ = helicoptero.z;
+                    torpedos[1].disparado = ON;
                 } else {
-                    torpedo1.rotateY = helicopteroRotateY;
-                    torpedo1.translateX = helicopteroX;
-                    torpedo1.translateY = helicopteroY;
-                     torpedo1.translateZ = helicopteroZ;
-                    torpedo1.disparado = ON;
+                    torpedos[0].rotateY = helicoptero.rotateY;
+                    torpedos[0].translateX = helicoptero.x;
+                    torpedos[0].translateY = helicoptero.y;
+                    torpedos[0].translateZ = helicoptero.z;
+                    torpedos[0].disparado = ON;
                 }
             }
             break;
@@ -477,27 +425,27 @@ void keyboard(unsigned char key, int x, int y)
             if (numTorpedoDireita < 2) {
                 numTorpedoDireita++;
                 if (numTorpedoDireita == 1) {
-                    torpedo4.rotateY = helicopteroRotateY;
-                    torpedo4.translateX = helicopteroX;
-                    torpedo4.translateY = helicopteroY;
-                    torpedo4.translateZ = helicopteroZ;
-                    torpedo4.disparado = ON;
+                    torpedos[3].rotateY = helicoptero.rotateY;
+                    torpedos[3].translateX = helicoptero.x;
+                    torpedos[3].translateY = helicoptero.y;
+                    torpedos[3].translateZ = helicoptero.z;
+                    torpedos[3].disparado = ON;
                 } else {
-                    torpedo3.rotateY = helicopteroRotateY;
-                    torpedo3.translateX = helicopteroX;
-                    torpedo3.translateY = helicopteroY;
-                    torpedo3.translateZ = helicopteroZ;
-                    torpedo3.disparado = ON;
+                    torpedos[2].rotateY = helicoptero.rotateY;
+                    torpedos[2].translateX = helicoptero.x;
+                    torpedos[2].translateY = helicoptero.y;
+                    torpedos[2].translateZ = helicoptero.z;
+                    torpedos[2].disparado = ON;
                 }
             }
             break;
         case 'm':
         case 'M':
             if (projeteisDisparados < NUM_PROJETEIS) {
-                projeteis[projeteisDisparados].rotateY = helicopteroRotateY;
-                projeteis[projeteisDisparados].translateX = helicopteroX;
-                projeteis[projeteisDisparados].translateY = helicopteroY;
-                projeteis[projeteisDisparados].translateZ = helicopteroZ;
+                projeteis[projeteisDisparados].rotateY = helicoptero.rotateY;
+                projeteis[projeteisDisparados].translateX = helicoptero.x;
+                projeteis[projeteisDisparados].translateY = helicoptero.y;
+                projeteis[projeteisDisparados].translateZ = helicoptero.z;
                 projeteis[projeteisDisparados].disparado = ON;
                 projeteisDisparados++;
             }
@@ -510,20 +458,20 @@ void special_keyboard(int key, int x, int y) {
     switch (key)
     {
         case GLUT_KEY_UP:
-            if (heliceState == ON) helicopteroY += 0.3;
+            if (heliceState == ON) helicoptero.y += 0.3;
             break;
         case GLUT_KEY_DOWN:
-            if (helicopteroY > 0.0) {
-                helicopteroY -= 0.3;
+            if (helicoptero.y > 0.0) {
+                helicoptero.y -= 0.3;
             } else {
-                helicopteroY = 0.0;
+                helicoptero.y = 0.0;
             }
             break;
         case GLUT_KEY_LEFT:
-            if (heliceState == ON) helicopteroZ += 0.3;
+            if (heliceState == ON) helicoptero.z += 0.3;
             break;
         case GLUT_KEY_RIGHT:
-            if (heliceState == ON) helicopteroZ -= 0.3;
+            if (heliceState == ON) helicoptero.z -= 0.3;
             break;
     }
     glutPostRedisplay();
@@ -532,6 +480,21 @@ void special_keyboard(int key, int x, int y) {
 void inicializaVariaveis() {
     GLint i;
     GLint j = 0;
+
+    helicoptero.rotateY = 0.0;
+    helicoptero.x = -10.0;
+    helicoptero.y = 0.0;
+    helicoptero.z = 0.0;
+
+    for (i = 0; i < NUM_TORPEDOS; i++) {
+        torpedos[i].deslocamentoZ = 0.0;
+        torpedos[i].disparado = OFF;
+    }
+
+    torpedos[0].eixoX = 4.0;
+    torpedos[1].eixoX = 5.7;
+    torpedos[2].eixoX = -4.4;
+    torpedos[3].eixoX = -6.3;
 
     for (i = 0; i < NUM_PROJETEIS; i++) {
         projeteis[i].disparado = OFF;
@@ -547,6 +510,7 @@ void inicializaVariaveis() {
             projeteis[i].eixoX = 0.11;
             projeteis[i].eixoY = -5.0;
         }
+
         if (j == 2) {
             j = 0;
         } else {
@@ -554,26 +518,20 @@ void inicializaVariaveis() {
         }
     }
 
-    torpedo1.deslocamentoZ = 0.0;
-    torpedo2.deslocamentoZ = 0.0;
-    torpedo3.deslocamentoZ = 0.0;
-    torpedo4.deslocamentoZ = 0.0;
-
-    torpedo1.disparado = OFF;
-    torpedo2.disparado = OFF;
-    torpedo3.disparado = OFF;
-    torpedo4.disparado = OFF;
+    projeteisDisparados = 0;
 }
 
 void carregaObjetos() {
-    helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
+    helicoptero.corpo.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
     helice.load("helice.obj", "helice.tga", 0);
-    torpedo1.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo2.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo3.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo4.torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedos[0].torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedos[1].torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedos[2].torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedos[3].torpedo.load("torpedo.obj", "torpedo.tga", 0);
     solo.load("piso.obj", "piso.tga", 0);
     rotor_cauda.load("helice.obj", "helice.tga", 0);
     janela.load("janela.obj", "parabrisa.tga", 0);
     fundo.load("piso.obj", "montanhas2.tga", 0);
+    mira.load("Mira.obj", "vermelho.tga", 0);
+    alvo.load("Alvo.obj", "Alvo.tga", 0);
 }

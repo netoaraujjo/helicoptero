@@ -882,17 +882,17 @@
 1392925649 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\trabalho 4\obj_loader\tga.cpp
 	"Tga.h"
 
-1419086205 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\gameobject.cpp
+1419094183 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\gameobject.cpp
 	"GameObject.h"
 
-1419086205 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\gameobject.h
+1419094183 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\gameobject.h
 	<GL/glew.h>
 	<GL/freeglut.h>
 	<vector>
 	<glm/glm.hpp>
 	"PewGL.h"
 
-1419086209 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\include\gl\glew.h
+1419094186 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\include\gl\glew.h
 	<stddef.h>
 	<inttypes.h>
 	<stdint.h>
@@ -900,20 +900,20 @@
 	<OpenGL/glu.h>
 	<GL/glu.h>
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\freeglut\include\gl\freeglut.h
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\freeglut\include\gl\freeglut.h
 	"freeglut_std.h"
 	"freeglut_ext.h"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\freeglut\include\gl\freeglut_std.h
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\freeglut\include\gl\freeglut_std.h
 	<windows.h>
 	<GL/gl.h>
 	<GL/glu.h>
 	<stdlib.h>
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\freeglut\include\gl\freeglut_ext.h
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\freeglut\include\gl\freeglut_ext.h
 	<stdarg.h>
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\glm.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\glm.hpp
 	"core/_fixes.hpp"
 	<cmath>
 	<climits>
@@ -934,20 +934,20 @@
 	"./core/func_noise.hpp"
 	"./core/_swizzle.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_fixes.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_fixes.hpp
 	<cmath>
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\setup.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\setup.hpp
 	<immintrin.h>
 	<pmmintrin.h>
 	<emmintrin.h>
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_detail.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_detail.hpp
 	"setup.hpp"
 	<cassert>
 	<cstdint>
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type.hpp
 	"type_half.hpp"
 	"type_float.hpp"
 	"type_int.hpp"
@@ -966,28 +966,28 @@
 	"type_mat4x3.hpp"
 	"type_mat4x4.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_half.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_half.hpp
 	<cstdlib>
 	"type_half.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_half.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_half.inl
 	"_detail.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_float.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_float.hpp
 	"type_half.hpp"
 	"setup.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_int.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_int.hpp
 	"setup.hpp"
 	"_detail.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_gentype.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_gentype.hpp
 	"type_size.hpp"
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_size.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_size.hpp
 	<cstdlib>
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec1.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec1.hpp
 	"type_vec.hpp"
 	"type_float.hpp"
 	"type_int.hpp"
@@ -995,17 +995,17 @@
 	"_swizzle.hpp"
 	"type_vec1.inl"
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec.hpp
 	"type_gentype.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_swizzle.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_swizzle.hpp
 	"_swizzle_func.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_swizzle_func.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_swizzle_func.hpp
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec1.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec1.inl
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec2.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec2.hpp
 	"type_vec.hpp"
 	"type_float.hpp"
 	"type_int.hpp"
@@ -1013,9 +1013,9 @@
 	"_swizzle.hpp"
 	"type_vec2.inl"
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec2.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec2.inl
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec3.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec3.hpp
 	"type_vec.hpp"
 	"type_float.hpp"
 	"type_int.hpp"
@@ -1023,9 +1023,9 @@
 	"_swizzle.hpp"
 	"type_vec3.inl"
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec3.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec3.inl
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec4.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec4.hpp
 	"type_vec.hpp"
 	"type_float.hpp"
 	"type_int.hpp"
@@ -1033,122 +1033,122 @@
 	"_swizzle.hpp"
 	"type_vec4.inl"
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec4.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec4.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x2.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x2.hpp
 	"type_mat.hpp"
 	"type_mat2x2.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat.hpp
 	"type_gentype.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x2.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x2.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x3.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x3.hpp
 	"type_mat.hpp"
 	"type_mat2x3.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x3.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x3.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x4.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x4.hpp
 	"type_mat.hpp"
 	"type_mat2x4.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x4.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x4.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x2.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x2.hpp
 	"type_mat.hpp"
 	"type_mat3x2.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x2.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x2.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x3.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x3.hpp
 	"type_mat.hpp"
 	"type_mat3x3.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x3.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x3.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x4.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x4.hpp
 	"type_mat.hpp"
 	"type_mat3x4.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x4.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x4.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x2.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x2.hpp
 	"type_mat.hpp"
 	"type_mat4x2.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x2.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x2.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x3.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x3.hpp
 	"type_mat.hpp"
 	"type_mat4x3.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x3.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x3.inl
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x4.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x4.hpp
 	"type_mat.hpp"
 	"type_mat4x4.inl"
 
-1419086208 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x4.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x4.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_trigonometric.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_trigonometric.hpp
 	"func_trigonometric.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_trigonometric.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_trigonometric.inl
 	"_vectorize.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_vectorize.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_vectorize.hpp
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_exponential.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_exponential.hpp
 	"func_exponential.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_exponential.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_exponential.inl
 	"_vectorize.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_common.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_common.hpp
 	"_fixes.hpp"
 	"func_common.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_common.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_common.inl
 	"_vectorize.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_packing.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_packing.hpp
 	"func_packing.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_packing.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_packing.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_geometric.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_geometric.hpp
 	"func_geometric.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_geometric.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_geometric.inl
 	"_vectorize.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_matrix.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_matrix.hpp
 	"func_matrix.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_matrix.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_matrix.inl
 	"_vectorize.hpp"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_vector_relational.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_vector_relational.hpp
 	"_detail.hpp"
 	"func_vector_relational.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_vector_relational.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_vector_relational.inl
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_integer.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_integer.hpp
 	"func_integer.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_integer.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_integer.inl
 	"_vectorize.hpp"
 	<intrin.h>
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_noise.hpp
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_noise.hpp
 	"func_noise.inl"
 
-1419086207 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_noise.inl
+1419094185 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_noise.inl
 
-1419086205 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\pewgl.h
+1419094183 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\pewgl.h
 	<GL/glew.h>
 	<GL/freeglut.h>
 	<iostream>
@@ -1157,12 +1157,12 @@
 	<glm/glm.hpp>
 	"Tga.h"
 
-1419086205 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\tga.h
+1419094183 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\tga.h
 	<GL/freeglut.h>
 	<stdio.h>
 	<stdlib.h>
 
-1419087853 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\main.cpp
+1419099974 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<cstdlib>
 	<assert.h>
@@ -1170,10 +1170,10 @@
 	"GameObject.h"
 	<GL/freeglut.h>
 
-1419086205 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\pewgl.cpp
+1419094183 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\pewgl.cpp
 	"PewGL.h"
 
-1419086205 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\tga.cpp
+1419094183 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\tga.cpp
 	"Tga.h"
 
 1392948484 source:c:\users\luísguilherme\desktop\helicoptero\obj_loader\gameobject.cpp
