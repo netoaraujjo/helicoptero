@@ -177,11 +177,8 @@ int main(int argc, char **argv)
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
 
-
-
     inicializaVariaveis();
     carregaObjetos();
-
 
     srand(time(NULL));
 
