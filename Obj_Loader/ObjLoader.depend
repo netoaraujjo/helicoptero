@@ -1470,3 +1470,591 @@
 1392925649 source:c:\users\luísguilherme\desktop\helicoptero\obj_loader\tga.cpp
 	"Tga.h"
 
+1392948484 source:e:\obj_loader\gameobject.cpp
+	"GameObject.h"
+
+1392940896 e:\obj_loader\gameobject.h
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<vector>
+	<glm/glm.hpp>
+	"PewGL.h"
+
+1394062912 e:\obj_loader\libs\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1394062600 e:\obj_loader\libs\freeglut\include\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1394062600 e:\obj_loader\libs\freeglut\include\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1394062600 e:\obj_loader\libs\freeglut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1394062640 e:\obj_loader\libs\glm-0.9.3.3\include\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1394062706 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\_fixes.hpp
+	<cmath>
+
+1394062668 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\setup.hpp
+	<immintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1394062706 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1394062670 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1394062672 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1394062672 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_half.inl
+	"_detail.hpp"
+
+1394062670 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1394062674 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1394062670 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1394062694 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_size.hpp
+	<cstdlib>
+
+1394062698 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1394062696 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1394062706 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1394062708 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\_swizzle_func.hpp
+
+1394062698 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec1.inl
+
+1394062700 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1394062700 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec2.inl
+
+1394062702 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1394062704 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec3.inl
+
+1394062704 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1394062704 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec4.inl
+
+1394062676 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1394062674 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1394062676 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x2.inl
+
+1394062678 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1394062678 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x3.inl
+
+1394062680 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1394062682 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x4.inl
+
+1394062682 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1394062684 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x2.inl
+
+1394062684 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1394062686 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x3.inl
+
+1394062686 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1394062688 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x4.inl
+
+1394062688 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1394062690 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x2.inl
+
+1394062690 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1394062692 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x3.inl
+
+1394062692 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1394062694 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x4.inl
+
+1394062654 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1394062656 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_trigonometric.inl
+	"_vectorize.hpp"
+
+1394062710 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\_vectorize.hpp
+
+1394062644 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1394062644 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_exponential.inl
+	"_vectorize.hpp"
+
+1394062642 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1394062642 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_common.inl
+	"_vectorize.hpp"
+
+1394062652 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1394062652 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_packing.inl
+
+1394062646 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1394062646 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_geometric.inl
+	"_vectorize.hpp"
+
+1394062648 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1394062652 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_matrix.inl
+	"_vectorize.hpp"
+
+1394062656 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1394062656 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_vector_relational.inl
+
+1394062648 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1394062648 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_integer.inl
+	"_vectorize.hpp"
+	<intrin.h>
+
+1394062652 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1394062652 e:\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_noise.inl
+
+1392926820 e:\obj_loader\pewgl.h
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<iostream>
+	<fstream>
+	<vector>
+	<glm/glm.hpp>
+	"Tga.h"
+
+1392926818 e:\obj_loader\tga.h
+	<GL/freeglut.h>
+	<stdio.h>
+	<stdlib.h>
+
+1418661484 source:e:\obj_loader\main.cpp
+	<iostream>
+	<cstdlib>
+	<assert.h>
+	<ctime>
+	"GameObject.h"
+	<GL/freeglut.h>
+
+1392925648 source:e:\obj_loader\pewgl.cpp
+	"PewGL.h"
+
+1392925650 source:e:\obj_loader\tga.cpp
+	"Tga.h"
+
+1392948484 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\gameobject.cpp
+	"GameObject.h"
+
+1392940896 c:\users\luís guilherme\desktop\helicoptero\obj_loader\gameobject.h
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<vector>
+	<glm/glm.hpp>
+	"PewGL.h"
+
+1394062912 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1394062600 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\freeglut\include\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1394062600 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\freeglut\include\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1394062600 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\freeglut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1394062640 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1394062706 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_fixes.hpp
+	<cmath>
+
+1394062668 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\setup.hpp
+	<immintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1394062706 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1394062670 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1394062672 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1394062672 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_half.inl
+	"_detail.hpp"
+
+1394062670 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1394062674 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1394062670 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1394062694 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_size.hpp
+	<cstdlib>
+
+1394062698 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1394062696 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1394062706 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1394062708 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_swizzle_func.hpp
+
+1394062698 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec1.inl
+
+1394062700 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1394062700 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec2.inl
+
+1394062702 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1394062704 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec3.inl
+
+1394062704 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1394062704 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_vec4.inl
+
+1394062676 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1394062674 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1394062676 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x2.inl
+
+1394062678 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1394062678 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x3.inl
+
+1394062680 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1394062682 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat2x4.inl
+
+1394062682 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1394062684 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x2.inl
+
+1394062684 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1394062686 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x3.inl
+
+1394062686 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1394062688 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat3x4.inl
+
+1394062688 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1394062690 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x2.inl
+
+1394062690 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1394062692 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x3.inl
+
+1394062692 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1394062694 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\type_mat4x4.inl
+
+1394062654 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1394062656 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_trigonometric.inl
+	"_vectorize.hpp"
+
+1394062710 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\_vectorize.hpp
+
+1394062644 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1394062644 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_exponential.inl
+	"_vectorize.hpp"
+
+1394062642 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1394062642 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_common.inl
+	"_vectorize.hpp"
+
+1394062652 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1394062652 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_packing.inl
+
+1394062646 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1394062646 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_geometric.inl
+	"_vectorize.hpp"
+
+1394062648 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1394062652 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_matrix.inl
+	"_vectorize.hpp"
+
+1394062656 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1394062656 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_vector_relational.inl
+
+1394062648 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1394062648 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_integer.inl
+	"_vectorize.hpp"
+	<intrin.h>
+
+1394062652 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1394062652 c:\users\luís guilherme\desktop\helicoptero\obj_loader\libs\glm-0.9.3.3\include\glm\core\func_noise.inl
+
+1392926820 c:\users\luís guilherme\desktop\helicoptero\obj_loader\pewgl.h
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<iostream>
+	<fstream>
+	<vector>
+	<glm/glm.hpp>
+	"Tga.h"
+
+1392926818 c:\users\luís guilherme\desktop\helicoptero\obj_loader\tga.h
+	<GL/freeglut.h>
+	<stdio.h>
+	<stdlib.h>
+
+1419008863 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
+	<iostream>
+	<cstdlib>
+	<assert.h>
+	<ctime>
+	"GameObject.h"
+	<GL/freeglut.h>
+
+1392925648 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\pewgl.cpp
+	"PewGL.h"
+
+1392925650 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\tga.cpp
+	"Tga.h"
+

@@ -43,7 +43,7 @@ typedef struct {
     GLint disparado;
 } Projetil;
 
-GLint projeteisDisparados;
+GLint projeteisDisparados = 0;
 Projetil projeteis[NUM_PROJETEIS];
 
 /*******************************************/
@@ -78,6 +78,7 @@ Torpedo torpedo3;
 Torpedo torpedo4;
 GLint numTorpedoEsquerda = 0;
 GLint numTorpedoDireita = 0;
+char *numero = "4";
 /*******************************************/
 
 
@@ -95,6 +96,8 @@ GameObject solo;
 GameObject rotor_cauda;
 GameObject janela;
 GameObject fundo;
+GameObject mira;
+GameObject alvo;
 
 void display(void);
 void reshape(int width, int height);
@@ -178,12 +181,32 @@ int main(int argc, char **argv)
     rotor_cauda.load("helice.obj", "helice.tga", 0);
     janela.load("janela.obj", "parabrisa.tga", 0);
     fundo.load("piso.obj", "montanhas2.tga", 0);
+    mira.load("Mira.obj", "vermelho.tga", 0);
+    alvo.load("Alvo.obj", "Alvo.tga", 0);
 
     srand(time(NULL));
 
     glutMainLoop();
 
     return EXIT_SUCCESS;
+}
+
+// Função que recebe a fonte e um texto por parâmetro para ser exibido na
+// tela usando caracteres bitmap
+void DesenhaTexto(void *font, char *string)
+{
+	// Exibe caractere a caractere
+	while(*string)
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15,*string++);
+}
+
+// Função que recebe a fonte e um texto por parâmetro para ser exibido na
+// tela usando fonte de linhas
+void DesenhaTextoStroke(void *font, char *string)
+{
+	// Exibe caractere a caractere
+	while(*string)
+		glutStrokeCharacter(GLUT_STROKE_ROMAN,*string++);
 }
 
 void display(void)
@@ -195,6 +218,18 @@ void display(void)
     obs[0]=radiusxz*cos(2*PI*axisxz/360);
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
+
+    // Define a cor para os textos: preto
+	//glColor3f(1,0,0);
+
+	// Posiciona o texto stroke usando transformações geométricas
+	glPushMatrix();
+        glTranslatef(27.25,5.9,-4.6);
+        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
+        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
+        glLineWidth(4); // define a espessura da linha
+        DesenhaTextoStroke(GLUT_STROKE_ROMAN, numero);
+	glPopMatrix();
 
     // plano de fundo
     glPushMatrix();
@@ -216,11 +251,20 @@ void display(void)
     glPopMatrix();
 
     glPushMatrix();
+        glTranslatef(-70.0, 10.0, 10.0);
+        glRotatef(90, 0, 0, 1);
+        alvo.render();
+    glPopMatrix();
+
+    glPushMatrix();
         glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
         glRotatef(helicopteroRotateY, 0, 1, 0);
 
         glPushMatrix();
             helicoptero.render();
+            glTranslatef(0.0, -5.0, 50.0);
+            glRotatef(90, 1, 0, 0);
+            mira.render();
         glPopMatrix();
 
         glPushMatrix();
@@ -512,6 +556,4 @@ void initVariables() {
     torpedo2.disparado = OFF;
     torpedo3.disparado = OFF;
     torpedo4.disparado = OFF;
-
-    projeteisDisparados = 0;
 }
