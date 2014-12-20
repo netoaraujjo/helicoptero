@@ -12,6 +12,14 @@
 
 using namespace std;
 
+void display(void);
+void reshape(int width, int height);
+void keyboard(unsigned char key, int x, int y);
+void special_keyboard(int key, int x, int y);
+void controlaAnimacoes(void);
+void inicializaVariaveis(void);
+void carregaObjetos(void);
+
 /**********************************************
     ESTRUTURA DOS TORPEDOS
 **********************************************/
@@ -34,11 +42,9 @@ typedef struct {
     GLfloat translateX;
     GLfloat translateY;
     GLfloat translateZ;
-
     GLfloat eixoX;
     GLfloat eixoY;
     GLfloat eixoZ;
-
     GLfloat rotateY;
     GLint disparado;
 } Projetil;
@@ -96,12 +102,7 @@ GameObject rotor_cauda;
 GameObject janela;
 GameObject fundo;
 
-void display(void);
-void reshape(int width, int height);
-void keyboard(unsigned char key, int x, int y);
-void special_keyboard(int key, int x, int y);
-void controlaAnimacoes(void);
-void initVariables(void);
+
 
 
 int main(int argc, char **argv)
@@ -155,7 +156,7 @@ int main(int argc, char **argv)
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//
+
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
@@ -163,21 +164,10 @@ int main(int argc, char **argv)
     glEnable(GL_NORMALIZE);
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
-//
 
-    // inicializa variaveis que controlam os movimentos
-    initVariables();
 
-    helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
-    helice.load("helice.obj", "helice.tga", 0);
-    torpedo1.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo2.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo3.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedo4.torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    solo.load("piso.obj", "piso.tga", 0);
-    rotor_cauda.load("helice.obj", "helice.tga", 0);
-    janela.load("janela.obj", "parabrisa.tga", 0);
-    fundo.load("piso.obj", "montanhas2.tga", 0);
+    inicializaVariaveis();
+    carregaObjetos();
 
     srand(time(NULL));
 
@@ -196,7 +186,7 @@ void display(void)
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
-    // plano de fundo
+    // plano de fundo - montanhas
     glPushMatrix();
         glScalef(1.0, 30.0, 90.0);
         glTranslatef(-600.0, 12.0, 0.0);
@@ -219,22 +209,22 @@ void display(void)
         glTranslatef(helicopteroX, helicopteroY, helicopteroZ);
         glRotatef(helicopteroRotateY, 0, 1, 0);
 
-        glPushMatrix();
+        glPushMatrix(); // corpo do helicoptero
             helicoptero.render();
         glPopMatrix();
 
-        glPushMatrix();
+        glPushMatrix(); // helice
             glTranslatef(0.0, 4.0, 3.0);
             glRotatef(heliceRotate, 0, 1, 0);
             helice.render();
         glPopMatrix();
 
-        glPushMatrix();
+        glPushMatrix(); // janela
             glTranslatef(0.0, 0.0, 0.01);
             janela.render();
         glPopMatrix();
 
-        glPushMatrix();
+        glPushMatrix(); // rotor de cauda
             glTranslatef(0.5, 5.0, -22.5);
             glScalef(0.5, 0.16, 0.16);
             glRotatef(-90, 0, 0, 1);
@@ -340,7 +330,7 @@ void controlaAnimacoes() {
     if (heliceState == ON) {
         heliceRotate += heliceRotateIncrement;
         if (heliceRotateIncrement < 30.0) {
-            heliceRotateIncrement += 0.01;
+            heliceRotateIncrement += 0.05;
         }
         if (heliceRotate == 360.0) {
             heliceRotate = 0.0;
@@ -478,7 +468,7 @@ void special_keyboard(int key, int x, int y) {
     glutPostRedisplay();
 }
 
-void initVariables() {
+void inicializaVariaveis() {
     GLint i;
     GLint j = 0;
 
@@ -514,4 +504,17 @@ void initVariables() {
     torpedo4.disparado = OFF;
 
     projeteisDisparados = 0;
+}
+
+void carregaObjetos() {
+    helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
+    helice.load("helice.obj", "helice.tga", 0);
+    torpedo1.torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedo2.torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedo3.torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedo4.torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    solo.load("piso.obj", "piso.tga", 0);
+    rotor_cauda.load("helice.obj", "helice.tga", 0);
+    janela.load("janela.obj", "parabrisa.tga", 0);
+    fundo.load("piso.obj", "montanhas2.tga", 0);
 }
