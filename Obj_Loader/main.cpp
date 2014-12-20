@@ -169,8 +169,7 @@ int main(int argc, char **argv)
     glEnable(GL_LIGHTING);
 
 
-<<<<<<< HEAD
-    helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
+/*    helicoptero.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
     helice.load("helice.obj", "helice.tga", 0);
     torpedo1.torpedo.load("torpedo.obj", "torpedo.tga", 0);
     torpedo2.torpedo.load("torpedo.obj", "torpedo.tga", 0);
@@ -181,11 +180,10 @@ int main(int argc, char **argv)
     janela.load("janela.obj", "parabrisa.tga", 0);
     fundo.load("piso.obj", "montanhas2.tga", 0);
     mira.load("Mira.obj", "vermelho.tga", 0);
-    alvo.load("Alvo.obj", "Alvo.tga", 0);
-=======
+    alvo.load("Alvo.obj", "Alvo.tga", 0); */
+
     inicializaVariaveis();
     carregaObjetos();
->>>>>>> 7e275c900afd60096c107e0db66892424f30e263
 
     srand(time(NULL));
 
@@ -222,7 +220,6 @@ void display(void)
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
-<<<<<<< HEAD
     // Define a cor para os textos: preto
 	//glColor3f(1,0,0);
 
@@ -236,9 +233,7 @@ void display(void)
 	glPopMatrix();
 
     // plano de fundo
-=======
     // plano de fundo - montanhas
->>>>>>> 7e275c900afd60096c107e0db66892424f30e263
     glPushMatrix();
         glScalef(1.0, 30.0, 90.0);
         glTranslatef(-600.0, 12.0, 0.0);
@@ -576,4 +571,6 @@ void carregaObjetos() {
     rotor_cauda.load("helice.obj", "helice.tga", 0);
     janela.load("janela.obj", "parabrisa.tga", 0);
     fundo.load("piso.obj", "montanhas2.tga", 0);
+    mira.load("Mira.obj", "vermelho.tga", 0);
+    alvo.load("Alvo.obj", "Alvo.tga", 0);
 }
