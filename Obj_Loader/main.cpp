@@ -92,10 +92,6 @@ GLint heliceState = OFF;
 
 
 
-Helicoptero helicoptero;
-GLint projeteisDisparados;
-Projetil projeteis[NUM_PROJETEIS];
-
 GLint WIDTH = 800;
 GLint HEIGHT = 600;
 
@@ -105,7 +101,9 @@ GLfloat axisxz=0;
 GLfloat radiusxz=30;
 
 
-
+Helicoptero helicoptero;
+GLint projeteisDisparados;
+Projetil projeteis[NUM_PROJETEIS];
 
 GameObject solo;
 GameObject rotor_cauda;
@@ -113,8 +111,6 @@ GameObject janela;
 GameObject fundo;
 GameObject mira;
 GameObject alvo;
-
-
 
 
 int main(int argc, char **argv)
