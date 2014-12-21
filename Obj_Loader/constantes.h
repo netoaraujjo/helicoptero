@@ -1,0 +1,11 @@
+#ifndef CONSTANTES_H_
+#define CONSTANTES_H_
+
+#define ON 1
+#define OFF 0
+#define NUM_TORPEDOS 4
+#define NUM_PROJETEIS 200
+#define TORPEDO_INCREMENT 0.7
+#define PROJETIL_INCREMENT 0.7
+
+#endif // CONSTANTES_H_

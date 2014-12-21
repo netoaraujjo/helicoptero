@@ -3,16 +3,11 @@
 #include <assert.h>
 #include <ctime>
 #include "GameObject.h"
+#include "estruturas.h"
+#include "constantes.h"
 #include "desenho.h"
 #include <GL/freeglut.h>
 #define PI 3.1415
-
-#define ON 1
-#define OFF 0
-#define NUM_TORPEDOS 4
-#define NUM_PROJETEIS 200
-#define TORPEDO_INCREMENT 0.7
-#define PROJETIL_INCREMENT 0.7
 
 using namespace std;
 
@@ -23,53 +18,6 @@ void special_keyboard(int key, int x, int y);
 void controlaAnimacoes(void);
 void inicializaVariaveis(void);
 void carregaObjetos(void);
-
-
-/**********************************************
-    ESTRUTURA DO HELICÓPTERO
-**********************************************/
-typedef struct {
-    GameObject corpo;
-    GLfloat rotateY;
-    GLfloat x;
-    GLfloat y;
-    GLfloat z;
-} Helicoptero;
-/*******************************************/
-
-
-/**********************************************
-    ESTRUTURA DOS TORPEDOS
-**********************************************/
-typedef struct {
-    GameObject torpedo;
-    GLint disparado;
-    GLfloat translateX;
-    GLfloat translateZ;
-    GLfloat translateY;
-    GLfloat eixoX;
-    GLfloat eixoY;
-    GLfloat eixoZ;
-    GLfloat rotateY;
-    GLfloat deslocamentoZ;
-} Torpedo;
-/*******************************************/
-
-
-/**********************************************
-    ESTRUTURA DOS PROJÉTEIS
-**********************************************/
-typedef struct {
-    GLfloat translateX;
-    GLfloat translateY;
-    GLfloat translateZ;
-    GLfloat eixoX;
-    GLfloat eixoY;
-    GLfloat eixoZ;
-    GLfloat rotateY;
-    GLint disparado;
-} Projetil;
-/*******************************************/
 
 
 /*********************************************
@@ -216,21 +164,8 @@ void display(void)
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
     desenhaPlanoDeFundo(&fundo);
-
-    // Solo
-    glPushMatrix();
-        glTranslatef(0, -5.2, 0);
-        glScalef(40.0, 1.0, 50.0);
-        glRotatef(-19, 1, 0, 0);
-        solo.render();
-    glPopMatrix();
-
-    // alvo
-    glPushMatrix();
-        glTranslatef(-70.0, 10.0, 10.0);
-        glRotatef(90, 0, 0, 1);
-        alvo.render();
-    glPopMatrix();
+    desenhaSolo(&solo);
+    desenhaAlvo(&alvo);
 
     glPushMatrix();
         glTranslatef(helicoptero.x, helicoptero.y, helicoptero.z);
@@ -304,21 +239,23 @@ void display(void)
     }
 /*************************************************************************************************************/
 
-    for (i = 0; i < NUM_TORPEDOS; i++) {
-        glPushMatrix();
-            if (torpedos[i].disparado == OFF) {
-                glTranslatef(helicoptero.x, helicoptero.y, helicoptero.z);
-                glRotatef(helicoptero.rotateY, 0, 1, 0);
-                glTranslatef(torpedos[i].eixoX, -3.0, 3.0);
-            } else {
-                glTranslatef(torpedos[i].translateX, torpedos[i].translateY, torpedos[i].translateZ);
-                glRotatef(torpedos[i].rotateY, 0, 1, 0);
-                glTranslatef(torpedos[i].eixoX, -3.0, 3.0);
-                glTranslatef(0.0, 0.0, torpedos[i].deslocamentoZ);
-            }
-            torpedos[i].torpedo.render();
-        glPopMatrix();
-    }
+//    for (i = 0; i < NUM_TORPEDOS; i++) {
+//        glPushMatrix();
+//            if (torpedos[i].disparado == OFF) {
+//                glTranslatef(helicoptero.x, helicoptero.y, helicoptero.z);
+//                glRotatef(helicoptero.rotateY, 0, 1, 0);
+//                glTranslatef(torpedos[i].eixoX, -3.0, 3.0);
+//            } else {
+//                glTranslatef(torpedos[i].translateX, torpedos[i].translateY, torpedos[i].translateZ);
+//                glRotatef(torpedos[i].rotateY, 0, 1, 0);
+//                glTranslatef(torpedos[i].eixoX, -3.0, 3.0);
+//                glTranslatef(0.0, 0.0, torpedos[i].deslocamentoZ);
+//            }
+//            torpedos[i].torpedo.render();
+//        glPopMatrix();
+//    }
+
+    desenhaTorpedos(torpedos, &helicoptero);
 
     glutSwapBuffers();
 }
@@ -460,6 +397,7 @@ void keyboard(unsigned char key, int x, int y)
                 projeteis[projeteisDisparados].translateZ = helicoptero.z;
                 projeteis[projeteisDisparados].disparado = ON;
                 projeteisDisparados++;
+                //itoa(NUM_PROJETEIS - projeteisDisparados, num_met, 10);
             }
             break;
 	}
