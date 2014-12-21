@@ -216,26 +216,6 @@ void display(void)
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
-	// Posiciona o texto stroke usando transformações geométricas
-	glPushMatrix();
-        glTranslatef(27.25,5.8,-4.6);
-        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
-        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
-        glLineWidth(4); // define a espessura da linha
-        //  glColor3f(1,0,0);
-        DesenhaTextoStroke(GLUT_STROKE_ROMAN, num_torp);
-	glPopMatrix();
-
-	// Posiciona o texto stroke usando transformações geométricas
-	glPushMatrix();
-        glTranslatef(27.25,5.4,-4.3);
-        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
-        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
-        glLineWidth(4); // define a espessura da linha
-        //  glColor3f(1,0,0);
-        DesenhaTextoStroke(GLUT_STROKE_ROMAN, num_met);
-	glPopMatrix();
-
     // plano de fundo - montanhas
     glPushMatrix();
         glScalef(1.0, 30.0, 90.0);
@@ -293,6 +273,28 @@ void display(void)
         glPopMatrix();
 
     glPopMatrix();
+
+    // Posiciona o texto stroke usando transformações geométricas
+	glPushMatrix();
+        glTranslatef(27.25,5.8,-4.6);
+        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
+        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
+        glLineWidth(4); // define a espessura da linha
+        glColor3f(0,20,0);
+        DesenhaTextoStroke(GLUT_STROKE_ROMAN, num_torp);
+        glColor3f(1,1,1);
+	glPopMatrix();
+
+	// Posiciona o texto stroke usando transformações geométricas
+	glPushMatrix();
+        glTranslatef(27.25,5.4,-4.3);
+        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
+        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
+        glLineWidth(4); // define a espessura da linha
+        glColor3f(0,20,0);
+        DesenhaTextoStroke(GLUT_STROKE_ROMAN, num_met);
+        glColor3f(1,1,1);
+	glPopMatrix();
 
 /**************************************************************************************************************
     DESENHA OS PROJÉTEIS DA METRALHADORA
@@ -369,6 +371,16 @@ void controlaAnimacoes() {
     }
     if (numTorpedoDireita > 1) {
         torpedos[2].deslocamentoZ += 0.1;
+    }
+
+    if (numTorpedoDireita + numTorpedoEsquerda == 4) {
+        num_torp = "0";
+    } else if (numTorpedoDireita + numTorpedoEsquerda == 3) {
+        num_torp = "1";
+    } else if (numTorpedoDireita + numTorpedoEsquerda == 2) {
+        num_torp = "2";
+    } else if (numTorpedoDireita + numTorpedoEsquerda == 1) {
+        num_torp = "3";
     }
 
     int i;
