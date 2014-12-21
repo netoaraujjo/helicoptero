@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <ctime>
 #include "GameObject.h"
+#include "desenho.h"
 #include <GL/freeglut.h>
 #define PI 3.1415
 
@@ -10,6 +11,8 @@
 #define OFF 0
 #define NUM_TORPEDOS 4
 #define NUM_PROJETEIS 200
+#define TORPEDO_INCREMENT 0.7
+#define PROJETIL_INCREMENT 0.7
 
 using namespace std;
 
@@ -77,7 +80,8 @@ Torpedo torpedos[NUM_TORPEDOS];
 
 GLint numTorpedoEsquerda = 0;
 GLint numTorpedoDireita = 0;
-char *numero = "4";
+char *num_torp = "4";
+char *num_met = "200";
 /*******************************************/
 
 
@@ -211,17 +215,6 @@ void display(void)
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
-    // Define a cor para os textos: preto
-	//glColor3f(1,0,0);
-	// Posiciona o texto stroke usando transformações geométricas
-	glPushMatrix();
-        glTranslatef(27.25,5.9,-4.6);
-        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
-        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
-        glLineWidth(4); // define a espessura da linha
-        DesenhaTextoStroke(GLUT_STROKE_ROMAN, numero);
-	glPopMatrix();
-
     // plano de fundo - montanhas
     glPushMatrix();
         glScalef(1.0, 30.0, 90.0);
@@ -279,6 +272,28 @@ void display(void)
         glPopMatrix();
 
     glPopMatrix();
+
+    // Posiciona o texto stroke usando transformações geométricas
+	glPushMatrix();
+        glTranslatef(27.25,5.8,-4.6);
+        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
+        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
+        glLineWidth(4); // define a espessura da linha
+        glColor3f(0,20,0);
+        DesenhaTextoStroke(GLUT_STROKE_ROMAN, num_torp);
+        glColor3f(1,1,1);
+	glPopMatrix();
+
+	// Posiciona o texto stroke usando transformações geométricas
+	glPushMatrix();
+        glTranslatef(27.25,5.4,-4.3);
+        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
+        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
+        glLineWidth(4); // define a espessura da linha
+        glColor3f(0,20,0);
+        DesenhaTextoStroke(GLUT_STROKE_ROMAN, num_met);
+        glColor3f(1,1,1);
+	glPopMatrix();
 
 /**************************************************************************************************************
     DESENHA OS PROJÉTEIS DA METRALHADORA
@@ -339,27 +354,40 @@ void controlaAnimacoes() {
         }
     } else {
         if (heliceRotateIncrement > 0.0) {
-            heliceRotateIncrement -= 0.05;
+            heliceRotateIncrement -= 0.1;
             heliceRotate += heliceRotateIncrement;
+            if (heliceRotate < 0.0) {
+                heliceRotate = 0.0;
+            }
         }
     }
 
     if (numTorpedoEsquerda > 0) {
-        torpedos[1].deslocamentoZ += 0.1;
+        torpedos[1].deslocamentoZ += TORPEDO_INCREMENT;
     }
     if (numTorpedoEsquerda > 1) {
-        torpedos[0].deslocamentoZ += 0.1;
+        torpedos[0].deslocamentoZ += TORPEDO_INCREMENT;
     }
     if (numTorpedoDireita > 0) {
-        torpedos[3].deslocamentoZ += 0.1;
+        torpedos[3].deslocamentoZ += TORPEDO_INCREMENT;
     }
     if (numTorpedoDireita > 1) {
-        torpedos[2].deslocamentoZ += 0.1;
+        torpedos[2].deslocamentoZ += TORPEDO_INCREMENT;
+    }
+
+    if (numTorpedoDireita + numTorpedoEsquerda == 4) {
+        num_torp = "0";
+    } else if (numTorpedoDireita + numTorpedoEsquerda == 3) {
+        num_torp = "1";
+    } else if (numTorpedoDireita + numTorpedoEsquerda == 2) {
+        num_torp = "2";
+    } else if (numTorpedoDireita + numTorpedoEsquerda == 1) {
+        num_torp = "3";
     }
 
     int i;
     for (i = 0; i < projeteisDisparados; i++) {
-        projeteis[i].eixoZ += 0.05;
+        projeteis[i].eixoZ += PROJETIL_INCREMENT;
     }
 
     glutPostRedisplay();
