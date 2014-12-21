@@ -216,13 +216,13 @@ void display(void)
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
     // Define a cor para os textos: preto
-	//glColor3f(1,0,0);
 	// Posiciona o texto stroke usando transformações geométricas
 	glPushMatrix();
         glTranslatef(27.25,5.9,-4.6);
         glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
         glRotatef(90, 0 , 1 , 0); // rotaciona o texto
         glLineWidth(4); // define a espessura da linha
+        //glColor3f(1,0,0);
         DesenhaTextoStroke(GLUT_STROKE_ROMAN, numero);
 	glPopMatrix();
 
