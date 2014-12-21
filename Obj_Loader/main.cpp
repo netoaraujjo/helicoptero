@@ -222,7 +222,7 @@ void display(void)
         glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
         glRotatef(90, 0 , 1 , 0); // rotaciona o texto
         glLineWidth(4); // define a espessura da linha
-        //glColor3f(1,0,0);
+        //  glColor3f(1,0,0);
         DesenhaTextoStroke(GLUT_STROKE_ROMAN, numero);
 	glPopMatrix();
 
