@@ -1162,12 +1162,13 @@
 	<stdio.h>
 	<stdlib.h>
 
-1419181583 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\main.cpp
+1419186612 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<cstdlib>
 	<assert.h>
 	<ctime>
 	"GameObject.h"
+	"desenho.h"
 	<GL/freeglut.h>
 
 1419094183 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\pewgl.cpp
@@ -2057,4 +2058,9 @@
 
 1392925650 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\tga.cpp
 	"Tga.h"
+
+1419186609 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\desenho.cpp
+	"GameObject.h"
+
+1419186323 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\desenho.h
 

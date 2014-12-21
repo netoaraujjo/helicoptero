@@ -215,16 +215,7 @@ void display(void)
     obs[2]=radiusxz*sin(2*PI*axisxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
 
-    // plano de fundo - montanhas
-    glPushMatrix();
-        glScalef(1.0, 30.0, 90.0);
-        glTranslatef(-600.0, 12.0, 0.0);
-        glRotatef(90.0, 0, 1, 0);
-        glRotatef(70.0, 1, 0, 0);
-        glRotatef(180.0, 0, 1, 0);
-        glRotatef(-30.0, 1, 0, 0);
-        fundo.render();
-    glPopMatrix();
+    desenhaPlanoDeFundo(&fundo);
 
     // Solo
     glPushMatrix();

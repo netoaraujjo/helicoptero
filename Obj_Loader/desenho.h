@@ -3,4 +3,7 @@
 
 
 
+void desenhaPlanoDeFundo(GameObject* fundo);
+
+
 #endif // DESENHO_H_
