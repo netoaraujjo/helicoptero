@@ -35,7 +35,7 @@ void desenhaAlvo(GameObject* alvo) {
 }
 
 
-void desenhaProjeteis(Projetil* projeteis, GLint projeteisDisparados) {
+void desenhaProjeteis(Projetil* projeteis, int projeteisDisparados) {
     int i;
     for (i = 0; i < projeteisDisparados; i++) {
         glPushMatrix();

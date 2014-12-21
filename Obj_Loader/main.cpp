@@ -7,6 +7,8 @@
 #include "constantes.h"
 #include "desenho.h"
 #include <GL/freeglut.h>
+#include <string.h>
+
 #define PI 3.1415
 
 using namespace std;
@@ -23,13 +25,11 @@ void carregaObjetos(void);
 /*********************************************
     CONTROLES DOS TORPEDOS
 *********************************************/
-
 Torpedo torpedos[NUM_TORPEDOS];
-
 GLint numTorpedoEsquerda = 0;
 GLint numTorpedoDireita = 0;
-char *num_torp = "4";
-char *num_met = "200";
+char num_torp[2];
+char num_met[4];
 /*******************************************/
 
 
@@ -67,6 +67,7 @@ GameObject alvo;
 
 int main(int argc, char **argv)
 {
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_ALPHA | GLUT_MULTISAMPLE);
 
@@ -237,24 +238,8 @@ void display(void)
             glColor3f(1.0, 1.0, 1.0);
         glPopMatrix();
     }
+    //desenhaProjeteis(projeteis, projeteisDisparados);
 /*************************************************************************************************************/
-
-//    for (i = 0; i < NUM_TORPEDOS; i++) {
-//        glPushMatrix();
-//            if (torpedos[i].disparado == OFF) {
-//                glTranslatef(helicoptero.x, helicoptero.y, helicoptero.z);
-//                glRotatef(helicoptero.rotateY, 0, 1, 0);
-//                glTranslatef(torpedos[i].eixoX, -3.0, 3.0);
-//            } else {
-//                glTranslatef(torpedos[i].translateX, torpedos[i].translateY, torpedos[i].translateZ);
-//                glRotatef(torpedos[i].rotateY, 0, 1, 0);
-//                glTranslatef(torpedos[i].eixoX, -3.0, 3.0);
-//                glTranslatef(0.0, 0.0, torpedos[i].deslocamentoZ);
-//            }
-//            torpedos[i].torpedo.render();
-//        glPopMatrix();
-//    }
-
     desenhaTorpedos(torpedos, &helicoptero);
 
     glutSwapBuffers();
@@ -304,13 +289,17 @@ void controlaAnimacoes() {
     }
 
     if (numTorpedoDireita + numTorpedoEsquerda == 4) {
-        num_torp = "0";
+        strcpy(num_torp, "0");
+        //num_torp = "0";
     } else if (numTorpedoDireita + numTorpedoEsquerda == 3) {
-        num_torp = "1";
+        strcpy(num_torp, "1");
+        //num_torp = "1";
     } else if (numTorpedoDireita + numTorpedoEsquerda == 2) {
-        num_torp = "2";
+        strcpy(num_torp, "2");
+        //num_torp = "2";
     } else if (numTorpedoDireita + numTorpedoEsquerda == 1) {
-        num_torp = "3";
+        strcpy(num_torp, "3");
+        //num_torp = "3";
     }
 
     int i;
@@ -397,7 +386,7 @@ void keyboard(unsigned char key, int x, int y)
                 projeteis[projeteisDisparados].translateZ = helicoptero.z;
                 projeteis[projeteisDisparados].disparado = ON;
                 projeteisDisparados++;
-                //itoa(NUM_PROJETEIS - projeteisDisparados, num_met, 10);
+                itoa(NUM_PROJETEIS - projeteisDisparados, num_met, 10);
             }
             break;
 	}
@@ -430,6 +419,9 @@ void special_keyboard(int key, int x, int y) {
 void inicializaVariaveis() {
     GLint i;
     GLint j = 0;
+
+    strcpy(num_torp, "4");
+    strcpy(num_met, "200");
 
     helicoptero.rotateY = 0.0;
     helicoptero.x = -10.0;
