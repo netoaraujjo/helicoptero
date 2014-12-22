@@ -2049,13 +2049,17 @@
 	<stdio.h>
 	<stdlib.h>
 
-1419166102 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
+1419247770 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<cstdlib>
 	<assert.h>
 	<ctime>
 	"GameObject.h"
+	"estruturas.h"
+	"constantes.h"
+	"desenho.h"
 	<GL/freeglut.h>
+	<string.h>
 
 1392925648 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\pewgl.cpp
 	"PewGL.h"
@@ -2587,4 +2591,10 @@
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
+
+1419247770 c:\users\luís guilherme\desktop\helicoptero\obj_loader\estruturas.h
+
+1419247770 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
+
+1419247770 c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.h
 
