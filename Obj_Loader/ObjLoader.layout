@@ -13,7 +13,11 @@
 	</File>
 	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="1515" topLine="0" />
+=======
+			<Cursor1 position="267" topLine="0" />
+>>>>>>> e3433f26941386badfc655be51a2ad6e5d13e333
 		</Cursor>
 		<Folding>
 			<Collapse line="248" />
