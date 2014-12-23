@@ -18,6 +18,7 @@
 					<Add directory="libs/freeglut/include" />
 				</Compiler>
 				<Linker>
+					<Add option="-mwindows" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
 					<Add library="winmm" />
@@ -48,6 +49,10 @@
 		<Unit filename="PewGL.h" />
 		<Unit filename="Tga.cpp" />
 		<Unit filename="Tga.h" />
+		<Unit filename="constantes.h" />
+		<Unit filename="desenho.cpp" />
+		<Unit filename="desenho.h" />
+		<Unit filename="estruturas.h" />
 		<Unit filename="main.cpp">
 			<Option compilerVar="CC" />
 		</Unit>
