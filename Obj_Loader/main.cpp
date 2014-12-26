@@ -101,11 +101,11 @@ int main(int argc, char **argv)
     }
 
     glutReshapeFunc(reshape);
-    //glutKeyboardFunc(keyboard);
+    glutKeyboardFunc(keyboard);
     glutSpecialFunc(special_keyboard);
     glutDisplayFunc(display);
 
-    glutKeyboardFunc(keyboardPersonagem);
+    //glutKeyboardFunc(keyboardPersonagem);
 
 
     glutIdleFunc(controlaAnimacoes);
@@ -195,7 +195,7 @@ void display(void)
 
     desenhaTorpedos(torpedos, &helicoptero);
 
-    desenhaPersonagem(&personagem);
+    //desenhaPersonagem(&personagem);
 
     glutSwapBuffers();
 }
@@ -232,15 +232,39 @@ void controlaAnimacoes() {
 
     if (numTorpedoEsquerda > 0) {
         torpedos[1].deslocamentoZ += TORPEDO_INCREMENT;
+        if (torpedos[1].eixoX > torpedos[1].translateZ) {
+            torpedos[1].eixoX -= 0.05;
+        }
+        if (torpedos[1].eixoY < torpedos[1].translateY) {
+            torpedos[1].eixoY += 0.035;
+        }
     }
     if (numTorpedoEsquerda > 1) {
         torpedos[0].deslocamentoZ += TORPEDO_INCREMENT;
+        if (torpedos[0].eixoX > torpedos[0].translateZ) {
+            torpedos[0].eixoX -= 0.05;
+        }
+        if (torpedos[0].eixoY < torpedos[0].translateY) {
+            torpedos[0].eixoY += 0.035;
+        }
     }
     if (numTorpedoDireita > 0) {
         torpedos[3].deslocamentoZ += TORPEDO_INCREMENT;
+        if (torpedos[3].eixoX < torpedos[3].translateZ) {
+            torpedos[3].eixoX += 0.05;
+        }
+        if (torpedos[3].eixoY < torpedos[3].translateY) {
+            torpedos[3].eixoY += 0.035;
+        }
     }
     if (numTorpedoDireita > 1) {
         torpedos[2].deslocamentoZ += TORPEDO_INCREMENT;
+        if (torpedos[2].eixoX < torpedos[2].translateZ) {
+            torpedos[2].eixoX += 0.05;
+        }
+        if (torpedos[2].eixoY < torpedos[2].translateY) {
+            torpedos[2].eixoY += 0.035;
+        }
     }
 
     if (numTorpedoDireita + numTorpedoEsquerda == 4) {
@@ -417,6 +441,7 @@ void inicializaVariaveis() {
 
     for (i = 0; i < NUM_TORPEDOS; i++) {
         torpedos[i].deslocamentoZ = 0.0;
+        torpedos[i].eixoY = -3.0;
         torpedos[i].disparado = OFF;
     }
 

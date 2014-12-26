@@ -39,7 +39,7 @@ glPushMatrix();
 
         glPushMatrix(); // corpo do helicoptero
             helicoptero->corpo.render();
-            glTranslatef(0.0, -5.0, 50.0);
+            glTranslatef(0, 0, 90.0);
             glRotatef(90, 1, 0, 0);
             (*mira).render();
         glPopMatrix();
@@ -75,11 +75,11 @@ void desenhaTorpedos(Torpedo* torpedos, Helicoptero* helicoptero) {
             if (torpedos[i].disparado == OFF) {
                 glTranslatef(helicoptero->x, helicoptero->y, helicoptero->z);
                 glRotatef(helicoptero->rotate, 0, 1, 0);
-                glTranslatef(torpedos[i].eixoX, -3.0, 3.0);
+                glTranslatef(torpedos[i].eixoX, torpedos[i].eixoY, 3.0);
             } else {
                 glTranslatef(torpedos[i].translateX, torpedos[i].translateY, torpedos[i].translateZ);
                 glRotatef(torpedos[i].rotateY, 0, 1, 0);
-                glTranslatef(torpedos[i].eixoX, -3.0, 3.0);
+                glTranslatef(torpedos[i].eixoX, torpedos[i].eixoY, 3.0);
                 glTranslatef(0.0, 0.0, torpedos[i].deslocamentoZ);
             }
             torpedos[i].torpedo.render();
