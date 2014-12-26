@@ -101,11 +101,11 @@ int main(int argc, char **argv)
     }
 
     glutReshapeFunc(reshape);
-    //glutKeyboardFunc(keyboard);
+    glutKeyboardFunc(keyboard);
     glutSpecialFunc(special_keyboard);
     glutDisplayFunc(display);
 
-    glutKeyboardFunc(keyboard_personagem);
+    //glutKeyboardFunc(keyboard_personagem);
 
     glutIdleFunc(controlaAnimacoes);
 
@@ -158,16 +158,15 @@ void display(void)
     desenhaHelicoptero(&helicoptero, &mira, &helice, &rotor_cauda, &janela, heliceRotate);
 
     glPushMatrix();
-        glTranslatef(1, 29, -44);
-        glScalef(0.1, 0.1, 0.1);
+        glTranslatef(27.25, 5.9, -4.3);
+        glScalef(0.01, 0.01, 0.01);
         glRotatef(30, 0, 1, 1);
-        //glRotatef(-180, 1, 1, 1);
         torpedoImg.render();
     glPopMatrix();
 
     glPushMatrix();
-        glTranslatef(20, 10.8, -14);
-        glScalef(0.04, 0.04, 0.04);
+        glTranslatef(27.25, 5.5, -4);
+        glScalef(0.01, 0.01, 0.01);
         glRotatef(-180, 1, 1, 1);
         balaImg.render();
     glPopMatrix();
