@@ -95,25 +95,194 @@ void desenhaPersonagem(Personagem* personagem) {
         glRotatef(personagem->rotateTronco, 0, 1, 0);
         /** Tronco **/
         glPushMatrix();
-            glColor3f(0.0, 0.0, 1.0);
+            glColor3ub(15, 152, 184);
             glScalef(0.5, 1.5, 1.0);
             glutSolidCube(1.0);
             glColor3f(1.0, 1.0, 1.0);
+
+            glPushMatrix();
+                glTranslatef(0.51, 0.45, 0.0);
+                glScalef(0.0, 0.1, 0.5);
+                glColor3ub(211, 139, 91);
+                glutSolidCube(1.0);
+                glColor3f(1.0, 1.0, 1.0);
+            glPopMatrix();
+
+            glPushMatrix();
+                glTranslatef(0.51, 0.35, 0.0);
+                glScalef(0.0, 0.1, 0.3);
+                glColor3ub(211, 139, 91);
+                glutSolidCube(1.0);
+                glColor3f(1.0, 1.0, 1.0);
+            glPopMatrix();
         glPopMatrix();
 
         /** Cabeca **/
         glPushMatrix();
-            glColor3f(1.0, 0.0, 1.0);
+            glColor3ub(211, 139, 91);
             glTranslatef(0.0, 1.3, 0.0);
             glutSolidCube(1.0);
             glColor3f(1.0, 1.0, 1.0);
+
+            // rosto
+            glPushMatrix();
+                // cabelo
+                glPushMatrix();
+                    glColor3ub(93, 62, 34);
+                    glPushMatrix();
+                        glTranslatef(0.505, 0.375, 0.0);
+                        glScalef(0.0, 0.25, 1.0);
+                        glutSolidCube(1.0);
+                    glPopMatrix();
+
+                    glPushMatrix();
+                        glTranslatef(0.51, 0.2, 0.45);
+                        glScalef(0.0, 0.15, 0.1);
+                        glutSolidCube(1.0);
+                    glPopMatrix();
+
+                    glPushMatrix();
+                        glTranslatef(0.51, 0.2, -0.45);
+                        glScalef(0.0, 0.15, 0.1);
+                        glutSolidCube(1.0);
+                    glPopMatrix();
+
+                    // lado direito
+                    glPushMatrix();
+                        glTranslatef(0.0, 0.25, 0.505);
+                        glPushMatrix();
+                            glScalef(1.0, 0.5, 0.0);
+                            glutSolidCube(1.0);
+                        glPopMatrix();
+
+                        glPushMatrix();
+                            glTranslatef(0.45, -0.3, 0.0);
+                            glScalef(0.1, 0.15, 0.0);
+                            glutSolidCube(1.0);
+                        glPopMatrix();
+
+                        glPushMatrix();
+                            glTranslatef(-0.3, -0.35, 0.0);
+                            glScalef(0.4, 0.2, 0.0);
+                            glutSolidCube(1.0);
+                        glPopMatrix();
+
+                        glPushMatrix();
+                            glTranslatef(-0.35, -0.5, 0.0);
+                            glScalef(0.3, 0.15, 0.0);
+                            glutSolidCube(1.0);
+                        glPopMatrix();
+                    glPopMatrix();
+
+                    // lado esquerdo
+                    glPushMatrix();
+                        glTranslatef(0.0, 0.25, -0.505);
+                        glPushMatrix();
+                            glScalef(1.0, 0.5, 0.0);
+                            glutSolidCube(1.0);
+                        glPopMatrix();
+
+                        glPushMatrix();
+                            glTranslatef(0.45, -0.3, 0.0);
+                            glScalef(0.1, 0.15, 0.0);
+                            glutSolidCube(1.0);
+                        glPopMatrix();
+
+                        glPushMatrix();
+                            glTranslatef(-0.3, -0.35, 0.0);
+                            glScalef(0.4, 0.2, 0.0);
+                            glutSolidCube(1.0);
+                        glPopMatrix();
+
+                        glPushMatrix();
+                            glTranslatef(-0.35, -0.5, 0.0);
+                            glScalef(0.3, 0.15, 0.0);
+                            glutSolidCube(1.0);
+                        glPopMatrix();
+                    glPopMatrix();
+
+                    glColor3f(1.0, 1.0, 1.0);
+                glPopMatrix();
+
+                glTranslatef(0.0, -0.1, 0.0);
+                // olho direito
+                glPushMatrix();
+                    glTranslatef(0.51, 0.1, 0.2);
+                    glPushMatrix();
+                        glColor3ub(68, 40, 161);
+                        glScalef(0.0, 0.15, 0.15);
+                        glutSolidCube(1.0);
+                        glColor3f(1.0, 1.0, 1.0);
+                    glPopMatrix();
+
+                    glPushMatrix();
+                        glColor3f(1.0, 1.0, 1.0);
+                        glTranslatef(0.0, 0.0, 0.15);
+                        glScalef(0.0, 0.15, 0.15);
+                        glutSolidCube(1.0);
+                        glColor3f(1.0, 1.0, 1.0);
+                    glPopMatrix();
+                glPopMatrix();
+
+                // olho esquerdo
+                glPushMatrix();
+                    glTranslatef(0.51, 0.1, -0.2);
+                    glPushMatrix();
+                        glColor3ub(68, 40, 161);
+                        glScalef(0.0, 0.15, 0.15);
+                        glutSolidCube(1.0);
+                        glColor3f(1.0, 1.0, 1.0);
+                    glPopMatrix();
+
+                    glPushMatrix();
+                        glColor3f(1.0, 1.0, 1.0);
+                        glTranslatef(0.0, 0.0, -0.15);
+                        glScalef(0.0, 0.15, 0.15);
+                        glutSolidCube(1.0);
+                        glColor3f(1.0, 1.0, 1.0);
+                    glPopMatrix();
+                glPopMatrix();
+
+                // nariz
+                glPushMatrix();
+                    glTranslatef(0.51, -0.05, 0.0);
+                    glColor3ub(162, 93, 51);
+                    glScalef(0.0, 0.15, 0.25);
+                    glutSolidCube(1.0);
+                    glColor3f(1.0, 1.0, 1.0);
+                glPopMatrix();
+
+                // boca
+                glPushMatrix();
+                    glColor3ub(87, 51, 29);
+                    glPushMatrix();
+                        glTranslatef(0.51, -0.2, 0.2);
+                        glScalef(0.0, 0.15, 0.15);
+                        glutSolidCube(1.0);
+                    glPopMatrix();
+
+                    glPushMatrix();
+                        glTranslatef(0.51, -0.2, -0.2);
+                        glScalef(0.0, 0.15, 0.15);
+                        glutSolidCube(1.0);
+                    glPopMatrix();
+
+                    glPushMatrix();
+                        glTranslatef(0.51, -0.325, 0.0);
+                        glScalef(0.0, 0.15, 0.55);
+                        glutSolidCube(1.0);
+                    glPopMatrix();
+                    glColor3f(1.0, 1.0, 1.0);
+                glPopMatrix();
+            glPopMatrix();
+
         glPopMatrix();
 
         /** Bracos **/
         glPushMatrix();
             // Braço direito
             glPushMatrix();
-                glColor3f(0.0, 0.0, 1.0);
+                glColor3ub(15, 152, 184);
                 glScalef(0.5, 0.5, 0.5);
                 glTranslatef(0.0, 1.3, 1.5);
                 glRotatef(personagem->rotateBracoDir, 0.0, 0.0, 1.0);
@@ -122,7 +291,7 @@ void desenhaPersonagem(Personagem* personagem) {
                 glColor3f(1.0, 1.0, 1.0);
 
                 glPushMatrix();
-                    glColor3f(1.0, 0.0, 0.0);
+                    glColor3ub(211, 139, 91);
                     glScalef(1.0, 2.0, 1.0);
                     glTranslatef(0.0, -0.75, 0.0);
                     glutSolidCube(1.0);
@@ -132,7 +301,7 @@ void desenhaPersonagem(Personagem* personagem) {
 
             // Braço esquerdo
             glPushMatrix();
-                glColor3f(0.0, 0.0, 1.0);
+                glColor3ub(15, 152, 184);
                 glScalef(0.5, 0.5, 0.5);
                 glTranslatef(0.0, 1.3, -1.5);
                 glRotatef(personagem->rotateBracoEsq, 0.0, 0.0, 1.0);
@@ -141,7 +310,7 @@ void desenhaPersonagem(Personagem* personagem) {
                 glColor3f(1.0, 1.0, 1.0);
 
                 glPushMatrix();
-                    glColor3f(1.0, 0.0, 0.0);
+                    glColor3ub(211, 139, 91);
                     glScalef(1.0, 2.0, 1.0);
                     glTranslatef(0.0, -0.75, 0.0);
                     glutSolidCube(1.0);
@@ -154,7 +323,7 @@ void desenhaPersonagem(Personagem* personagem) {
         glPushMatrix();
             // Perna direita
             glPushMatrix();
-                glColor3f(0.0, 1.0, 0.0);
+                glColor3ub(6, 67, 103);
                 glTranslatef(0.0, -0.675, 0.25);
                 glRotatef(personagem->rotatePernaDir, 0, 0, 1);
                 glTranslatef(0.0, -0.675, 0.0);
@@ -163,7 +332,7 @@ void desenhaPersonagem(Personagem* personagem) {
                 glColor3f(1.0, 1.0, 1.0);
 
                 glPushMatrix();
-                    glColor3f(1.0, 0.3, 0.7);
+                    glColor3ub(110, 113, 106);
                     glTranslatef(0.0, -0.6, 0.0);
                     glScalef(1.0, 0.2, 1.0);
                     glutSolidCube(1.0);
@@ -173,7 +342,7 @@ void desenhaPersonagem(Personagem* personagem) {
 
             // Perna esquerda
             glPushMatrix();
-                glColor3f(0.0, 1.0, 0.0);
+                glColor3ub(6, 67, 103);
                 glTranslatef(0.0, -0.675, -0.25);
                 glRotatef(personagem->rotatePernaEsq, 0, 0, 1);
                 glTranslatef(0.0, -0.675, 0.0);
@@ -182,7 +351,7 @@ void desenhaPersonagem(Personagem* personagem) {
                 glColor3f(1.0, 1.0, 1.0);
 
                 glPushMatrix();
-                    glColor3f(1.0, 0.3, 0.7);
+                    glColor3ub(110, 113, 106);
                     glTranslatef(0.0, -0.6, 0.0);
                     glScalef(1.0, 0.2, 1.0);
                     glutSolidCube(1.0);

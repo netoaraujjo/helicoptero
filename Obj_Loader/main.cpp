@@ -21,7 +21,7 @@ void controlaAnimacoes(void);
 void inicializaVariaveis(void);
 void carregaObjetos(void);
 
-void keyboard_personagem(unsigned char key, int x, int y);
+void keyboardPersonagem(unsigned char key, int x, int y);
 
 /*********************************************
     CONTROLES DOS TORPEDOS E PROJÉTEIS
@@ -104,7 +104,7 @@ int main(int argc, char **argv)
     glutSpecialFunc(special_keyboard);
     glutDisplayFunc(display);
 
-    glutKeyboardFunc(keyboard_personagem);
+    glutKeyboardFunc(keyboardPersonagem);
 
     glutIdleFunc(controlaAnimacoes);
 
@@ -328,7 +328,7 @@ void keyboard(unsigned char key, int x, int y)
 }
 
 
-void keyboard_personagem(unsigned char key, int x, int y) {
+void keyboardPersonagem(unsigned char key, int x, int y) {
     switch(key) {
         case 27:
             exit(0);
@@ -356,6 +356,7 @@ void keyboard_personagem(unsigned char key, int x, int y) {
         case 'j':
         case 'J':
             personagem.rotateTronco += 10.0;
+            if (personagem.rotateTronco >= 360.0) personagem.rotateTronco = 0.0;
             break;
     }
     glutPostRedisplay();
@@ -438,9 +439,9 @@ void inicializaVariaveis() {
     personagem.rotateBracoEsq = 0.0;
     personagem.rotatePernaDir = 0.0;
     personagem.rotatePernaEsq = 0.0;
-    personagem.rotateTronco = 0.0;
-    personagem.x = 22.0;
-    personagem.y = 0.0;
+    personagem.rotateTronco = 90.0;
+    personagem.x = 27.0;
+    personagem.y = 2.0;
     personagem.z = 0.0;
 }
 

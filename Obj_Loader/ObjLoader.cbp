@@ -55,8 +55,6 @@
 		<Unit filename="desenho.cpp" />
 		<Unit filename="desenho.h" />
 		<Unit filename="estruturas.h" />
-		<Unit filename="libs/SDL2-2.0.3/include/SDL.h" />
-		<Unit filename="libs/SDL2_mixer-2.0.0/i686-w64-mingw32/include/SDL2/SDL_mixer.h" />
 		<Unit filename="main.cpp">
 			<Option compilerVar="CC" />
 		</Unit>
