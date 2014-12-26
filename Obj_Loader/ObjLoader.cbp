@@ -16,15 +16,17 @@
 					<Add directory="libs/include" />
 					<Add directory="libs/glm-0.9.3.3/include" />
 					<Add directory="libs/freeglut/include" />
+					<Add directory="libs/SDL2-2.0.3/i686-w64-mingw32/include" />
 				</Compiler>
 				<Linker>
-					<Add option="-mwindows" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
 					<Add library="winmm" />
 					<Add library="gdi32" />
 					<Add library="libs\freeglut\lib\libfreeglut.a" />
 					<Add library="libs\libglew32.dll.a" />
+					<Add directory="libs/SDL2-2.0.3/i686-w64-mingw32/lib" />
+					<Add directory="libs/SDL2_mixer-2.0.0/i686-w64-mingw32/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -53,6 +55,8 @@
 		<Unit filename="desenho.cpp" />
 		<Unit filename="desenho.h" />
 		<Unit filename="estruturas.h" />
+		<Unit filename="libs/SDL2-2.0.3/include/SDL.h" />
+		<Unit filename="libs/SDL2_mixer-2.0.0/i686-w64-mingw32/include/SDL2/SDL_mixer.h" />
 		<Unit filename="main.cpp">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -1162,7 +1162,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1419203836 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\main.cpp
+1419562521 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<cstdlib>
 	<assert.h>
@@ -1173,7 +1173,6 @@
 	"desenho.h"
 	<GL/freeglut.h>
 	<string.h>
-	"SDL.h"
 
 1419094183 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\pewgl.cpp
 	"PewGL.h"
@@ -2067,16 +2066,16 @@
 1392925650 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\tga.cpp
 	"Tga.h"
 
-1419190172 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\desenho.cpp
+1419563413 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\desenho.cpp
 	"GameObject.h"
 	"estruturas.h"
 	"constantes.h"
 
-1419190179 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\desenho.h
+1419555574 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\desenho.h
 
-1419188423 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\estruturas.h
+1419563457 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\estruturas.h
 
-1419188720 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\constantes.h
+1419547410 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\constantes.h
 
 1376156438 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\sdl2_mixer-2.0.0\x86_64-w64-mingw32\include\sdl2\sdl_mixer.h
 	"SDL_stdinc.h"
@@ -2597,4 +2596,13 @@
 1419247770 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
 
 1419247770 c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.h
+
+1376156426 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\sdl2_mixer-2.0.0\i686-w64-mingw32\include\sdl2\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
 

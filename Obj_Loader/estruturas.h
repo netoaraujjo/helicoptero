@@ -1,12 +1,13 @@
 #ifndef ESTRUTURAS_H_
 #define ESTRUTURAS_H_
 
+
 /**********************************************
     ESTRUTURA DO HELICÓPTERO
 **********************************************/
 typedef struct {
     GameObject corpo;
-    GLfloat rotateY;
+    GLfloat rotate;
     GLfloat x;
     GLfloat y;
     GLfloat z;
@@ -45,6 +46,20 @@ typedef struct {
     GLfloat rotateY;
     GLint disparado;
 } Projetil;
+/*******************************************/
+
+
+/**********************************************
+    ESTRUTURA DO PERSONAGEM
+**********************************************/
+typedef struct {
+    GLfloat rotateTronco;
+    GLfloat rotateBracoEsq;
+    GLfloat rotateBracoDir;
+    GLfloat rotatePernaEsq;
+    GLfloat rotatePernaDir;
+    GLfloat x, y, z;
+} Personagem;
 /*******************************************/
 
 #endif // ESTRUTURAS_H_

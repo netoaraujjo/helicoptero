@@ -21,20 +21,23 @@ void controlaAnimacoes(void);
 void inicializaVariaveis(void);
 void carregaObjetos(void);
 
+void keyboard_personagem(unsigned char key, int x, int y);
 
 /*********************************************
-    CONTROLES DOS TORPEDOS
+    CONTROLES DOS TORPEDOS E PROJÉTEIS
 *********************************************/
 Torpedo torpedos[NUM_TORPEDOS];
-GLint numTorpedoEsquerda = 0;
-GLint numTorpedoDireita = 0;
+GLint numTorpedoEsquerda;
+GLint numTorpedoDireita;
 char num_torp[2];
 char num_met[4];
+GLint projeteisDisparados;
+Projetil projeteis[NUM_PROJETEIS];
 /*******************************************/
 
 
 /********************************************
-    CONTROLES DA HÉLICE
+    CONTROLES DA HÉLICE E ROTOR DE CAUDA
 ********************************************/
 GameObject helice;
 GLfloat heliceRotate = 0.0;
@@ -42,6 +45,15 @@ GLfloat heliceRotateIncrement = 0.0;
 GLint heliceState = OFF;
 /*******************************************/
 
+Helicoptero helicoptero;
+
+
+GameObject solo;
+GameObject rotor_cauda;
+GameObject janela;
+GameObject fundo;
+GameObject mira;
+GameObject alvo;
 
 
 GLint WIDTH = 800;
@@ -52,18 +64,7 @@ GLfloat look[3]={0.0,3.0,0.0};
 GLfloat axisxz=0;
 GLfloat radiusxz=30;
 
-
-Helicoptero helicoptero;
-GLint projeteisDisparados;
-Projetil projeteis[NUM_PROJETEIS];
-
-GameObject solo;
-GameObject rotor_cauda;
-GameObject janela;
-GameObject fundo;
-GameObject mira;
-GameObject alvo;
-
+Personagem personagem;
 
 int main(int argc, char **argv)
 {
@@ -99,9 +100,11 @@ int main(int argc, char **argv)
     }
 
     glutReshapeFunc(reshape);
-    glutKeyboardFunc(keyboard);
+    //glutKeyboardFunc(keyboard);
     glutSpecialFunc(special_keyboard);
     glutDisplayFunc(display);
+
+    glutKeyboardFunc(keyboard_personagem);
 
     glutIdleFunc(controlaAnimacoes);
 
@@ -136,23 +139,7 @@ int main(int argc, char **argv)
     return EXIT_SUCCESS;
 }
 
-// Função que recebe a fonte e um texto por parâmetro para ser exibido na
-// tela usando caracteres bitmap
-void DesenhaTexto(void *font, char *string)
-{
-	// Exibe caractere a caractere
-	while(*string)
-		glutBitmapCharacter(GLUT_BITMAP_9_BY_15,*string++);
-}
 
-// Função que recebe a fonte e um texto por parâmetro para ser exibido na
-// tela usando fonte de linhas
-void DesenhaTextoStroke(void *font, char *string)
-{
-	// Exibe caractere a caractere
-	while(*string)
-		glutStrokeCharacter(GLUT_STROKE_ROMAN,*string++);
-}
 
 void display(void)
 {
@@ -166,61 +153,9 @@ void display(void)
 
     desenhaPlanoDeFundo(&fundo);
     desenhaSolo(&solo);
-    desenhaAlvo(&alvo);
-
-    glPushMatrix();
-        glTranslatef(helicoptero.x, helicoptero.y, helicoptero.z);
-        glRotatef(helicoptero.rotateY, 0, 1, 0);
-
-        glPushMatrix(); // corpo do helicoptero
-            helicoptero.corpo.render();
-            glTranslatef(0.0, -5.0, 50.0);
-            glRotatef(90, 1, 0, 0);
-            mira.render();
-        glPopMatrix();
-
-        glPushMatrix(); // helice
-            glTranslatef(0.0, 4.0, 3.0);
-            glRotatef(heliceRotate, 0, 1, 0);
-            helice.render();
-        glPopMatrix();
-
-        glPushMatrix(); // janela
-            glTranslatef(0.0, 0.0, 0.01);
-            janela.render();
-        glPopMatrix();
-
-        glPushMatrix(); // rotor de cauda
-            glTranslatef(0.5, 5.0, -22.5);
-            glScalef(0.5, 0.16, 0.16);
-            glRotatef(-90, 0, 0, 1);
-            glRotatef(heliceRotate, 0, 1, 0);
-            rotor_cauda.render();
-        glPopMatrix();
-
-    glPopMatrix();
-
-    // Posiciona o texto stroke usando transformações geométricas
-	glPushMatrix();
-        glTranslatef(27.25,5.8,-4.6);
-        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
-        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
-        glLineWidth(4); // define a espessura da linha
-        glColor3f(0,20,0);
-        DesenhaTextoStroke(GLUT_STROKE_ROMAN, num_torp);
-        glColor3f(1,1,1);
-	glPopMatrix();
-
-	// Posiciona o texto stroke usando transformações geométricas
-	glPushMatrix();
-        glTranslatef(27.25,5.4,-4.3);
-        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
-        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
-        glLineWidth(4); // define a espessura da linha
-        glColor3f(0,20,0);
-        DesenhaTextoStroke(GLUT_STROKE_ROMAN, num_met);
-        glColor3f(1,1,1);
-	glPopMatrix();
+    //desenhaAlvo(&alvo);
+    desenhaHelicoptero(&helicoptero, &mira, &helice, &rotor_cauda, &janela, heliceRotate);
+    //desenhaTexto(num_torp, num_met);
 
 /**************************************************************************************************************
     DESENHA OS PROJÉTEIS DA METRALHADORA
@@ -238,9 +173,12 @@ void display(void)
             glColor3f(1.0, 1.0, 1.0);
         glPopMatrix();
     }
-    //desenhaProjeteis(projeteis, projeteisDisparados);
 /*************************************************************************************************************/
-    desenhaTorpedos(torpedos, &helicoptero);
+
+
+    //desenhaTorpedos(torpedos, &helicoptero);
+
+    desenhaPersonagem(&personagem);
 
     glutSwapBuffers();
 }
@@ -290,16 +228,12 @@ void controlaAnimacoes() {
 
     if (numTorpedoDireita + numTorpedoEsquerda == 4) {
         strcpy(num_torp, "0");
-        //num_torp = "0";
     } else if (numTorpedoDireita + numTorpedoEsquerda == 3) {
         strcpy(num_torp, "1");
-        //num_torp = "1";
     } else if (numTorpedoDireita + numTorpedoEsquerda == 2) {
         strcpy(num_torp, "2");
-        //num_torp = "2";
     } else if (numTorpedoDireita + numTorpedoEsquerda == 1) {
         strcpy(num_torp, "3");
-        //num_torp = "3";
     }
 
     int i;
@@ -319,11 +253,11 @@ void keyboard(unsigned char key, int x, int y)
             break;
         case 'd':
         case 'D':
-            if (heliceState == ON) helicoptero.rotateY += 2.5;
+            if (heliceState == ON) helicoptero.rotate += 2.5;
             break;
         case 'a':
         case 'A':
-            if (heliceState == ON) helicoptero.rotateY -= 2.5;
+            if (heliceState == ON) helicoptero.rotate -= 2.5;
             break;
         case 's':
         case 'S':
@@ -345,13 +279,13 @@ void keyboard(unsigned char key, int x, int y)
             if (numTorpedoEsquerda < 2) {
                 numTorpedoEsquerda++;
                 if (numTorpedoEsquerda == 1) {
-                    torpedos[1].rotateY = helicoptero.rotateY;
+                    torpedos[1].rotateY = helicoptero.rotate;
                     torpedos[1].translateX = helicoptero.x;
                     torpedos[1].translateY = helicoptero.y;
                     torpedos[1].translateZ = helicoptero.z;
                     torpedos[1].disparado = ON;
                 } else {
-                    torpedos[0].rotateY = helicoptero.rotateY;
+                    torpedos[0].rotateY = helicoptero.rotate;
                     torpedos[0].translateX = helicoptero.x;
                     torpedos[0].translateY = helicoptero.y;
                     torpedos[0].translateZ = helicoptero.z;
@@ -363,13 +297,13 @@ void keyboard(unsigned char key, int x, int y)
             if (numTorpedoDireita < 2) {
                 numTorpedoDireita++;
                 if (numTorpedoDireita == 1) {
-                    torpedos[3].rotateY = helicoptero.rotateY;
+                    torpedos[3].rotateY = helicoptero.rotate;
                     torpedos[3].translateX = helicoptero.x;
                     torpedos[3].translateY = helicoptero.y;
                     torpedos[3].translateZ = helicoptero.z;
                     torpedos[3].disparado = ON;
                 } else {
-                    torpedos[2].rotateY = helicoptero.rotateY;
+                    torpedos[2].rotateY = helicoptero.rotate;
                     torpedos[2].translateX = helicoptero.x;
                     torpedos[2].translateY = helicoptero.y;
                     torpedos[2].translateZ = helicoptero.z;
@@ -380,7 +314,7 @@ void keyboard(unsigned char key, int x, int y)
         case 'm':
         case 'M':
             if (projeteisDisparados < NUM_PROJETEIS) {
-                projeteis[projeteisDisparados].rotateY = helicoptero.rotateY;
+                projeteis[projeteisDisparados].rotateY = helicoptero.rotate;
                 projeteis[projeteisDisparados].translateX = helicoptero.x;
                 projeteis[projeteisDisparados].translateY = helicoptero.y;
                 projeteis[projeteisDisparados].translateZ = helicoptero.z;
@@ -392,6 +326,41 @@ void keyboard(unsigned char key, int x, int y)
 	}
 	glutPostRedisplay();
 }
+
+
+void keyboard_personagem(unsigned char key, int x, int y) {
+    switch(key) {
+        case 27:
+            exit(0);
+            break;
+        case 'a':
+        case 'A':
+            personagem.x += 0.5;
+            break;
+        case 'q':
+        case 'Q':
+            personagem.rotateBracoDir += 10.0;
+            break;
+        case 'e':
+        case 'E':
+            personagem.rotateBracoEsq += 10.0;
+            break;
+        case 'r':
+        case 'R':
+            personagem.rotatePernaDir += 10.0;
+            break;
+        case 'y':
+        case 'Y':
+            personagem.rotatePernaEsq += 10.0;
+            break;
+        case 'j':
+        case 'J':
+            personagem.rotateTronco += 10.0;
+            break;
+    }
+    glutPostRedisplay();
+}
+
 
 void special_keyboard(int key, int x, int y) {
     switch (key)
@@ -423,7 +392,7 @@ void inicializaVariaveis() {
     strcpy(num_torp, "4");
     strcpy(num_met, "200");
 
-    helicoptero.rotateY = 0.0;
+    helicoptero.rotate = 0.0;
     helicoptero.x = -10.0;
     helicoptero.y = 0.0;
     helicoptero.z = 0.0;
@@ -433,10 +402,15 @@ void inicializaVariaveis() {
         torpedos[i].disparado = OFF;
     }
 
+    projeteisDisparados = 0;
+
     torpedos[0].eixoX = 4.0;
     torpedos[1].eixoX = 5.7;
     torpedos[2].eixoX = -4.4;
     torpedos[3].eixoX = -6.3;
+
+    numTorpedoEsquerda = 0;
+    numTorpedoDireita = 0;
 
     for (i = 0; i < NUM_PROJETEIS; i++) {
         projeteis[i].disparado = OFF;
@@ -460,7 +434,14 @@ void inicializaVariaveis() {
         }
     }
 
-    projeteisDisparados = 0;
+    personagem.rotateBracoDir = 0.0;
+    personagem.rotateBracoEsq = 0.0;
+    personagem.rotatePernaDir = 0.0;
+    personagem.rotatePernaEsq = 0.0;
+    personagem.rotateTronco = 0.0;
+    personagem.x = 22.0;
+    personagem.y = 0.0;
+    personagem.z = 0.0;
 }
 
 void carregaObjetos() {
