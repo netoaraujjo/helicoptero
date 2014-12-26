@@ -1,7 +1,6 @@
 #ifndef ESTRUTURAS_H_
 #define ESTRUTURAS_H_
 
-
 /**********************************************
     ESTRUTURA DO HELICÓPTERO
 **********************************************/
@@ -59,6 +58,11 @@ typedef struct {
     GLfloat rotatePernaEsq;
     GLfloat rotatePernaDir;
     GLfloat x, y, z;
+    GLint embarcado;
+    GLint inverteBracoEsq;
+    GLint inverteBracoDir;
+    GLint invertePernaDir;
+    GLint invertePernaEsq;
 } Personagem;
 /*******************************************/
 

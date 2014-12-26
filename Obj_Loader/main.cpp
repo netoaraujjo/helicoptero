@@ -21,7 +21,12 @@ void controlaAnimacoes(void);
 void inicializaVariaveis(void);
 void carregaObjetos(void);
 
-void keyboardPersonagem(unsigned char key, int x, int y);
+void controleHelicoptero(unsigned char key);
+void controleEspecialHelicoptero(int key);
+void controlePersonagem(unsigned char key);
+void controleEspecialPersonagem(int key);
+void movimentaBracos(void);
+void movimentaPernas(void);
 
 /*********************************************
     CONTROLES DOS TORPEDOS E PROJÉTEIS
@@ -40,13 +45,12 @@ Projetil projeteis[NUM_PROJETEIS];
     CONTROLES DA HÉLICE E ROTOR DE CAUDA
 ********************************************/
 GameObject helice;
-GLfloat heliceRotate = 0.0;
-GLfloat heliceRotateIncrement = 0.0;
-GLint heliceState = OFF;
+GLfloat heliceRotate;
+GLfloat heliceRotateIncrement;
+GLint heliceState;
 /*******************************************/
 
 Helicoptero helicoptero;
-
 
 GameObject solo;
 GameObject rotor_cauda;
@@ -104,9 +108,6 @@ int main(int argc, char **argv)
     glutKeyboardFunc(keyboard);
     glutSpecialFunc(special_keyboard);
     glutDisplayFunc(display);
-
-    //glutKeyboardFunc(keyboardPersonagem);
-
 
     glutIdleFunc(controlaAnimacoes);
 
@@ -195,7 +196,9 @@ void display(void)
 
     desenhaTorpedos(torpedos, &helicoptero);
 
-    desenhaPersonagem(&personagem);
+    if (personagem.embarcado == OFF) {
+        desenhaPersonagem(&personagem);
+    }
 
     glutSwapBuffers();
 }
@@ -288,13 +291,119 @@ void controlaAnimacoes() {
     glutPostRedisplay();
 }
 
-void keyboard(unsigned char key, int x, int y)
-{
-	switch (key)
-	{
+void keyboard(unsigned char key, int x, int y) {
+	switch (key) {
         case 27:
             exit(0);
             break;
+        default:
+            if (personagem.embarcado == OFF) {
+                controlePersonagem(key);
+            } else {
+                controleHelicoptero(key);
+            }
+            break;
+	}
+	glutPostRedisplay();
+}
+
+void special_keyboard(int key, int x, int y) {
+    if (personagem.embarcado == OFF) {
+        controleEspecialPersonagem(key);
+    } else {
+        controleEspecialHelicoptero(key);
+    }
+    glutPostRedisplay();
+}
+
+void inicializaVariaveis() {
+    GLint i;
+    GLint j = 0;
+
+    strcpy(num_torp, "4");
+    strcpy(num_met, "200");
+
+    helicoptero.rotate = 0.0;
+    helicoptero.x = -10.0;
+    helicoptero.y = 0.0;
+    helicoptero.z = 0.0;
+
+    heliceState = OFF;
+
+    for (i = 0; i < NUM_TORPEDOS; i++) {
+        torpedos[i].deslocamentoZ = 0.0;
+        torpedos[i].eixoY = -3.0;
+        torpedos[i].disparado = OFF;
+    }
+
+    projeteisDisparados = 0;
+
+    torpedos[0].eixoX = 4.0;
+    torpedos[1].eixoX = 5.7;
+    torpedos[2].eixoX = -4.4;
+    torpedos[3].eixoX = -6.3;
+
+    numTorpedoEsquerda = 0;
+    numTorpedoDireita = 0;
+
+    for (i = 0; i < NUM_PROJETEIS; i++) {
+        projeteis[i].disparado = OFF;
+        projeteis[i].eixoZ = 11.9;
+
+        if (j == 0) {
+            projeteis[i].eixoX = -0.04;
+            projeteis[i].eixoY = -4.78;
+        } else if (j == 1) {
+            projeteis[i].eixoX = 0.275;
+            projeteis[i].eixoY = -4.78;
+        } else {
+            projeteis[i].eixoX = 0.11;
+            projeteis[i].eixoY = -5.0;
+        }
+
+        if (j == 2) {
+            j = 0;
+        } else {
+            j++;
+        }
+    }
+
+    personagem.rotateBracoDir = 0.0;
+    personagem.rotateBracoEsq = 0.0;
+    personagem.rotatePernaDir = 0.0;
+    personagem.rotatePernaEsq = 0.0;
+    personagem.rotateTronco = 0.0;
+    personagem.x = 23.0;
+    personagem.y = 0.0;
+    personagem.z = 0.0;
+    personagem.embarcado = OFF;
+    personagem.inverteBracoDir = 0;
+    personagem.inverteBracoEsq = 0;
+    personagem.rotatePernaDir = 0;
+    personagem.rotatePernaEsq = 0;
+}
+
+void carregaObjetos() {
+    helicoptero.corpo.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
+    helice.load("helice.obj", "helice.tga", 0);
+    torpedos[0].torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedos[1].torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedos[2].torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    torpedos[3].torpedo.load("torpedo.obj", "torpedo.tga", 0);
+    solo.load("piso.obj", "piso.tga", 0);
+    rotor_cauda.load("helice.obj", "helice.tga", 0);
+    janela.load("janela.obj", "parabrisa.tga", 0);
+    fundo.load("piso.obj", "montanhas2.tga", 0);
+    mira.load("Mira.obj", "vermelho.tga", 0);
+    alvo.load("Alvo.obj", "Alvo.tga", 0);
+    torpedoImg.load("piso.obj", "torpedo2.tga", 0);
+    balaImg.load("piso.obj", "bala.tga", 0);
+}
+
+
+
+void controleHelicoptero(unsigned char key) {
+    switch (key) {
         case 'd':
         case 'D':
             if (heliceState == ON) helicoptero.rotate += 2.5;
@@ -368,15 +477,32 @@ void keyboard(unsigned char key, int x, int y)
             }
             break;
 	}
-	glutPostRedisplay();
+}
+
+void controleEspecialHelicoptero(int key) {
+    switch (key) {
+        case GLUT_KEY_UP:
+            if (heliceState == ON) helicoptero.y += 0.3;
+            break;
+        case GLUT_KEY_DOWN:
+            if (helicoptero.y > 0.0) {
+                helicoptero.y -= 0.3;
+            } else {
+                helicoptero.y = 0.0;
+            }
+            break;
+        case GLUT_KEY_LEFT:
+            if (heliceState == ON) helicoptero.z += 0.3;
+            break;
+        case GLUT_KEY_RIGHT:
+            if (heliceState == ON) helicoptero.z -= 0.3;
+            break;
+    }
 }
 
 
-void keyboardPersonagem(unsigned char key, int x, int y) {
+void controlePersonagem(unsigned char key) {
     switch(key) {
-        case 27:
-            exit(0);
-            break;
         case 'a':
         case 'A':
             personagem.x += 0.5;
@@ -403,106 +529,87 @@ void keyboardPersonagem(unsigned char key, int x, int y) {
             if (personagem.rotateTronco >= 360.0) personagem.rotateTronco = 0.0;
             break;
     }
-    glutPostRedisplay();
 }
 
 
-void special_keyboard(int key, int x, int y) {
-    switch (key)
-    {
-        case GLUT_KEY_UP:
-            if (heliceState == ON) helicoptero.y += 0.3;
-            break;
-        case GLUT_KEY_DOWN:
-            if (helicoptero.y > 0.0) {
-                helicoptero.y -= 0.3;
-            } else {
-                helicoptero.y = 0.0;
-            }
-            break;
+
+void controleEspecialPersonagem(int key) {
+    switch (key) {
         case GLUT_KEY_LEFT:
-            if (heliceState == ON) helicoptero.z += 0.3;
+            personagem.rotateTronco = -90.0;
+            personagem.z += 0.1;
+            movimentaBracos();
+            movimentaPernas();
             break;
         case GLUT_KEY_RIGHT:
-            if (heliceState == ON) helicoptero.z -= 0.3;
+            personagem.rotateTronco = 90.0;
+            personagem.z -= 0.1;
+            movimentaBracos();
+            movimentaPernas();
+            break;
+        case GLUT_KEY_DOWN:
+            personagem.rotateTronco = 0.0;
+            personagem.x += 0.1;
+            movimentaBracos();
+            movimentaPernas();
+            break;
+        case GLUT_KEY_UP:
+            personagem.rotateTronco = 180.0;
+            personagem.x -= 0.1;
+            movimentaBracos();
+            movimentaPernas();
             break;
     }
-    glutPostRedisplay();
 }
 
-void inicializaVariaveis() {
-    GLint i;
-    GLint j = 0;
-
-    strcpy(num_torp, "4");
-    strcpy(num_met, "200");
-
-    helicoptero.rotate = 0.0;
-    helicoptero.x = -10.0;
-    helicoptero.y = 0.0;
-    helicoptero.z = 0.0;
-
-    for (i = 0; i < NUM_TORPEDOS; i++) {
-        torpedos[i].deslocamentoZ = 0.0;
-        torpedos[i].eixoY = -3.0;
-        torpedos[i].disparado = OFF;
-    }
-
-    projeteisDisparados = 0;
-
-    torpedos[0].eixoX = 4.0;
-    torpedos[1].eixoX = 5.7;
-    torpedos[2].eixoX = -4.4;
-    torpedos[3].eixoX = -6.3;
-
-    numTorpedoEsquerda = 0;
-    numTorpedoDireita = 0;
-
-    for (i = 0; i < NUM_PROJETEIS; i++) {
-        projeteis[i].disparado = OFF;
-        projeteis[i].eixoZ = 11.9;
-
-        if (j == 0) {
-            projeteis[i].eixoX = -0.04;
-            projeteis[i].eixoY = -4.78;
-        } else if (j == 1) {
-            projeteis[i].eixoX = 0.275;
-            projeteis[i].eixoY = -4.78;
-        } else {
-            projeteis[i].eixoX = 0.11;
-            projeteis[i].eixoY = -5.0;
+void movimentaBracos() {
+    if (personagem.inverteBracoDir == 0) {
+        personagem.rotateBracoDir += 6.0;
+        if (personagem.rotateBracoDir > 60.0) {
+            personagem.inverteBracoDir = 1;
         }
-
-        if (j == 2) {
-            j = 0;
-        } else {
-            j++;
+    } else {
+        personagem.rotateBracoDir -= 6.0;
+        if (personagem.rotateBracoDir < -60.0) {
+            personagem.inverteBracoDir = 0;
         }
     }
 
-    personagem.rotateBracoDir = 0.0;
-    personagem.rotateBracoEsq = 0.0;
-    personagem.rotatePernaDir = 0.0;
-    personagem.rotatePernaEsq = 0.0;
-    personagem.rotateTronco = 180.0;
-    personagem.x = 27.0;
-    personagem.y = 2.0;
-    personagem.z = 0.0;
+    if (personagem.inverteBracoEsq == 0) {
+        personagem.rotateBracoEsq -= 6.0;
+        if (personagem.rotateBracoEsq < -60.0) {
+            personagem.inverteBracoEsq = 1;
+        }
+    } else {
+        personagem.rotateBracoEsq += 6.0;
+        if (personagem.rotateBracoEsq > 60.0) {
+            personagem.inverteBracoEsq = 0;
+        }
+    }
 }
 
-void carregaObjetos() {
-    helicoptero.corpo.load("helicoptero_final.obj", "helicoptero_textura.tga", 0);
-    helice.load("helice.obj", "helice.tga", 0);
-    torpedos[0].torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedos[1].torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedos[2].torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    torpedos[3].torpedo.load("torpedo.obj", "torpedo.tga", 0);
-    solo.load("piso.obj", "piso.tga", 0);
-    rotor_cauda.load("helice.obj", "helice.tga", 0);
-    janela.load("janela.obj", "parabrisa.tga", 0);
-    fundo.load("piso.obj", "montanhas2.tga", 0);
-    mira.load("Mira.obj", "vermelho.tga", 0);
-    alvo.load("Alvo.obj", "Alvo.tga", 0);
-    torpedoImg.load("piso.obj", "torpedo2.tga", 0);
-    balaImg.load("piso.obj", "bala.tga", 0);
+void movimentaPernas() {
+    if (personagem.invertePernaEsq == 0) {
+        personagem.rotatePernaEsq += 6.0;
+        if (personagem.rotatePernaEsq > 50.0) {
+            personagem.invertePernaEsq = 1;
+        }
+    } else {
+        personagem.rotatePernaEsq -= 6.0;
+        if (personagem.rotatePernaEsq < -50.0) {
+            personagem.invertePernaEsq = 0;
+        }
+    }
+
+    if (personagem.invertePernaDir == 0) {
+        personagem.rotatePernaDir -= 6.0;
+        if (personagem.rotatePernaDir < -50.0) {
+            personagem.invertePernaDir = 1;
+        }
+    } else {
+        personagem.rotatePernaDir += 6.0;
+        if (personagem.rotatePernaDir > 50.0) {
+            personagem.invertePernaDir = 0;
+        }
+    }
 }
