@@ -280,6 +280,9 @@ void controlaAnimacoes() {
     int i;
     for (i = 0; i < projeteisDisparados; i++) {
         projeteis[i].eixoZ += PROJETIL_INCREMENT;
+        if (projeteis[i].eixoY < projeteis[i].translateY) {
+            projeteis[i].eixoY += 0.1;
+        }
     }
 
     glutPostRedisplay();

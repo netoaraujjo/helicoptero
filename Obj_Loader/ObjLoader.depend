@@ -2048,7 +2048,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1419617219 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
+1419617928 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<cstdlib>
 	<assert.h>
@@ -2593,7 +2593,7 @@
 
 1419615956 c:\users\luís guilherme\desktop\helicoptero\obj_loader\estruturas.h
 
-1419614747 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
+1419617841 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
 
 1419592968 c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.h
 
@@ -2606,7 +2606,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1419617156 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.cpp
+1419617376 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.cpp
 	"GameObject.h"
 	"estruturas.h"
 	"constantes.h"
