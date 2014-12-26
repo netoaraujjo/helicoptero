@@ -456,7 +456,7 @@ void inicializaVariaveis() {
     personagem.rotateBracoEsq = 0.0;
     personagem.rotatePernaDir = 0.0;
     personagem.rotatePernaEsq = 0.0;
-    personagem.rotateTronco = 90.0;
+    personagem.rotateTronco = 180.0;
     personagem.x = 27.0;
     personagem.y = 2.0;
     personagem.z = 0.0;

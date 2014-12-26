@@ -1162,7 +1162,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1419611953 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\main.cpp
+1419629699 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<cstdlib>
 	<assert.h>
@@ -2066,7 +2066,7 @@
 1392925650 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\tga.cpp
 	"Tga.h"
 
-1419611583 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\desenho.cpp
+1419629678 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\desenho.cpp
 	"GameObject.h"
 	"estruturas.h"
 	"constantes.h"

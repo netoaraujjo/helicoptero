@@ -201,6 +201,21 @@ void desenhaPersonagem(Personagem* personagem) {
                         glPopMatrix();
                     glPopMatrix();
 
+                    // parte de trás
+                    glPushMatrix();
+                        glTranslatef(-0.505, 0.05, 0.0);
+                        glPushMatrix();
+                            glScalef(0.0, 0.9, 1.0);
+                            glutSolidCube(1.0);
+                        glPopMatrix();
+
+                        glPushMatrix();
+                            glTranslatef(0.0, -0.5, 0.0);
+                            glScalef(0.0, 0.1, 0.7);
+                            glutSolidCube(1.0);
+                        glPopMatrix();
+                    glPopMatrix();
+
                     glColor3f(1.0, 1.0, 1.0);
                 glPopMatrix();
 
