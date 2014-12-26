@@ -1162,7 +1162,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1419610696 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\main.cpp
+1419611953 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<cstdlib>
 	<assert.h>
@@ -2048,7 +2048,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1419247770 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
+1419602541 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<cstdlib>
 	<assert.h>
@@ -2066,7 +2066,7 @@
 1392925650 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\tga.cpp
 	"Tga.h"
 
-1419611358 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\desenho.cpp
+1419611583 source:d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\desenho.cpp
 	"GameObject.h"
 	"estruturas.h"
 	"constantes.h"
@@ -2591,11 +2591,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1419247770 c:\users\luís guilherme\desktop\helicoptero\obj_loader\estruturas.h
+1419592968 c:\users\luís guilherme\desktop\helicoptero\obj_loader\estruturas.h
 
 1419247770 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
 
-1419247770 c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.h
+1419592968 c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.h
 
 1376156426 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\sdl2_mixer-2.0.0\i686-w64-mingw32\include\sdl2\sdl_mixer.h
 	"SDL_stdinc.h"
@@ -2605,4 +2605,9 @@
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
+
+1419601922 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.cpp
+	"GameObject.h"
+	"estruturas.h"
+	"constantes.h"
 

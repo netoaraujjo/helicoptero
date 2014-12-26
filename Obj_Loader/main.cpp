@@ -54,7 +54,8 @@ GameObject janela;
 GameObject fundo;
 GameObject mira;
 GameObject alvo;
-
+GameObject torpedoImg;
+GameObject balaImg;
 
 GLint WIDTH = 800;
 GLint HEIGHT = 600;
@@ -106,6 +107,7 @@ int main(int argc, char **argv)
 
     glutKeyboardFunc(keyboardPersonagem);
 
+
     glutIdleFunc(controlaAnimacoes);
 
     glClearColor(1.0, 1.0, 1.0, 1.0);
@@ -153,9 +155,24 @@ void display(void)
 
     desenhaPlanoDeFundo(&fundo);
     desenhaSolo(&solo);
-    //desenhaAlvo(&alvo);
+    desenhaAlvo(&alvo);
     desenhaHelicoptero(&helicoptero, &mira, &helice, &rotor_cauda, &janela, heliceRotate);
-    //desenhaTexto(num_torp, num_met);
+
+    glPushMatrix();
+        glTranslatef(27.25, 5.9, -4.3);
+        glScalef(0.01, 0.01, 0.01);
+        glRotatef(30, 0, 1, 1);
+        torpedoImg.render();
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(27.25, 5.5, -4);
+        glScalef(0.01, 0.01, 0.01);
+        glRotatef(-180, 1, 1, 1);
+        balaImg.render();
+    glPopMatrix();
+
+    desenhaTexto(num_torp, num_met);
 
 /**************************************************************************************************************
     DESENHA OS PROJÉTEIS DA METRALHADORA
@@ -176,7 +193,7 @@ void display(void)
 /*************************************************************************************************************/
 
 
-    //desenhaTorpedos(torpedos, &helicoptero);
+    desenhaTorpedos(torpedos, &helicoptero);
 
     desenhaPersonagem(&personagem);
 
@@ -458,4 +475,6 @@ void carregaObjetos() {
     fundo.load("piso.obj", "montanhas2.tga", 0);
     mira.load("Mira.obj", "vermelho.tga", 0);
     alvo.load("Alvo.obj", "Alvo.tga", 0);
+    torpedoImg.load("piso.obj", "torpedo2.tga", 0);
+    balaImg.load("piso.obj", "bala.tga", 0);
 }
