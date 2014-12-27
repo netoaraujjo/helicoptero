@@ -476,6 +476,10 @@ void controleHelicoptero(unsigned char key) {
                 itoa(NUM_PROJETEIS - projeteisDisparados, num_met, 10);
             }
             break;
+        case 'e':
+        case 'E':
+            personagem.embarcado = OFF;
+            break;
 	}
 }
 
@@ -503,30 +507,9 @@ void controleEspecialHelicoptero(int key) {
 
 void controlePersonagem(unsigned char key) {
     switch(key) {
-        case 'a':
-        case 'A':
-            personagem.x += 0.5;
-            break;
-        case 'q':
-        case 'Q':
-            personagem.rotateBracoDir += 10.0;
-            break;
         case 'e':
         case 'E':
-            personagem.rotateBracoEsq += 10.0;
-            break;
-        case 'r':
-        case 'R':
-            personagem.rotatePernaDir += 10.0;
-            break;
-        case 'y':
-        case 'Y':
-            personagem.rotatePernaEsq += 10.0;
-            break;
-        case 'j':
-        case 'J':
-            personagem.rotateTronco += 10.0;
-            if (personagem.rotateTronco >= 360.0) personagem.rotateTronco = 0.0;
+            personagem.embarcado = ON;
             break;
     }
 }
