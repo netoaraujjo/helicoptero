@@ -80,11 +80,11 @@ int main(int argc, char **argv)
     glutInitContextVersion (3, 0);
     glutInitContextFlags(GLUT_CORE_PROFILE | GLUT_DEBUG);
 
-    //glutInitWindowSize(WIDTH, HEIGHT);
+    glutInitWindowSize(WIDTH, HEIGHT);
     glutInitWindowPosition(20, 20);
     glutCreateWindow("Helicoptero");
 
-    glutFullScreen();
+    //glutFullScreen();
 
     glewExperimental = GL_TRUE;
     GLenum err = glewInit();
@@ -236,37 +236,37 @@ void controlaAnimacoes() {
     if (numTorpedoEsquerda > 0) {
         torpedos[1].deslocamentoZ += TORPEDO_INCREMENT;
         if (torpedos[1].eixoX > torpedos[1].translateZ) {
-            torpedos[1].eixoX -= 0.05;
+            torpedos[1].eixoX -= TORPEDO_INCREMENT_HORIZONTAL;
         }
         if (torpedos[1].eixoY < torpedos[1].translateY) {
-            torpedos[1].eixoY += 0.035;
+            torpedos[1].eixoY += TORPEDO_INCREMENT_VERTICAL;
         }
     }
     if (numTorpedoEsquerda > 1) {
         torpedos[0].deslocamentoZ += TORPEDO_INCREMENT;
         if (torpedos[0].eixoX > torpedos[0].translateZ) {
-            torpedos[0].eixoX -= 0.05;
+            torpedos[0].eixoX -= TORPEDO_INCREMENT_HORIZONTAL;
         }
         if (torpedos[0].eixoY < torpedos[0].translateY) {
-            torpedos[0].eixoY += 0.035;
+            torpedos[0].eixoY += TORPEDO_INCREMENT_VERTICAL;
         }
     }
     if (numTorpedoDireita > 0) {
         torpedos[3].deslocamentoZ += TORPEDO_INCREMENT;
         if (torpedos[3].eixoX < torpedos[3].translateZ) {
-            torpedos[3].eixoX += 0.05;
+            torpedos[3].eixoX += TORPEDO_INCREMENT_HORIZONTAL;
         }
         if (torpedos[3].eixoY < torpedos[3].translateY) {
-            torpedos[3].eixoY += 0.035;
+            torpedos[3].eixoY += TORPEDO_INCREMENT_VERTICAL;
         }
     }
     if (numTorpedoDireita > 1) {
         torpedos[2].deslocamentoZ += TORPEDO_INCREMENT;
         if (torpedos[2].eixoX < torpedos[2].translateZ) {
-            torpedos[2].eixoX += 0.05;
+            torpedos[2].eixoX += TORPEDO_INCREMENT_HORIZONTAL;
         }
         if (torpedos[2].eixoY < torpedos[2].translateY) {
-            torpedos[2].eixoY += 0.035;
+            torpedos[2].eixoY += TORPEDO_INCREMENT_VERTICAL;
         }
     }
 
@@ -284,7 +284,9 @@ void controlaAnimacoes() {
     for (i = 0; i < projeteisDisparados; i++) {
         projeteis[i].eixoZ += PROJETIL_INCREMENT;
         if (projeteis[i].eixoY < projeteis[i].translateY) {
-            projeteis[i].eixoY += 0.1;
+            printf("TRANSLATE Y = %f\n\n", projeteis[i].translateY);
+            printf("EIXO Y = %f\n\n", projeteis[i].eixoY);
+            projeteis[i].eixoY += PROJETIL_INCREMENT_VERTICAL;
         }
     }
 
@@ -376,7 +378,7 @@ void inicializaVariaveis() {
     personagem.x = 23.0;
     personagem.y = 0.0;
     personagem.z = 0.0;
-    personagem.embarcado = OFF;
+    personagem.embarcado = ON;
     personagem.inverteBracoDir = 0;
     personagem.inverteBracoEsq = 0;
     personagem.rotatePernaDir = 0;
