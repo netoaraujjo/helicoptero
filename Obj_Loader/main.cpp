@@ -378,7 +378,7 @@ void inicializaVariaveis() {
     personagem.x = 23.0;
     personagem.y = 0.0;
     personagem.z = 0.0;
-    personagem.embarcado = ON;
+    personagem.embarcado = OFF;
     personagem.inverteBracoDir = 0;
     personagem.inverteBracoEsq = 0;
     personagem.rotatePernaDir = 0;
@@ -401,8 +401,6 @@ void carregaObjetos() {
     torpedoImg.load("piso.obj", "torpedo2.tga", 0);
     balaImg.load("piso.obj", "bala.tga", 0);
 }
-
-
 
 void controleHelicoptero(unsigned char key) {
     switch (key) {
@@ -506,7 +504,6 @@ void controleEspecialHelicoptero(int key) {
     }
 }
 
-
 void controlePersonagem(unsigned char key) {
     switch(key) {
         case 'e':
@@ -515,8 +512,6 @@ void controlePersonagem(unsigned char key) {
             break;
     }
 }
-
-
 
 void controleEspecialPersonagem(int key) {
     switch (key) {

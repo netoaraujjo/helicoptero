@@ -1,0 +1,17 @@
+Gerar alvos aleatórios
+
+Detecção de colisão
+
+Contabilizar pontos
+
+Reposicionar a mira (alinhasr com a metralhadora)
+
+Array de alvos
+
+Exibir tempo (tempo restante como bônus)
+
+Modelar porta
+
+Renderizar céu
+
+Mudar posição da câmera
