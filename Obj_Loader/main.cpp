@@ -74,6 +74,9 @@ GLfloat radiusxz=30;
 Personagem personagem;
 Relogio relogio;
 
+int acabou;
+int vitoria;
+
 int main(int argc, char **argv) {
 
     glutInit(&argc, argv);
@@ -186,6 +189,10 @@ void display(void) {
         desenhaPersonagem(&personagem);
     }
 
+    if (vitoria == OFF) {
+        desenhaGameOver();
+    }
+
     glutSwapBuffers();
 }
 
@@ -199,19 +206,27 @@ void reshape(int width, int height) {
     glLoadIdentity();
 }
 
+void finaliza() {
+    glutIdleFunc(NULL);
+    acabou = ON;
+}
+
 void controlaAnimacoes() {
 
-    if (relogio.inst1 == 0) {
-        relogio.inst1 = (float)clock()/(float)CLOCKS_PER_SEC;
+    if (relogio.contando == ON) {
+        desenhaGameOver();
+        if (relogio.instante1 == 0) { // Pega o instante inicial
+            relogio.instante1 = (float)clock()/(float)CLOCKS_PER_SEC;
+        }
+        sprintf(relogio.tempo, "%.0f", TEMPO_TOTAL - (relogio.instante2 - relogio.instante1));
+        if (relogio.instante2 - relogio.instante1 < TEMPO_TOTAL) {
+            relogio.instante2 = (float)clock()/(float)CLOCKS_PER_SEC;
+        } else {
+            strcpy(relogio.tempo, "0");
+            vitoria = OFF;
+            finaliza();
+        }
     }
-    sprintf(relogio.tempo, "%.0f", TEMPO_TOTAL - (relogio.inst2 - relogio.inst1));
-    if (relogio.inst2 - relogio.inst1 < TEMPO_TOTAL) {
-        relogio.inst2 = (float)clock()/(float)CLOCKS_PER_SEC;
-    } else {
-        // O tempo acabou
-    }
-
-
 
     if (heliceState == ON) {
         heliceRotate += heliceRotateIncrement;
@@ -292,10 +307,12 @@ void keyboard(unsigned char key, int x, int y) {
             exit(0);
             break;
         default:
-            if (personagem.embarcado == OFF) {
-                controlePersonagem(key);
-            } else {
-                controleHelicoptero(key);
+            if (acabou == OFF) {
+                if (personagem.embarcado == OFF) {
+                    controlePersonagem(key);
+                } else {
+                    controleHelicoptero(key);
+                }
             }
             break;
 	}
@@ -303,10 +320,12 @@ void keyboard(unsigned char key, int x, int y) {
 }
 
 void special_keyboard(int key, int x, int y) {
-    if (personagem.embarcado == OFF) {
-        controleEspecialPersonagem(key);
-    } else {
-        controleEspecialHelicoptero(key);
+    if (acabou == OFF) {
+        if (personagem.embarcado == OFF) {
+            controleEspecialPersonagem(key);
+        } else {
+            controleEspecialHelicoptero(key);
+        }
     }
     glutPostRedisplay();
 }
@@ -315,9 +334,15 @@ void inicializaVariaveis() {
     GLint i;
     GLint j = 0;
 
+    acabou = OFF;
+    vitoria = 2;
+
     strcpy(num_torp, "4");
     strcpy(num_met, "200");
-    strcpy(relogio.tempo, "0");
+
+    itoa(TEMPO_TOTAL, relogio.tempo, 10);
+
+    relogio.contando = OFF;
 
     helicoptero.rotate = 0.0;
     helicoptero.x = -10.0;
@@ -417,6 +442,7 @@ void controleHelicoptero(unsigned char key) {
             break;
         case 'i':
             heliceState = ON;
+            relogio.contando = ON;
             break;
         case 'I':
             if (helicoptero.y == 0) {

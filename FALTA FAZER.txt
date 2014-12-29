@@ -8,10 +8,16 @@ Reposicionar a mira (alinhar com a metralhadora) -- FEITO
 
 Array de alvos
 
-Exibir tempo (tempo restante como bônus) -- FEITO
+Exibir tempo -- FEITO
 
 Modelar porta
 
 Renderizar céu
 
 Mudar posição da câmera
+
+Acabar o jogo quando:
+	- Acertar todos os alvos
+	- Acabar as balas
+	- Tempo acabar sem acertar todos os alvos -- FEITO
+	- Tempo restante vira bônus

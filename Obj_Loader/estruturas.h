@@ -71,8 +71,9 @@ typedef struct {
     ESTRUTURA DO PERSONAGEM
 **********************************************/
 typedef struct {
-    float inst1 = 0;
-    float inst2 = 0;
+    float instante1 = 0;
+    float instante2 = 0;
+    int contando;
     char tempo[3];
 } Relogio;
 /*******************************************/

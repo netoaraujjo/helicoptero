@@ -14,5 +14,7 @@ void desenhaPersonagem(Personagem* personagem);
 
 void desenhaTextoStroke(void *font, char *string);
 void desenhaTexto(char* num_torp, char* num_met, char* tempo);
+void desenhaGameOver();
+void desenhaWin();
 
 #endif // DESENHO_H_

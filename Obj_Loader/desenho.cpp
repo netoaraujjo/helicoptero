@@ -417,8 +417,7 @@ void desenhaPersonagem(Personagem* personagem) {
 
 // Função que recebe a fonte e um texto por parâmetro para ser exibido na
 // tela usando fonte de linhas
-void desenhaTextoStroke(void *font, char *string)
-{
+void desenhaTextoStroke(void *font, char *string) {
 	// Exibe caractere a caractere
 	while(*string)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN,*string++);
@@ -454,6 +453,30 @@ void desenhaTexto(char* num_torp, char* num_met, char* tempo) {
         glLineWidth(4); // define a espessura da linha
         glColor3f(0,20,0);
         desenhaTextoStroke(GLUT_STROKE_ROMAN, tempo);
+        glColor3f(1.0, 1.0, 1.0);
+	glPopMatrix();
+}
+
+void desenhaGameOver() {
+	glPushMatrix();
+        glTranslatef(28.9, 3.5, 1.2);
+        glScalef(0.003, 0.003, 0.003); // diminui o tamanho do fonte
+        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
+        glLineWidth(6); // define a espessura da linha
+        glColor3f(20,0,0);
+        desenhaTextoStroke(GLUT_STROKE_ROMAN, "GAME OVER");
+        glColor3f(1.0, 1.0, 1.0);
+	glPopMatrix();
+}
+
+void desenhaWin() {
+	glPushMatrix();
+        glTranslatef(28.9, 3.5, 0.5);
+        glScalef(0.003, 0.003, 0.003); // diminui o tamanho do fonte
+        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
+        glLineWidth(6); // define a espessura da linha
+        glColor3f(0,20,0);
+        desenhaTextoStroke(GLUT_STROKE_ROMAN, "WIN");
         glColor3f(1.0, 1.0, 1.0);
 	glPopMatrix();
 }
