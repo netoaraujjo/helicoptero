@@ -23,9 +23,10 @@ void desenhaSolo(GameObject* solo) {
     glPopMatrix();
 }
 
-void desenhaAlvo(GameObject* alvo) {
+void desenhaAlvo(GameObject* alvo, GLfloat escala, GLfloat translateX, GLfloat translateY, GLfloat translateZ) {
     glPushMatrix();
-        glTranslatef(-70.0, 10.0, 10.0);
+        glScalef(escala, escala, escala);
+        glTranslatef(translateX, translateY, translateZ);
         glRotatef(90, 0, 0, 1);
         (*alvo).render();
     glPopMatrix();
@@ -39,7 +40,7 @@ glPushMatrix();
 
         glPushMatrix(); // corpo do helicoptero
             helicoptero->corpo.render();
-            glTranslatef(0, TORPEDO_POSITION_Y, 70);
+            glTranslatef(0, TORPEDO_POSITION_Y, 60);
             glRotatef(90, 1, 0, 0);
             (*mira).render();
         glPopMatrix();

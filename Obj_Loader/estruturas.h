@@ -68,7 +68,7 @@ typedef struct {
 
 
 /**********************************************
-    ESTRUTURA DO PERSONAGEM
+    ESTRUTURA DO RELÓGIO
 **********************************************/
 typedef struct {
     float instante1 = 0;
@@ -76,6 +76,19 @@ typedef struct {
     int contando;
     char tempo[3];
 } Relogio;
+/*******************************************/
+
+
+/**********************************************
+    ESTRUTURA DO ALVO
+**********************************************/
+typedef struct {
+    GameObject objeto;
+    GLfloat escala;
+    GLfloat translateX;
+    GLfloat translateY;
+    GLfloat translateZ;
+} Alvo;
 /*******************************************/
 
 #endif // ESTRUTURAS_H_

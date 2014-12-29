@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include <cstdlib>
 #include <assert.h>
 #include <ctime>
@@ -58,7 +59,6 @@ GameObject rotor_cauda;
 GameObject janela;
 GameObject fundo;
 GameObject mira;
-GameObject alvo;
 GameObject torpedoImg;
 GameObject balaImg;
 GameObject relogioImg;
@@ -73,6 +73,7 @@ GLfloat radiusxz=30;
 
 Personagem personagem;
 Relogio relogio;
+Alvo alvo[NUM_ALVOS];
 
 int acabou;
 int vitoria;
@@ -158,9 +159,12 @@ void display(void) {
 
     desenhaPlanoDeFundo(&fundo);
     desenhaSolo(&solo);
-    desenhaAlvo(&alvo);
     desenhaHelicoptero(&helicoptero, &mira, &helice, &rotor_cauda, &janela, heliceRotate);
     desenhaImagens(&torpedoImg, &balaImg, &relogioImg);
+
+    for (int i = 0; i < NUM_ALVOS; i++) {
+        desenhaAlvo(&alvo[i].objeto, alvo[i].escala, alvo[i].translateX, alvo[i].translateY, alvo[i].translateZ);
+    }
 
     desenhaTexto(num_torp, num_met, relogio.tempo);
 
@@ -349,6 +353,15 @@ void inicializaVariaveis() {
 
     relogio.contando = OFF;
 
+    for (i = 0; i < NUM_ALVOS; i++) {
+        alvo[i].escala = 0.7;
+        alvo[i].translateX = -100;
+        alvo[i].translateY = (rand() % 800) / 10;
+        alvo[i].translateZ = (rand() % 1600) / 10;
+//        printf("\n\tALVO %d:\n", i);
+//        printf("X = %f\nY = %f\nZ = %f\n", alvo[i].translateX, alvo[i].translateY, alvo[i].translateZ);
+    }
+
     helicoptero.rotate = 0.0;
     helicoptero.x = -10.0;
     helicoptero.y = 0.0;
@@ -421,10 +434,14 @@ void carregaObjetos() {
     janela.load("janela.obj", "parabrisa.tga", 0);
     fundo.load("piso.obj", "montanhas2.tga", 0);
     mira.load("Mira.obj", "vermelho.tga", 0);
-    alvo.load("Alvo.obj", "Alvo.tga", 0);
     torpedoImg.load("piso.obj", "torpedo2.tga", 0);
     balaImg.load("piso.obj", "bala.tga", 0);
     relogioImg.load("piso.obj", "relogio.tga", 0);
+
+    for (int i = 0; i < NUM_ALVOS; i++) {
+        alvo[i].objeto.load("Alvo.obj", "Alvo.tga", 0);
+    }
+
 }
 
 void controleHelicoptero(unsigned char key) {

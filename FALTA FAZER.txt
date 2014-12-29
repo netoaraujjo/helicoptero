@@ -21,6 +21,6 @@ Mudar posição da câmera
  -------------
 Detecção de colisão
 
-Array de alvos
+Array de alvos -- FEITO
 
 Gerar alvos aleatórios
