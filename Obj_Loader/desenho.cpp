@@ -32,7 +32,6 @@ void desenhaAlvo(GameObject* alvo, GLfloat escala, GLfloat translateX, GLfloat t
     glPopMatrix();
 }
 
-
 void desenhaHelicoptero(Helicoptero* helicoptero, GameObject* mira, GameObject* helice, GameObject* rotor_cauda, GameObject* janela, GLfloat heliceRotate) {
 glPushMatrix();
         glTranslatef(helicoptero->x, helicoptero->y, helicoptero->z);
@@ -109,7 +108,6 @@ void desenhaTorpedos(Torpedo* torpedos, Helicoptero* helicoptero) {
         glPopMatrix();
     }
 }
-
 
 void desenhaPersonagem(Personagem* personagem) {
     glPushMatrix();
@@ -400,21 +398,6 @@ void desenhaPersonagem(Personagem* personagem) {
 
     glPopMatrix();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Função que recebe a fonte e um texto por parâmetro para ser exibido na
 // tela usando fonte de linhas

@@ -217,10 +217,12 @@ void finaliza() {
 
 void controlaAnimacoes() {
 
-    /*if (strcmp(num_torp, "0") == 0 && strcmp(num_met, "0") == 0) {
-        vitoria = OFF;
-        finaliza();
-    }*/
+    if (strcmp(num_torp, "0") == 0 && strcmp(num_met, "0") == 0) {
+        if (torpedos[0].deslocamentoZ > 110 && torpedos[2].deslocamentoZ > 110 && projeteis[NUM_PROJETEIS - 1].eixoZ > 110) {
+            vitoria = OFF;
+            finaliza();
+        }
+    }
 
     if (relogio.contando == ON) {
         desenhaGameOver();
@@ -356,7 +358,7 @@ void inicializaVariaveis() {
     srand( (unsigned)time(NULL) );
     for (i = 0; i < NUM_ALVOS; i++) {
         alvo[i].escala = 0.7;
-        alvo[i].translateX = -80;
+        alvo[i].translateX = -100;
         alvo[i].translateY = (rand() % 801) / 10;
         alvo[i].translateZ = (rand() % 1601) / 10;
     }
