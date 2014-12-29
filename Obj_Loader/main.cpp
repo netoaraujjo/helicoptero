@@ -259,7 +259,7 @@ void controlaAnimacoes() {
 
     if (numTorpedoEsquerda > 0) {
         torpedos[1].deslocamentoZ += TORPEDO_INCREMENT;
-        if (torpedos[1].eixoX > torpedos[1].translateZ) {
+        if (torpedos[1].eixoX > 0) {
             torpedos[1].eixoX -= TORPEDO_INCREMENT_HORIZONTAL;
         }
         if (torpedos[1].eixoY > TORPEDO_POSITION_Y) {
@@ -268,7 +268,7 @@ void controlaAnimacoes() {
     }
     if (numTorpedoEsquerda > 1) {
         torpedos[0].deslocamentoZ += TORPEDO_INCREMENT;
-        if (torpedos[0].eixoX > torpedos[0].translateZ) {
+        if (torpedos[0].eixoX > 0) {
             torpedos[0].eixoX -= TORPEDO_INCREMENT_HORIZONTAL;
         }
         if (torpedos[0].eixoY > TORPEDO_POSITION_Y) {
@@ -277,7 +277,7 @@ void controlaAnimacoes() {
     }
     if (numTorpedoDireita > 0) {
         torpedos[3].deslocamentoZ += TORPEDO_INCREMENT;
-        if (torpedos[3].eixoX < torpedos[3].translateZ) {
+        if (torpedos[3].eixoX < 0) {
             torpedos[3].eixoX += TORPEDO_INCREMENT_HORIZONTAL;
         }
         if (torpedos[3].eixoY > TORPEDO_POSITION_Y) {
@@ -286,7 +286,7 @@ void controlaAnimacoes() {
     }
     if (numTorpedoDireita > 1) {
         torpedos[2].deslocamentoZ += TORPEDO_INCREMENT;
-        if (torpedos[2].eixoX < torpedos[2].translateZ) {
+        if (torpedos[2].eixoX < 0) {
             torpedos[2].eixoX += TORPEDO_INCREMENT_HORIZONTAL;
         }
         if (torpedos[2].eixoY > TORPEDO_POSITION_Y) {
@@ -344,6 +344,7 @@ void special_keyboard(int key, int x, int y) {
 void inicializaVariaveis() {
     GLint i;
     GLint j = 0;
+    GLint aux;
 
     acabou = OFF;
     vitoria = 2;
@@ -361,6 +362,10 @@ void inicializaVariaveis() {
         alvo[i].translateX = -100;
         alvo[i].translateY = (rand() % 801) / 10;
         alvo[i].translateZ = (rand() % 1601) / 10;
+        aux = rand() % 2;
+        if (aux == 0) {
+            alvo[i].translateZ = alvo[i].translateZ * -1;
+        }
     }
 
     helicoptero.rotate = 0.0;
@@ -530,20 +535,20 @@ void controleHelicoptero(unsigned char key) {
 void controleEspecialHelicoptero(int key) {
     switch (key) {
         case GLUT_KEY_UP:
-            if (heliceState == ON) helicoptero.y += 0.3;
+            if (heliceState == ON) helicoptero.y += 0.7;
             break;
         case GLUT_KEY_DOWN:
             if (helicoptero.y > 0.0) {
-                helicoptero.y -= 0.3;
+                helicoptero.y -= 0.7;
             } else {
                 helicoptero.y = 0.0;
             }
             break;
         case GLUT_KEY_LEFT:
-            if (heliceState == ON) helicoptero.z += 0.3;
+            if (heliceState == ON) helicoptero.z += 0.7;
             break;
         case GLUT_KEY_RIGHT:
-            if (heliceState == ON) helicoptero.z -= 0.3;
+            if (heliceState == ON) helicoptero.z -= 0.7;
             break;
     }
 }

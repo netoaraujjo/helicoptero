@@ -7,6 +7,7 @@ Exibir tempo -- FEITO
 Acabar o jogo quando:
 	- Acertar todos os alvos
 	- Acabar as balas -- FEITO
+	- Verificar se após acabar as balas se foi derrubado o último alvo
 	- Tempo acabar sem acertar todos os alvos -- FEITO
 	- Tempo restante vira bônus
 
