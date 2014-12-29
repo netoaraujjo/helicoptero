@@ -11,6 +11,6 @@
 #define TORPEDO_POSITION_Y -4.89
 #define PROJETIL_INCREMENT 0.7
 #define TEMPO_TOTAL 10 // Em segundos
-#define NUM_ALVOS 3
+#define NUM_ALVOS 5
 
 #endif // CONSTANTES_H_

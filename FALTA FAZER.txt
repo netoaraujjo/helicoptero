@@ -23,4 +23,4 @@ Detecção de colisão
 
 Array de alvos -- FEITO
 
-Gerar alvos aleatórios
+Gerar alvos aleatórios -- FEITO

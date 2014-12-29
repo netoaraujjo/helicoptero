@@ -353,13 +353,12 @@ void inicializaVariaveis() {
 
     relogio.contando = OFF;
 
+    srand( (unsigned)time(NULL) );
     for (i = 0; i < NUM_ALVOS; i++) {
         alvo[i].escala = 0.7;
-        alvo[i].translateX = -100;
-        alvo[i].translateY = (rand() % 800) / 10;
-        alvo[i].translateZ = (rand() % 1600) / 10;
-//        printf("\n\tALVO %d:\n", i);
-//        printf("X = %f\nY = %f\nZ = %f\n", alvo[i].translateX, alvo[i].translateY, alvo[i].translateZ);
+        alvo[i].translateX = -80;
+        alvo[i].translateY = (rand() % 801) / 10;
+        alvo[i].translateZ = (rand() % 1601) / 10;
     }
 
     helicoptero.rotate = 0.0;
