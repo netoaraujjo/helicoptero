@@ -1,14 +1,14 @@
-Gerar alvos aleatórios
-
-Detecção de colisão
-
 Contabilizar pontos
 
 Reposicionar a mira (alinhar com a metralhadora) -- FEITO
 
-Array de alvos
-
 Exibir tempo -- FEITO
+
+Acabar o jogo quando:
+	- Acertar todos os alvos
+	- Acabar as balas
+	- Tempo acabar sem acertar todos os alvos -- FEITO
+	- Tempo restante vira bônus
 
 Modelar porta
 
@@ -16,8 +16,11 @@ Renderizar céu
 
 Mudar posição da câmera
 
-Acabar o jogo quando:
-	- Acertar todos os alvos
-	- Acabar as balas
-	- Tempo acabar sem acertar todos os alvos -- FEITO
-	- Tempo restante vira bônus
+ -------------
+| PRIORIDADES |
+ -------------
+Detecção de colisão
+
+Array de alvos
+
+Gerar alvos aleatórios

@@ -2594,7 +2594,7 @@
 
 1419820413 c:\users\luís guilherme\desktop\helicoptero\obj_loader\estruturas.h
 
-1419824312 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
+1419825064 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
 
 1419824324 c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.h
 
@@ -2607,7 +2607,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1419822581 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.cpp
+1419824411 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.cpp
 	"GameObject.h"
 	"estruturas.h"
 	"constantes.h"

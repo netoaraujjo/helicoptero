@@ -213,6 +213,11 @@ void finaliza() {
 
 void controlaAnimacoes() {
 
+    /*if (strcmp(num_torp, "0") == 0 && strcmp(num_met, "0") == 0) {
+        vitoria = OFF;
+        finaliza();
+    }*/
+
     if (relogio.contando == ON) {
         desenhaGameOver();
         if (relogio.instante1 == 0) { // Pega o instante inicial
