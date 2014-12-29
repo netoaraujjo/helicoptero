@@ -4,7 +4,7 @@ Detecção de colisão
 
 Contabilizar pontos
 
-Reposicionar a mira (alinhasr com a metralhadora)
+Reposicionar a mira (alinhar com a metralhadora)
 
 Array de alvos
 

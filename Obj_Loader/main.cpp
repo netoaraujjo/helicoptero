@@ -71,8 +71,7 @@ GLfloat radiusxz=30;
 
 Personagem personagem;
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_ALPHA | GLUT_MULTISAMPLE);
@@ -80,11 +79,11 @@ int main(int argc, char **argv)
     glutInitContextVersion (3, 0);
     glutInitContextFlags(GLUT_CORE_PROFILE | GLUT_DEBUG);
 
-    glutInitWindowSize(WIDTH, HEIGHT);
+//    glutInitWindowSize(WIDTH, HEIGHT);
     glutInitWindowPosition(20, 20);
     glutCreateWindow("Helicoptero");
 
-    //glutFullScreen();
+    glutFullScreen();
 
     glewExperimental = GL_TRUE;
     GLenum err = glewInit();
@@ -142,10 +141,7 @@ int main(int argc, char **argv)
     return EXIT_SUCCESS;
 }
 
-
-
-void display(void)
-{
+void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -203,8 +199,7 @@ void display(void)
     glutSwapBuffers();
 }
 
-void reshape(int width, int height)
-{
+void reshape(int width, int height) {
     float ar = (float) width / (float) height;
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
@@ -238,8 +233,8 @@ void controlaAnimacoes() {
         if (torpedos[1].eixoX > torpedos[1].translateZ) {
             torpedos[1].eixoX -= TORPEDO_INCREMENT_HORIZONTAL;
         }
-        if (torpedos[1].eixoY < torpedos[1].translateY) {
-            torpedos[1].eixoY += TORPEDO_INCREMENT_VERTICAL;
+        if (torpedos[1].eixoY > TORPEDO_POSITION_Y) {
+            torpedos[1].eixoY -= TORPEDO_INCREMENT_VERTICAL;
         }
     }
     if (numTorpedoEsquerda > 1) {
@@ -247,8 +242,8 @@ void controlaAnimacoes() {
         if (torpedos[0].eixoX > torpedos[0].translateZ) {
             torpedos[0].eixoX -= TORPEDO_INCREMENT_HORIZONTAL;
         }
-        if (torpedos[0].eixoY < torpedos[0].translateY) {
-            torpedos[0].eixoY += TORPEDO_INCREMENT_VERTICAL;
+        if (torpedos[0].eixoY > TORPEDO_POSITION_Y) {
+            torpedos[0].eixoY -= TORPEDO_INCREMENT_VERTICAL;
         }
     }
     if (numTorpedoDireita > 0) {
@@ -256,8 +251,8 @@ void controlaAnimacoes() {
         if (torpedos[3].eixoX < torpedos[3].translateZ) {
             torpedos[3].eixoX += TORPEDO_INCREMENT_HORIZONTAL;
         }
-        if (torpedos[3].eixoY < torpedos[3].translateY) {
-            torpedos[3].eixoY += TORPEDO_INCREMENT_VERTICAL;
+        if (torpedos[3].eixoY > TORPEDO_POSITION_Y) {
+            torpedos[3].eixoY -= TORPEDO_INCREMENT_VERTICAL;
         }
     }
     if (numTorpedoDireita > 1) {
@@ -265,8 +260,8 @@ void controlaAnimacoes() {
         if (torpedos[2].eixoX < torpedos[2].translateZ) {
             torpedos[2].eixoX += TORPEDO_INCREMENT_HORIZONTAL;
         }
-        if (torpedos[2].eixoY < torpedos[2].translateY) {
-            torpedos[2].eixoY += TORPEDO_INCREMENT_VERTICAL;
+        if (torpedos[2].eixoY > TORPEDO_POSITION_Y) {
+            torpedos[2].eixoY -= TORPEDO_INCREMENT_VERTICAL;
         }
     }
 
@@ -283,11 +278,6 @@ void controlaAnimacoes() {
     int i;
     for (i = 0; i < projeteisDisparados; i++) {
         projeteis[i].eixoZ += PROJETIL_INCREMENT;
-        if (projeteis[i].eixoY < projeteis[i].translateY) {
-            printf("TRANSLATE Y = %f\n\n", projeteis[i].translateY);
-            printf("EIXO Y = %f\n\n", projeteis[i].eixoY);
-            projeteis[i].eixoY += PROJETIL_INCREMENT_VERTICAL;
-        }
     }
 
     glutPostRedisplay();

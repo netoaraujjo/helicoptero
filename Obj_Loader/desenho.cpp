@@ -39,7 +39,7 @@ glPushMatrix();
 
         glPushMatrix(); // corpo do helicoptero
             helicoptero->corpo.render();
-            glTranslatef(0, 0, 90.0);
+            glTranslatef(0, TORPEDO_POSITION_Y, 70);
             glRotatef(90, 1, 0, 0);
             (*mira).render();
         glPopMatrix();
