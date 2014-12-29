@@ -7,11 +7,12 @@ void desenhaAlvo(GameObject* alvo);
 void desenhaTorpedos(Torpedo* torpedos, Helicoptero* helicoptero);
 
 void desenhaHelicoptero(Helicoptero* helicoptero, GameObject* mira, GameObject* helice, GameObject* rotor_cauda, GameObject* janela, GLfloat heliceRotate);
+void desenhaImagens(GameObject* torpedoImg, GameObject* balaImg, GameObject* relogioImg);
 
 void desenhaPersonagem(Personagem* personagem);
 
 
 void desenhaTextoStroke(void *font, char *string);
-void desenhaTexto(char* num_torp, char* num_met);
+void desenhaTexto(char* num_torp, char* num_met, char* tempo);
 
 #endif // DESENHO_H_

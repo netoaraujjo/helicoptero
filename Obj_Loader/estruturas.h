@@ -66,4 +66,15 @@ typedef struct {
 } Personagem;
 /*******************************************/
 
+
+/**********************************************
+    ESTRUTURA DO PERSONAGEM
+**********************************************/
+typedef struct {
+    float inst1 = 0;
+    float inst2 = 0;
+    char tempo[3];
+} Relogio;
+/*******************************************/
+
 #endif // ESTRUTURAS_H_

@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <assert.h>
 #include <ctime>
+#include <time.h>
 #include "GameObject.h"
 #include "estruturas.h"
 #include "constantes.h"
@@ -60,6 +61,7 @@ GameObject mira;
 GameObject alvo;
 GameObject torpedoImg;
 GameObject balaImg;
+GameObject relogioImg;
 
 GLint WIDTH = 800;
 GLint HEIGHT = 600;
@@ -70,6 +72,7 @@ GLfloat axisxz=0;
 GLfloat radiusxz=30;
 
 Personagem personagem;
+Relogio relogio;
 
 int main(int argc, char **argv) {
 
@@ -154,22 +157,9 @@ void display(void) {
     desenhaSolo(&solo);
     desenhaAlvo(&alvo);
     desenhaHelicoptero(&helicoptero, &mira, &helice, &rotor_cauda, &janela, heliceRotate);
+    desenhaImagens(&torpedoImg, &balaImg, &relogioImg);
 
-    glPushMatrix();
-        glTranslatef(27.25, 5.9, -4.3);
-        glScalef(0.01, 0.01, 0.01);
-        glRotatef(30, 0, 1, 1);
-        torpedoImg.render();
-    glPopMatrix();
-
-    glPushMatrix();
-        glTranslatef(27.25, 5.5, -4);
-        glScalef(0.01, 0.01, 0.01);
-        glRotatef(-180, 1, 1, 1);
-        balaImg.render();
-    glPopMatrix();
-
-    desenhaTexto(num_torp, num_met);
+    desenhaTexto(num_torp, num_met, relogio.tempo);
 
 /**************************************************************************************************************
     DESENHA OS PROJÉTEIS DA METRALHADORA
@@ -210,6 +200,19 @@ void reshape(int width, int height) {
 }
 
 void controlaAnimacoes() {
+
+    if (relogio.inst1 == 0) {
+        relogio.inst1 = (float)clock()/(float)CLOCKS_PER_SEC;
+    }
+    sprintf(relogio.tempo, "%.0f", TEMPO_TOTAL - (relogio.inst2 - relogio.inst1));
+    if (relogio.inst2 - relogio.inst1 < TEMPO_TOTAL) {
+        relogio.inst2 = (float)clock()/(float)CLOCKS_PER_SEC;
+    } else {
+        // O tempo acabou
+    }
+
+
+
     if (heliceState == ON) {
         heliceRotate += heliceRotateIncrement;
         if (heliceRotateIncrement < 30.0) {
@@ -314,6 +317,7 @@ void inicializaVariaveis() {
 
     strcpy(num_torp, "4");
     strcpy(num_met, "200");
+    strcpy(relogio.tempo, "0");
 
     helicoptero.rotate = 0.0;
     helicoptero.x = -10.0;
@@ -390,6 +394,7 @@ void carregaObjetos() {
     alvo.load("Alvo.obj", "Alvo.tga", 0);
     torpedoImg.load("piso.obj", "torpedo2.tga", 0);
     balaImg.load("piso.obj", "bala.tga", 0);
+    relogioImg.load("piso.obj", "relogio.tga", 0);
 }
 
 void controleHelicoptero(unsigned char key) {

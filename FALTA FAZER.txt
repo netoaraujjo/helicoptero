@@ -4,11 +4,11 @@ Detecção de colisão
 
 Contabilizar pontos
 
-Reposicionar a mira (alinhar com a metralhadora)
+Reposicionar a mira (alinhar com a metralhadora) -- FEITO
 
 Array de alvos
 
-Exibir tempo (tempo restante como bônus)
+Exibir tempo (tempo restante como bônus) -- FEITO
 
 Modelar porta
 

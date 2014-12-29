@@ -66,7 +66,28 @@ glPushMatrix();
     glPopMatrix();
 }
 
+void desenhaImagens(GameObject* torpedoImg, GameObject* balaImg, GameObject* relogioImg) {
+    glPushMatrix();
+        glTranslatef(27.25, 5.9, -4.3);
+        glScalef(0.01, 0.01, 0.01);
+        glRotatef(30, 0, 1, 1);
+        (*torpedoImg).render();
+    glPopMatrix();
 
+    glPushMatrix();
+        glTranslatef(27.25, 5.5, -4);
+        glScalef(0.01, 0.01, 0.01);
+        glRotatef(-180, 1, 1, 1);
+        (*balaImg).render();
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(27.25,5.9,4.5);
+        glScalef(0.009, 0.009, 0.009);
+        glRotatef(30, 1, 0, 0);
+        (*relogioImg).render();
+    glPopMatrix();
+}
 
 void desenhaTorpedos(Torpedo* torpedos, Helicoptero* helicoptero) {
     int i;
@@ -403,7 +424,7 @@ void desenhaTextoStroke(void *font, char *string)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN,*string++);
 }
 
-void desenhaTexto(char* num_torp, char* num_met) {
+void desenhaTexto(char* num_torp, char* num_met, char* tempo) {
     // Posiciona o texto stroke usando transformações geométricas
 	glPushMatrix();
         glTranslatef(27.25,5.8,-4.6);
@@ -423,6 +444,16 @@ void desenhaTexto(char* num_torp, char* num_met) {
         glLineWidth(4); // define a espessura da linha
         glColor3f(0,20,0);
         desenhaTextoStroke(GLUT_STROKE_ROMAN, num_met);
+        glColor3f(1.0, 1.0, 1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+        glTranslatef(27.25, 5.8, 4.2);
+        glScalef(0.002, 0.002, 0.002); // diminui o tamanho do fonte
+        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
+        glLineWidth(4); // define a espessura da linha
+        glColor3f(0,20,0);
+        desenhaTextoStroke(GLUT_STROKE_ROMAN, tempo);
         glColor3f(1.0, 1.0, 1.0);
 	glPopMatrix();
 }
