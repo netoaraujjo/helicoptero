@@ -2048,13 +2048,14 @@
 	<stdio.h>
 	<stdlib.h>
 
-1419880318 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
+1420468123 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<stdlib.h>
 	<cstdlib>
 	<assert.h>
 	<ctime>
 	<time.h>
+	"PewGL.h"
 	"GameObject.h"
 	"estruturas.h"
 	"constantes.h"
@@ -2593,9 +2594,9 @@
 	"begin_code.h"
 	"close_code.h"
 
-1419856067 c:\users\luís guilherme\desktop\helicoptero\obj_loader\estruturas.h
+1420402917 c:\users\luís guilherme\desktop\helicoptero\obj_loader\estruturas.h
 
-1419874516 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
+1420413569 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
 
 1419856067 c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.h
 

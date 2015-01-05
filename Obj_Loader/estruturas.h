@@ -71,8 +71,8 @@ typedef struct {
     ESTRUTURA DO RELÓGIO
 **********************************************/
 typedef struct {
-    float instante1 = 0;
-    float instante2 = 0;
+    GLfloat instante1;
+    GLfloat instante2;
     int contando;
     char tempo[3];
 } Relogio;
@@ -84,6 +84,9 @@ typedef struct {
 **********************************************/
 typedef struct {
     GameObject objeto;
+    GLint atingido;
+    GLint projeteis;
+    GLint torpedos;
     GLfloat escala;
     GLfloat translateX;
     GLfloat translateY;

@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <ctime>
 #include <time.h>
+#include "PewGL.h"
 #include "GameObject.h"
 #include "estruturas.h"
 #include "constantes.h"
@@ -29,6 +30,8 @@ void controlePersonagem(unsigned char key);
 void controleEspecialPersonagem(int key);
 void movimentaBracos(void);
 void movimentaPernas(void);
+int alvosAtingidos();
+void detectaColisao(double xA, double yA, double zA, double raioA);
 
 /*********************************************
     CONTROLES DOS TORPEDOS E PROJÉTEIS
@@ -163,7 +166,9 @@ void display(void) {
     desenhaImagens(&torpedoImg, &balaImg, &relogioImg);
 
     for (int i = 0; i < NUM_ALVOS; i++) {
-        desenhaAlvo(&alvo[i].objeto, alvo[i].escala, alvo[i].translateX, alvo[i].translateY, alvo[i].translateZ);
+        if (alvo[i].atingido == OFF) {
+            desenhaAlvo(&alvo[i].objeto, alvo[i].escala, alvo[i].translateX, alvo[i].translateY, alvo[i].translateZ);
+        }
     }
 
     desenhaTexto(num_torp, num_met, relogio.tempo);
@@ -177,6 +182,10 @@ void display(void) {
             glColor3f(1.0, 0.0, 0.0);
             if (projeteis[i].disparado == ON) {
                 glTranslatef(projeteis[i].translateX, projeteis[i].translateY, projeteis[i].translateZ);
+
+//                glTranslatef(projeteis[i].translateX + projeteis[i].eixoX,
+//                            projeteis[i].translateY + projeteis[i].eixoY,
+//                            projeteis[i].translateZ + projeteis[i].eixoZ);
                 glRotatef(projeteis[i].rotateY, 0, 1, 0);
                 glTranslatef(projeteis[i].eixoX, projeteis[i].eixoY, projeteis[i].eixoZ);
                 glutSolidSphere(0.06, 20, 20);
@@ -195,6 +204,8 @@ void display(void) {
 
     if (vitoria == OFF) {
         desenhaGameOver();
+    } else if (vitoria == ON) {
+        desenhaWin();
     }
 
     glutSwapBuffers();
@@ -217,8 +228,16 @@ void finaliza() {
 
 void controlaAnimacoes() {
 
+    if (alvosAtingidos() == ON) {
+        vitoria = ON;
+        finaliza();
+    }
+
     if (strcmp(num_torp, "0") == 0 && strcmp(num_met, "0") == 0) {
-        if (torpedos[0].deslocamentoZ > 110 && torpedos[2].deslocamentoZ > 110 && projeteis[NUM_PROJETEIS - 1].eixoZ > 110) {
+        if (torpedos[0].deslocamentoZ > 110
+                && torpedos[2].deslocamentoZ > 110
+                && projeteis[NUM_PROJETEIS - 1].eixoZ > 110
+                && alvosAtingidos() == OFF) {
             vitoria = OFF;
             finaliza();
         }
@@ -307,6 +326,10 @@ void controlaAnimacoes() {
     int i;
     for (i = 0; i < projeteisDisparados; i++) {
         projeteis[i].eixoZ += PROJETIL_INCREMENT;
+        detectaColisao((double)(projeteis[i].translateX + projeteis[i].eixoX),
+                       (double)(projeteis[i].translateY + projeteis[i].eixoY),
+                       (double)(projeteis[i].translateZ + projeteis[i].eixoZ),
+                       0.06);
     }
 
     glutPostRedisplay();
@@ -354,10 +377,13 @@ void inicializaVariaveis() {
 
     itoa(TEMPO_TOTAL, relogio.tempo, 10);
 
+    relogio.instante1 = 0;
+    relogio.instante2 = 0;
     relogio.contando = OFF;
 
     srand( (unsigned)time(NULL) );
     for (i = 0; i < NUM_ALVOS; i++) {
+        alvo[i].atingido = OFF;
         alvo[i].escala = 0.7;
         alvo[i].translateX = -100;
         alvo[i].translateY = (rand() % 801) / 10;
@@ -368,7 +394,7 @@ void inicializaVariaveis() {
         }
     }
 
-    helicoptero.rotate = 0.0;
+    helicoptero.rotate = -90.0;
     helicoptero.x = -10.0;
     helicoptero.y = 0.0;
     helicoptero.z = 0.0;
@@ -639,6 +665,25 @@ void movimentaPernas() {
         personagem.rotatePernaDir += 6.0;
         if (personagem.rotatePernaDir > 50.0) {
             personagem.invertePernaDir = 0;
+        }
+    }
+}
+
+int alvosAtingidos() {
+    for (int i = 0; i < NUM_ALVOS; i++) {
+        if (alvo[i].atingido == OFF) {
+            return OFF;
+        }
+    }
+    return ON;
+}
+
+void detectaColisao(double xA, double yA, double zA, double raioA) {
+    int i;
+    for (i = 0; i < NUM_ALVOS; i++) {
+        if (PewGL::colisionDetection(xA, yA, zA, raioA, (double)alvo[i].translateX, (double)alvo[i].translateY, (double)alvo[i].translateZ, 70.0) == true) {
+            alvo[i].atingido = ON;
+            desenhaWin();
         }
     }
 }

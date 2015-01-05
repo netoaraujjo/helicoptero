@@ -5,9 +5,9 @@ Reposicionar a mira (alinhar com a metralhadora) -- FEITO
 Exibir tempo -- FEITO
 
 Acabar o jogo quando:
-	- Acertar todos os alvos
+	- Acertar todos os alvos -- FEITO
 	- Acabar as balas -- FEITO
-	- Verificar se após acabar as balas se foi derrubado o último alvo
+	- Verificar se após acabar as balas se foi derrubado o último alvo -- FEITO
 	- Tempo acabar sem acertar todos os alvos -- FEITO
 	- Tempo restante vira bônus
 
@@ -20,7 +20,7 @@ Mudar posição da câmera
  -------------
 | PRIORIDADES |
  -------------
-Detecção de colisão
+Detecção de colisão -- COM PROBLEMA
 
 Array de alvos -- FEITO
 
