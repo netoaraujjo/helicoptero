@@ -11,6 +11,7 @@
 #include "desenho.h"
 #include <GL/freeglut.h>
 #include <string.h>
+#include <fmod.h>
 
 #define PI 3.1415
 
@@ -30,8 +31,9 @@ void controlePersonagem(unsigned char key);
 void controleEspecialPersonagem(int key);
 void movimentaBracos(void);
 void movimentaPernas(void);
-int alvosAtingidos();
-void detectaColisao(double xA, double yA, double zA, double raioA);
+int todosOsAlvosAtingidos();
+void detectaColisao(GLfloat z, GLfloat y, int tipo);
+bool carregaSom(char *currentSound);
 
 /*********************************************
     CONTROLES DOS TORPEDOS E PROJÉTEIS
@@ -78,6 +80,12 @@ Personagem personagem;
 Relogio relogio;
 Alvo alvo[NUM_ALVOS];
 
+FMOD_RESULT result;
+FMOD_SYSTEM * fmodsystem;
+FMOD_SOUND * sound;
+FMOD_CHANNEL * channel;
+
+
 int acabou;
 int vitoria;
 
@@ -114,6 +122,7 @@ int main(int argc, char **argv) {
     }
 
     glutReshapeFunc(reshape);
+    carregaSom("sound/sound.mp3");
     glutKeyboardFunc(keyboard);
     glutSpecialFunc(special_keyboard);
     glutDisplayFunc(display);
@@ -166,9 +175,8 @@ void display(void) {
     desenhaImagens(&torpedoImg, &balaImg, &relogioImg);
 
     for (int i = 0; i < NUM_ALVOS; i++) {
-        if (alvo[i].atingido == OFF) {
+        if (alvo[i].atingido == OFF)
             desenhaAlvo(&alvo[i].objeto, alvo[i].escala, alvo[i].translateX, alvo[i].translateY, alvo[i].translateZ);
-        }
     }
 
     desenhaTexto(num_torp, num_met, relogio.tempo);
@@ -182,10 +190,6 @@ void display(void) {
             glColor3f(1.0, 0.0, 0.0);
             if (projeteis[i].disparado == ON) {
                 glTranslatef(projeteis[i].translateX, projeteis[i].translateY, projeteis[i].translateZ);
-
-//                glTranslatef(projeteis[i].translateX + projeteis[i].eixoX,
-//                            projeteis[i].translateY + projeteis[i].eixoY,
-//                            projeteis[i].translateZ + projeteis[i].eixoZ);
                 glRotatef(projeteis[i].rotateY, 0, 1, 0);
                 glTranslatef(projeteis[i].eixoX, projeteis[i].eixoY, projeteis[i].eixoZ);
                 glutSolidSphere(0.06, 20, 20);
@@ -228,7 +232,7 @@ void finaliza() {
 
 void controlaAnimacoes() {
 
-    if (alvosAtingidos() == ON) {
+    if (todosOsAlvosAtingidos() == ON) {
         vitoria = ON;
         finaliza();
     }
@@ -237,7 +241,7 @@ void controlaAnimacoes() {
         if (torpedos[0].deslocamentoZ > 110
                 && torpedos[2].deslocamentoZ > 110
                 && projeteis[NUM_PROJETEIS - 1].eixoZ > 110
-                && alvosAtingidos() == OFF) {
+                && todosOsAlvosAtingidos() == OFF) {
             vitoria = OFF;
             finaliza();
         }
@@ -284,6 +288,9 @@ void controlaAnimacoes() {
         if (torpedos[1].eixoY > TORPEDO_POSITION_Y) {
             torpedos[1].eixoY -= TORPEDO_INCREMENT_VERTICAL;
         }
+        detectaColisao(torpedos[1].deslocamentoZ,
+                       projeteis[1].eixoY,
+                       TORPEDO);
     }
     if (numTorpedoEsquerda > 1) {
         torpedos[0].deslocamentoZ += TORPEDO_INCREMENT;
@@ -293,6 +300,9 @@ void controlaAnimacoes() {
         if (torpedos[0].eixoY > TORPEDO_POSITION_Y) {
             torpedos[0].eixoY -= TORPEDO_INCREMENT_VERTICAL;
         }
+        detectaColisao(torpedos[0].deslocamentoZ,
+                       projeteis[0].eixoY,
+                       TORPEDO);
     }
     if (numTorpedoDireita > 0) {
         torpedos[3].deslocamentoZ += TORPEDO_INCREMENT;
@@ -302,6 +312,9 @@ void controlaAnimacoes() {
         if (torpedos[3].eixoY > TORPEDO_POSITION_Y) {
             torpedos[3].eixoY -= TORPEDO_INCREMENT_VERTICAL;
         }
+        detectaColisao(torpedos[3].deslocamentoZ,
+                       projeteis[3].eixoY,
+                       TORPEDO);
     }
     if (numTorpedoDireita > 1) {
         torpedos[2].deslocamentoZ += TORPEDO_INCREMENT;
@@ -311,6 +324,9 @@ void controlaAnimacoes() {
         if (torpedos[2].eixoY > TORPEDO_POSITION_Y) {
             torpedos[2].eixoY -= TORPEDO_INCREMENT_VERTICAL;
         }
+        detectaColisao(torpedos[2].deslocamentoZ,
+                       projeteis[2].eixoY,
+                       TORPEDO);
     }
 
     if (numTorpedoDireita + numTorpedoEsquerda == 4) {
@@ -326,10 +342,9 @@ void controlaAnimacoes() {
     int i;
     for (i = 0; i < projeteisDisparados; i++) {
         projeteis[i].eixoZ += PROJETIL_INCREMENT;
-        detectaColisao((double)(projeteis[i].translateX + projeteis[i].eixoX),
-                       (double)(projeteis[i].translateY + projeteis[i].eixoY),
-                       (double)(projeteis[i].translateZ + projeteis[i].eixoZ),
-                       0.06);
+        detectaColisao(projeteis[i].eixoZ,
+                       projeteis[i].translateY + projeteis[i].eixoY,
+                       PROJETIL);
     }
 
     glutPostRedisplay();
@@ -384,6 +399,8 @@ void inicializaVariaveis() {
     srand( (unsigned)time(NULL) );
     for (i = 0; i < NUM_ALVOS; i++) {
         alvo[i].atingido = OFF;
+        alvo[i].projeteis = 0;
+        alvo[i].torpedos = 0;
         alvo[i].escala = 0.7;
         alvo[i].translateX = -100;
         alvo[i].translateY = (rand() % 801) / 10;
@@ -669,7 +686,7 @@ void movimentaPernas() {
     }
 }
 
-int alvosAtingidos() {
+int todosOsAlvosAtingidos() {
     for (int i = 0; i < NUM_ALVOS; i++) {
         if (alvo[i].atingido == OFF) {
             return OFF;
@@ -678,12 +695,40 @@ int alvosAtingidos() {
     return ON;
 }
 
-void detectaColisao(double xA, double yA, double zA, double raioA) {
+void detectaColisao(GLfloat z, GLfloat y, int tipo) {
     int i;
-    for (i = 0; i < NUM_ALVOS; i++) {
-        if (PewGL::colisionDetection(xA, yA, zA, raioA, (double)alvo[i].translateX, (double)alvo[i].translateY, (double)alvo[i].translateZ, 70.0) == true) {
-            alvo[i].atingido = ON;
-            desenhaWin();
-        }
-    }
+//    for (i = 0; i < NUM_ALVOS; i++) {
+//        if (alvo[i].atingido == OFF) {
+//            if ((z * -1) <= alvo[i].translateX) {
+//                if (y >= (alvo[i].translateY - 2) && y <= (alvo[i].translateY + 2)) {
+//                    printf("\n\n\n\tY = %f", y);
+//                    printf("\nTRANSLATE Y = %f", alvo[i].translateY);
+//                    alvo[i].atingido = ON;
+//                    if (tipo == TORPEDO)
+//                        alvo[i].torpedos++;
+//                    else if (tipo == PROJETIL)
+//                        alvo[i].projeteis++;
+//                }
+//            }
+//        }
+//        if (PewGL::colisionDetection(xA, yA, zA, raioA, (double)alvo[i].translateX, (double)alvo[i].translateY, (double)alvo[i].translateZ, 7.0) == true) {
+//            alvo[i].atingido = ON;
+//            desenhaWin();
+//        }
+//    }
+}
+
+bool carregaSom(char *currentSound) {
+    result = FMOD_System_Create(&fmodsystem);
+    if (result != FMOD_OK)
+        return false;
+    result = FMOD_System_Init(fmodsystem,2, FMOD_INIT_NORMAL, 0);
+    if (result != FMOD_OK)
+        return false;
+    result = FMOD_Sound_Release(sound);
+    result = FMOD_System_CreateStream(fmodsystem,currentSound, FMOD_SOFTWARE, 0, &sound);
+    if (result != FMOD_OK)
+       return false;
+    result = FMOD_System_PlaySound(fmodsystem,FMOD_CHANNEL_FREE, sound, false, &channel);
+    FMOD_Channel_SetMode(channel,FMOD_LOOP_NORMAL);
 }

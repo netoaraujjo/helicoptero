@@ -17,6 +17,7 @@
 					<Add directory="libs/glm-0.9.3.3/include" />
 					<Add directory="libs/freeglut/include" />
 					<Add directory="libs/SDL2-2.0.3/i686-w64-mingw32/include" />
+					<Add directory="sound" />
 				</Compiler>
 				<Linker>
 					<Add library="opengl32" />
@@ -25,6 +26,7 @@
 					<Add library="gdi32" />
 					<Add library="libs\freeglut\lib\libfreeglut.a" />
 					<Add library="libs\libglew32.dll.a" />
+					<Add library="sound\libfmodex.a" />
 					<Add directory="libs/SDL2-2.0.3/i686-w64-mingw32/lib" />
 					<Add directory="libs/SDL2_mixer-2.0.0/i686-w64-mingw32/lib" />
 				</Linker>

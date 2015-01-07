@@ -2048,7 +2048,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1420468123 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
+1420655328 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<stdlib.h>
 	<cstdlib>
@@ -2062,6 +2062,7 @@
 	"desenho.h"
 	<GL/freeglut.h>
 	<string.h>
+	<fmod.h>
 
 1392925648 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\pewgl.cpp
 	"PewGL.h"
@@ -2596,7 +2597,7 @@
 
 1420402917 c:\users\luís guilherme\desktop\helicoptero\obj_loader\estruturas.h
 
-1420413569 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
+1420654143 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
 
 1419856067 c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.h
 
@@ -2609,8 +2610,19 @@
 	"begin_code.h"
 	"close_code.h"
 
-1419869022 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.cpp
+1420488310 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.cpp
 	"GameObject.h"
 	"estruturas.h"
 	"constantes.h"
+
+1406869874 c:\users\luís guilherme\desktop\helicoptero\obj_loader\sound\fmod.h
+	"fmod_codec.h"
+	"fmod_dsp.h"
+	"fmod_memoryinfo.h"
+
+1406869874 c:\users\luís guilherme\desktop\helicoptero\obj_loader\sound\fmod_codec.h
+
+1406869874 c:\users\luís guilherme\desktop\helicoptero\obj_loader\sound\fmod_dsp.h
+
+1406869874 c:\users\luís guilherme\desktop\helicoptero\obj_loader\sound\fmod_memoryinfo.h
 
