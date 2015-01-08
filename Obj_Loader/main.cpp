@@ -779,17 +779,28 @@ bool carregaSomHeliceDesligado(char *currentSound_helice) {
 }
 
 void calculaBonus() {
-    int proj, tempo, torp, bon;
+    int proj, tempo, torp, pont, alv = 0;
 
-    proj = atoi(num_met);
-    tempo = atoi(relogio.tempo);
-    torp = atoi(num_torp);
+    for (int i = 0; i < NUM_ALVOS; i++) {
+        if (alvo[i].atingido == ON) {
+            alv++;
+        }
+    }
 
-    proj = proj * 10;
-    tempo = tempo * 20;
-    torp = torp * 30;
+    alv = alv * 50;
+    pont = alv;
 
-    bon = proj + tempo + torp;
+    if (vitoria == ON) {
+        proj = atoi(num_met);
+        tempo = atoi(relogio.tempo);
+        torp = atoi(num_torp);
 
-    itoa(bon, pontuacao, 10);
+        proj = proj * 10;
+        tempo = tempo * 20;
+        torp = torp * 30;
+
+        pont = proj + tempo + torp + alv;
+    }
+
+    itoa(pont, pontuacao, 10);
 }
