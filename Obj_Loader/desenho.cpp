@@ -441,7 +441,7 @@ void desenhaTexto(char* num_torp, char* num_met, char* tempo) {
 	glPopMatrix();
 }
 
-void desenhaGameOver() {
+void desenhaGameOver(char* pontuacao) {
 	glPushMatrix();
         glTranslatef(28.9, 3.5, 1.2);
         glScalef(0.003, 0.003, 0.003); // diminui o tamanho do fonte
@@ -451,9 +451,21 @@ void desenhaGameOver() {
         desenhaTextoStroke(GLUT_STROKE_ROMAN, "GAME OVER");
         glColor3f(1.0, 1.0, 1.0);
 	glPopMatrix();
+
+	glPushMatrix();
+        glTranslatef(28.9, 3.34, 0.65);
+        glScalef(0.001, 0.001, 0.001); // diminui o tamanho do fonte
+        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
+        glLineWidth(4); // define a espessura da linha
+        glColor3f(20,0,0);
+        desenhaTextoStroke(GLUT_STROKE_ROMAN, "Pontuacao: ");
+        glTranslatef(28.9, 2.5, 1.2);
+        desenhaTextoStroke(GLUT_STROKE_ROMAN, pontuacao);
+        glColor3f(1.0, 1.0, 1.0);
+    glPopMatrix();
 }
 
-void desenhaWin() {
+void desenhaWin(char* pontuacao) {
 	glPushMatrix();
         glTranslatef(28.9, 3.5, 0.5);
         glScalef(0.003, 0.003, 0.003); // diminui o tamanho do fonte
@@ -463,4 +475,16 @@ void desenhaWin() {
         desenhaTextoStroke(GLUT_STROKE_ROMAN, "WIN");
         glColor3f(1.0, 1.0, 1.0);
 	glPopMatrix();
+
+	glPushMatrix();
+        glTranslatef(28.9, 3.34, 0.65);
+        glScalef(0.001, 0.001, 0.001); // diminui o tamanho do fonte
+        glRotatef(90, 0 , 1 , 0); // rotaciona o texto
+        glLineWidth(4); // define a espessura da linha
+        glColor3f(0,20,0);
+        desenhaTextoStroke(GLUT_STROKE_ROMAN, "Pontuacao: ");
+        glTranslatef(28.9, 2.5, 1.2);
+        desenhaTextoStroke(GLUT_STROKE_ROMAN, pontuacao);
+        glColor3f(1.0, 1.0, 1.0);
+    glPopMatrix();
 }

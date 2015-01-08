@@ -5,25 +5,25 @@
 		<Cursor>
 			<Cursor1 position="895" topLine="0" />
 		</Cursor>
-		<Folding>
-			<Collapse line="4" />
-			<Collapse line="16" />
-			<Collapse line="25" />
-		</Folding>
-	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2153" topLine="73" />
-		</Cursor>
-	</File>
-	<File name="PewGL.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="563" topLine="0" />
-		</Cursor>
 	</File>
 	<File name="desenho.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="123" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="17557" topLine="283" />
+		</Cursor>
+		<Folding>
+			<Collapse line="222" />
+			<Collapse line="232" />
+			<Collapse line="237" />
+		</Folding>
+	</File>
+	<File name="estruturas.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="962" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="PewGL.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -31,9 +31,9 @@
 			<Cursor1 position="6964" topLine="189" />
 		</Cursor>
 	</File>
-	<File name="estruturas.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="PewGL.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="962" topLine="0" />
+			<Cursor1 position="563" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="constantes.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">

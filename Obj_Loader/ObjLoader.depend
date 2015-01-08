@@ -2048,7 +2048,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1420721417 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
+1420750409 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\main.cpp
 	<iostream>
 	<stdlib.h>
 	<cstdlib>
@@ -2597,9 +2597,9 @@
 
 1420402917 c:\users\luís guilherme\desktop\helicoptero\obj_loader\estruturas.h
 
-1420657887 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
+1420750438 c:\users\luís guilherme\desktop\helicoptero\obj_loader\constantes.h
 
-1419856067 c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.h
+1420750409 c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.h
 
 1376156426 d:\documents\ufpi\disciplinas\2014.2\computação gráfica\helicoptero\obj_loader\libs\sdl2_mixer-2.0.0\i686-w64-mingw32\include\sdl2\sdl_mixer.h
 	"SDL_stdinc.h"
@@ -2610,7 +2610,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1420488310 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.cpp
+1420750409 source:c:\users\luís guilherme\desktop\helicoptero\obj_loader\desenho.cpp
 	"GameObject.h"
 	"estruturas.h"
 	"constantes.h"

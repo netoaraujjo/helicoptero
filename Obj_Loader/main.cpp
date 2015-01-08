@@ -36,6 +36,7 @@ void detectaColisao(GLfloat z, GLfloat y, int tipo);
 bool carregaSom(char *currentSound);
 bool carregaSomHelice(char *currentSound);
 bool carregaSomHeliceDesligado(char *currentSound_helice);
+void calculaBonus();
 
 /*********************************************
     CONTROLES DOS TORPEDOS E PROJÉTEIS
@@ -94,6 +95,7 @@ FMOD_CHANNEL * channel_helice;
 
 int acabou;
 int vitoria;
+char pontuacao[10];
 
 int main(int argc, char **argv) {
 
@@ -212,9 +214,9 @@ void display(void) {
     }
 
     if (vitoria == OFF) {
-        desenhaGameOver();
+        desenhaGameOver(pontuacao);
     } else if (vitoria == ON) {
-        desenhaWin();
+        desenhaWin(pontuacao);
     }
 
     glutSwapBuffers();
@@ -233,6 +235,7 @@ void reshape(int width, int height) {
 void finaliza() {
     glutIdleFunc(NULL);
     acabou = ON;
+    calculaBonus();
 }
 
 void controlaAnimacoes() {
@@ -253,7 +256,6 @@ void controlaAnimacoes() {
     }
 
     if (relogio.contando == ON) {
-        desenhaGameOver();
         if (relogio.instante1 == 0) { // Pega o instante inicial
             relogio.instante1 = (float)clock()/(float)CLOCKS_PER_SEC;
         }
@@ -394,6 +396,7 @@ void inicializaVariaveis() {
 
     strcpy(num_torp, "4");
     strcpy(num_met, "200");
+    strcpy(pontuacao, "0");
 
     itoa(TEMPO_TOTAL, relogio.tempo, 10);
 
@@ -580,7 +583,9 @@ void controleHelicoptero(unsigned char key) {
             break;
         case 'e':
         case 'E':
-            personagem.embarcado = OFF;
+            if (helicoptero.y == 0) {
+                personagem.embarcado = OFF;
+            }
             break;
 	}
 }
@@ -598,10 +603,10 @@ void controleEspecialHelicoptero(int key) {
             }
             break;
         case GLUT_KEY_LEFT:
-            if (heliceState == ON) helicoptero.z += 0.7;
+            if (heliceState == ON) helicoptero.z += 0.7;//axisxz+=0.2;
             break;
         case GLUT_KEY_RIGHT:
-            if (heliceState == ON) helicoptero.z -= 0.7;
+            if (heliceState == ON) helicoptero.z -= 0.7;//axisxz-=0.2;
             break;
     }
 }
@@ -707,25 +712,25 @@ int todosOsAlvosAtingidos() {
 
 void detectaColisao(GLfloat z, GLfloat y, int tipo) {
     int i;
-//    for (i = 0; i < NUM_ALVOS; i++) {
-//        if (alvo[i].atingido == OFF) {
-//            if ((z * -1) <= alvo[i].translateX) {
-//                if (y >= (alvo[i].translateY - 2) && y <= (alvo[i].translateY + 2)) {
-//                    printf("\n\n\n\tY = %f", y);
-//                    printf("\nTRANSLATE Y = %f", alvo[i].translateY);
-//                    alvo[i].atingido = ON;
-//                    if (tipo == TORPEDO)
-//                        alvo[i].torpedos++;
-//                    else if (tipo == PROJETIL)
-//                        alvo[i].projeteis++;
-//                }
-//            }
-//        }
+    for (i = 0; i < NUM_ALVOS; i++) {
+        if (alvo[i].atingido == OFF) {
+            if ((z * -1) <= alvo[i].translateX) {
+                if (y >= (alvo[i].translateY - 2) && y <= (alvo[i].translateY + 2)) {
+                    printf("\n\n\n\tY = %f", y);
+                    printf("\nTRANSLATE Y = %f", alvo[i].translateY);
+                    alvo[i].atingido = ON;
+                    if (tipo == TORPEDO)
+                        alvo[i].torpedos++;
+                    else if (tipo == PROJETIL)
+                        alvo[i].projeteis++;
+                }
+            }
+        }
 //        if (PewGL::colisionDetection(xA, yA, zA, raioA, (double)alvo[i].translateX, (double)alvo[i].translateY, (double)alvo[i].translateZ, 7.0) == true) {
 //            alvo[i].atingido = ON;
 //            desenhaWin();
 //        }
-//    }
+    }
 }
 
 bool carregaSom(char *currentSound) {
@@ -771,4 +776,20 @@ bool carregaSomHeliceDesligado(char *currentSound_helice) {
        return false;
     result_helice = FMOD_System_PlaySound(fmodsystem_helice,FMOD_CHANNEL_FREE, sound_helice, false, &channel_helice);
     FMOD_Channel_SetMode(channel_helice,FMOD_INIT_NORMAL);
+}
+
+void calculaBonus() {
+    int proj, tempo, torp, bon;
+
+    proj = atoi(num_met);
+    tempo = atoi(relogio.tempo);
+    torp = atoi(num_torp);
+
+    proj = proj * 10;
+    tempo = tempo * 20;
+    torp = torp * 30;
+
+    bon = proj + tempo + torp;
+
+    itoa(bon, pontuacao, 10);
 }
