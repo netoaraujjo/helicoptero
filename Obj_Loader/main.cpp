@@ -34,6 +34,8 @@ void movimentaPernas(void);
 int todosOsAlvosAtingidos();
 void detectaColisao(GLfloat z, GLfloat y, int tipo);
 bool carregaSom(char *currentSound);
+bool carregaSomHelice(char *currentSound);
+bool carregaSomHeliceDesligado(char *currentSound_helice);
 
 /*********************************************
     CONTROLES DOS TORPEDOS E PROJÉTEIS
@@ -85,6 +87,10 @@ FMOD_SYSTEM * fmodsystem;
 FMOD_SOUND * sound;
 FMOD_CHANNEL * channel;
 
+FMOD_RESULT result_helice;
+FMOD_SYSTEM * fmodsystem_helice;
+FMOD_SOUND * sound_helice;
+FMOD_CHANNEL * channel_helice;
 
 int acabou;
 int vitoria;
@@ -122,7 +128,6 @@ int main(int argc, char **argv) {
     }
 
     glutReshapeFunc(reshape);
-    carregaSom("sound/sound.mp3");
     glutKeyboardFunc(keyboard);
     glutSpecialFunc(special_keyboard);
     glutDisplayFunc(display);
@@ -514,10 +519,12 @@ void controleHelicoptero(unsigned char key) {
         case 'i':
             heliceState = ON;
             relogio.contando = ON;
+            carregaSomHelice("sound/sons/helice ligando.mp3");
             break;
         case 'I':
             if (helicoptero.y == 0) {
                 heliceState = OFF;
+                carregaSomHeliceDesligado("sound/sons/helice desligando.mp3");
             }
             break;
         case 't':
@@ -536,6 +543,7 @@ void controleHelicoptero(unsigned char key) {
                     torpedos[0].translateZ = helicoptero.z;
                     torpedos[0].disparado = ON;
                 }
+                carregaSom("sound/sons/torpedo.mp3");
             }
             break;
         case 'T':
@@ -554,11 +562,13 @@ void controleHelicoptero(unsigned char key) {
                     torpedos[2].translateZ = helicoptero.z;
                     torpedos[2].disparado = ON;
                 }
+                carregaSom("sound/sons/torpedo.mp3");
             }
             break;
         case 'm':
         case 'M':
             if (projeteisDisparados < NUM_PROJETEIS) {
+//                carregaSom("sound/sons/projetil.mp3");
                 projeteis[projeteisDisparados].rotateY = helicoptero.rotate;
                 projeteis[projeteisDisparados].translateX = helicoptero.x;
                 projeteis[projeteisDisparados].translateY = helicoptero.y;
@@ -730,5 +740,35 @@ bool carregaSom(char *currentSound) {
     if (result != FMOD_OK)
        return false;
     result = FMOD_System_PlaySound(fmodsystem,FMOD_CHANNEL_FREE, sound, false, &channel);
-    FMOD_Channel_SetMode(channel,FMOD_LOOP_NORMAL);
+    FMOD_Channel_SetMode(channel,FMOD_INIT_NORMAL);
+}
+
+bool carregaSomHelice(char *currentSound_helice) {
+    result_helice = FMOD_System_Create(&fmodsystem_helice);
+    if (result_helice != FMOD_OK)
+        return false;
+    result_helice = FMOD_System_Init(fmodsystem_helice,2, FMOD_INIT_NORMAL, 0);
+    if (result_helice != FMOD_OK)
+        return false;
+    result_helice = FMOD_Sound_Release(sound_helice);
+    result_helice = FMOD_System_CreateStream(fmodsystem_helice,currentSound_helice, FMOD_SOFTWARE, 0, &sound_helice);
+    if (result_helice != FMOD_OK)
+       return false;
+    result_helice = FMOD_System_PlaySound(fmodsystem_helice,FMOD_CHANNEL_FREE, sound_helice, false, &channel_helice);
+    FMOD_Channel_SetMode(channel_helice,FMOD_LOOP_NORMAL);
+}
+
+bool carregaSomHeliceDesligado(char *currentSound_helice) {
+    result_helice = FMOD_System_Create(&fmodsystem_helice);
+    if (result_helice != FMOD_OK)
+        return false;
+    result_helice = FMOD_System_Init(fmodsystem_helice,2, FMOD_INIT_NORMAL, 0);
+    if (result_helice != FMOD_OK)
+        return false;
+    result_helice = FMOD_Sound_Release(sound_helice);
+    result_helice = FMOD_System_CreateStream(fmodsystem_helice,currentSound_helice, FMOD_SOFTWARE, 0, &sound_helice);
+    if (result_helice != FMOD_OK)
+       return false;
+    result_helice = FMOD_System_PlaySound(fmodsystem_helice,FMOD_CHANNEL_FREE, sound_helice, false, &channel_helice);
+    FMOD_Channel_SetMode(channel_helice,FMOD_INIT_NORMAL);
 }

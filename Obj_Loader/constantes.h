@@ -12,8 +12,8 @@
 #define TORPEDO_INCREMENT_HORIZONTAL 0.1
 #define TORPEDO_POSITION_Y -4.89
 #define PROJETIL_INCREMENT 0.7
-#define TEMPO_TOTAL 3 // Em segundos
-#define NUM_ALVOS 7
+#define TEMPO_TOTAL 3000 // Em segundos
+#define NUM_ALVOS 5
 #define PROJETEIS_ATINGIDOS 2
 #define TORPEDOS_ATINGIDOS 50
 
